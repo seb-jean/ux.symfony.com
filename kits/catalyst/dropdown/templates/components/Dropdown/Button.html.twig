@@ -1,0 +1,11 @@
+{%- props as = 'Button', color = 'dark/zinc', outline = false, plain = false -%}
+
+<twig:component
+    is="{{ as }}"
+    :color="color"
+    :outline="outline"
+    :plain="plain"
+    {{ attributes }}
+>
+    {%- block content %}{% endblock -%}
+</twig:component>

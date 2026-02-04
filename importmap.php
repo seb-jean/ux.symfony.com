@@ -36,6 +36,10 @@ return [
         'path' => './assets/toolkit-shadcn.js',
         'entrypoint' => true,
     ],
+    'toolkit-catalyst' => [
+        'path' => './assets/toolkit-catalyst.js',
+        'entrypoint' => true,
+    ],
     '@symfony/stimulus-bundle' => [
         'path' => '@symfony/stimulus-bundle/loader.js',
     ],
@@ -223,5 +227,8 @@ return [
     ],
     'react-dom/client' => [
         'version' => '18.3.1',
+    ],
+    '@tailwindplus/elements' => [
+        'version' => '1.0.22',
     ],
 ];

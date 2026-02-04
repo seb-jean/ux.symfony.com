@@ -1,0 +1,55 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+Use the `Input` component on its own to render a standalone input without an associated `Label`:
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example') }}
+Make sure to provide an `aria-label` for assistive technology, or connect the `Input` to your own `<label>` element using an `id`.
+
+### With label
+Wrap a `Label` and `Input` with the `Field` component to automatically associate them using a generated ID:
+{{ toolkit_code_example(kit_id.value, component.name, 'With label') }}
+
+### With description
+Use the `Description` component to add a description above or below your `Input`:
+{{ toolkit_code_example(kit_id.value, component.name, 'With description') }}
+
+### With icon
+Wrap an icon and `Input` with the `Input:Group` component to render an input with an icon:
+{{ toolkit_code_example(kit_id.value, component.name, 'With icon') }}
+The `Input:Group` component is designed to work best with 16×16 icons.
+
+If you're using your own custom icons, make sure they include the `data-slot="icon"` prop so they receive the correct styles.
+
+### Setting the type
+Use the `type` prop to set the input type to any supported text input type:
+{{ toolkit_code_example(kit_id.value, component.name, 'Setting the type') }}
+The supported types are `email`, `number`, `password`, `search`, `tel`, `text`, `url`, `date`, `datetime-local`, `month`, `time`, and `week`.
+
+### Disabled state
+Add the `disabled` prop to the `Field` component to disable an `Input` and the associated `Label`:
+{{ toolkit_code_example(kit_id.value, component.name, 'Disabled state') }}
+You can also disable an input outside of a `Field` by adding the `disabled` prop directly to the `Input` itself.
+
+### Validation errors
+Add the `invalid` prop to the `Input` component to indicate a validation error, and render the error using the `ErrorMessage`:
+{{ toolkit_code_example(kit_id.value, component.name, 'Validation errors') }}
+
+### Constraining width
+Use the `class` attribute on the `Input` component to make layout adjustments like adjusting the max-width:
+{{ toolkit_code_example(kit_id.value, component.name, 'Constraining width') }}
+Be aware that the `class` prop is a sharp knife — make sure to only add classes that don't conflict with classes the component already includes or you'll get unexpected results.
+
+### With custom layout
+Use the unstyled `Field` component from `@headlessui/react` directly instead of the styled `Field` component to implement a custom layout:
+{{ toolkit_code_example(kit_id.value, component.name, 'With custom layout') }}
+Using the unstyled `Field` component will ensure important accessibility features are still handled for you like generating IDs and associating elements using `aria-*` attributes.
+
+### Controlled component
+Use the normal `value` and `onChange` props to use the `Input` component as a controlled component:
+{{ toolkit_code_example(kit_id.value, component.name, 'Controlled component') }}
+{% endblock %}

@@ -1,0 +1,8 @@
+{# @block content The default block #}
+<div
+    data-slot="label"
+    class="{{ html_classes('col-start-2 row-start-1', attributes.render('class')) }}"
+    {{ attributes }}
+>
+    {%- block content %}{% endblock -%}
+</div>
