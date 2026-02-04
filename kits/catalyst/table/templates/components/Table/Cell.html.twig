@@ -1,0 +1,29 @@
+{# @block content The default block #}
+{%- do {bleed, dense, grid, striped} = table_context -%}
+{%- do {href, target, title} = table_row_context -%}
+<td
+    class="{{ html_classes(
+        attributes.render('class')|default(''),
+        'relative px-4 first:pl-(--gutter,--spacing(2)) last:pr-(--gutter,--spacing(2))', {
+        'border-b border-zinc-950/5 dark:border-white/5': not striped,
+        'border-l border-l-zinc-950/5 first:border-l-0 dark:border-l-white/5': grid,
+        'py-2.5': dense,
+        'py-4': not dense,
+        'sm:first:pl-1 sm:last:pr-1': not bleed,
+    }) }}"
+    {{ attributes }}
+>
+    {%- if href -%}
+        <a
+            data-row-link
+            class="absolute inset-0 focus:outline-hidden"
+            href="{{ href }}"
+            {{ attributes.nested('link').defaults({
+                tabindex: -1,
+                target: target ?: false,
+                'aria-label': title ?: false,
+            }) }}
+        ></a>
+    {%- endif -%}
+    {%- block content %}{% endblock -%}
+</td>

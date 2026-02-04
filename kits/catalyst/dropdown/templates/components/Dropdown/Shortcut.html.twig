@@ -1,0 +1,14 @@
+{# @prop keys string The keyboard shortcut keys to display #}
+{%- props keys = '' -%}
+<kbd
+    class="{{ html_classes('col-start-5 row-start-1 flex justify-self-end', attributes.render('class')) }}"
+    {{ attributes }}
+>
+    {%- for char in keys|split('') -%}
+        {%- set charClasses = 'min-w-[2ch] text-center font-sans text-zinc-400 capitalize group-data-focus:text-white forced-colors:group-data-focus:text-[HighlightText]' -%}
+        {%- if not loop.first and char|length > 1 -%}
+            {%- set charClasses = charClasses ~ ' pl-1' -%}
+        {%- endif -%}
+        <kbd class="{{ charClasses }}">{{ char }}</kbd>
+    {%- endfor -%}
+</kbd>

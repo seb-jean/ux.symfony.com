@@ -1,0 +1,14 @@
+{# @block content The default block #}
+<div
+    data-slot="control"
+    class="{{ html_classes(
+        attributes.render('class')|default(''),
+        # Basic groups
+        'space-y-3',
+        # With descriptions
+        'has-data-[slot=description]:space-y-6 has-data-[slot=description]:**:data-[slot=label]:font-medium',
+    ) }}"
+    {{ attributes }}
+>
+    {%- block content %}{% endblock -%}
+</div>

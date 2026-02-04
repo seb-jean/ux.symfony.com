@@ -1,0 +1,15 @@
+<div class="w-full max-w-sm">
+    <twig:Fieldset:Field>
+        <twig:Fieldset:Label>Project status</twig:Fieldset:Label>
+        <twig:Select name="status" invalid>
+            <option value="" disabled>
+                Select a status&hellip;
+            </option>
+            <option value="active">Active</option>
+            <option value="paused">Paused</option>
+            <option value="delayed">Delayed</option>
+            <option value="canceled">Canceled</option>
+        </twig:Select>
+        <twig:Fieldset:ErrorMessage>A project status is required.</twig:Fieldset:ErrorMessage>
+    </twig:Fieldset:Field>
+</div>

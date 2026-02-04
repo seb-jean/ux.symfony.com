@@ -1,0 +1,19 @@
+{# @prop disabled boolean Whether or not to disable the entire list, default to `false` #}
+{# @prop name string The name to use when submitting an HTML form #}
+{# @block content The default block #}
+{%- props name = null -%}
+{%- set radio_group_context = {name} -%}
+<div
+    data-slot="control"
+    role="radiogroup"
+    class="{{ html_classes(
+        attributes.render('class')|default(''),
+        # Basic groups
+        'space-y-3 **:data-[slot=label]:font-normal',
+        # With descriptions
+        'has-data-[slot=description]:space-y-6 has-data-[slot=description]:**:data-[slot=label]:font-medium',
+    ) }}"
+    {{ attributes }}
+>
+    {%- block content %}{% endblock -%}
+</div>

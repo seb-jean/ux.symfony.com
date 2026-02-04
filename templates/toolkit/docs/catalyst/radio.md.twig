@@ -1,0 +1,34 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name, {height: '350px'}) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+Use the `Radio:Group`, `Radio:Field`, `Radio`, and `Label` components to create a simple radio group:
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example', {height: '200px'}) }}
+We recommend adding an `aria-label` for assistive technology, or connecting the `Radio:Group` to your own label using `aria-labelledby`.
+
+### With description
+Use the `Radio:Field`, `Label`, and `Description` components to add a description below the radio:
+{{ toolkit_code_example(kit_id.value, component.name, 'With description', {height: '300px'}) }}
+
+### With accent color
+Use the `color` prop to choose a different accent color for a checkbox:
+{{ toolkit_code_example(kit_id.value, component.name, 'With accent color', {height: '200px'}) }}
+
+### Default selected state
+Use the `defaultValue` prop to set the default selected option for a `Radio:Group`:
+{{ toolkit_code_example(kit_id.value, component.name, 'Default selected state', {height: '200px'}) }}
+
+### With fieldset
+Use the `Fieldset`, `Legend`, and `Text` components to add a title and description to a radio group:
+{{ toolkit_code_example(kit_id.value, component.name, 'With fieldset', {height: '350px'}) }}
+When used with a `Fieldset` and `Legend`, you don't need to add a separate `aria-label` to the `Radio:Group` itself.
+
+### Disabled state
+Add the `disabled` prop to a `Radio` or `Radio:Field` component to disable it:
+{{ toolkit_code_example(kit_id.value, component.name, 'Disabled state', {height: '350px'}) }}
+You can also add the `disabled` prop to a `Radio:Group` or `Fieldset` to disable all of the radio buttons in that group.
+{% endblock %}

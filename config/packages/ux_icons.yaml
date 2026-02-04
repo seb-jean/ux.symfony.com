@@ -8,3 +8,7 @@ ux_icons:
         feature:
             alias: 'lucide'
             # icon_attributes:
+
+        heroicons:
+            icon_attributes:
+                data-slot: 'icon'

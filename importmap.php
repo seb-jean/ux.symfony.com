@@ -36,6 +36,10 @@ return [
         'path' => './assets/toolkit-shadcn.js',
         'entrypoint' => true,
     ],
+    'toolkit-catalyst' => [
+        'path' => './assets/toolkit-catalyst.js',
+        'entrypoint' => true,
+    ],
     '@symfony/stimulus-bundle' => [
         'path' => '@symfony/stimulus-bundle/loader.js',
     ],
@@ -198,6 +202,9 @@ return [
     '@symfony/ux-leaflet-map' => [
         'path' => './vendor/symfony/ux-leaflet-map/assets/dist/map_controller.js',
     ],
+    'catalyst/checkbox/assets/controllers/checkbox_controller.js' => [
+        'path' => './kits/catalyst/checkbox/assets/controllers/checkbox_controller.js',
+    ],
     '@symfony/ux-toolkit/kits/shadcn/accordion/assets/controllers/accordion_controller.js' => [
         'path' => './vendor/symfony/ux-toolkit/kits/shadcn/accordion/assets/controllers/accordion_controller.js',
     ],
@@ -223,5 +230,8 @@ return [
     ],
     'react-dom/client' => [
         'version' => '18.3.1',
+    ],
+    '@tailwindplus/elements' => [
+        'version' => '1.0.22',
     ],
 ];

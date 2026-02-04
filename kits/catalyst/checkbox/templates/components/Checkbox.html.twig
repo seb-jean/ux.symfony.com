@@ -1,0 +1,84 @@
+{# @prop color string The color variant the checkbox should use, defaults to `dark/zinc` #}
+{# @prop checked boolean Whether or not the checkbox is checked, defaults to `false` #}
+{# @prop indeterminate boolean Whether or not the checkbox is indeterminate state, defaults to `false` #}
+{# @prop disabled boolean Whether or not to disable the checkbox, defaults to `false` #}
+{%- props color = 'dark/zinc', checked = false, indeterminate = false, disabled = false -%}
+{%- set disabled = disabled or field_context.disabled|default(false) or fieldset_context.disabled|default(false) -%}
+{%- set style = html_cva(
+    base: [
+        'group grid size-4.5 grid-cols-1 sm:size-4',
+        'has-disabled:opacity-50 has-disabled:[--checkbox-check:var(--color-zinc-950)]/50 dark:has-disabled:[--checkbox-check:var(--color-white)]/50',
+        'forced-colors:[--checkbox-check:HighlightText] forced-colors:has-disabled:[--checkbox-check:Highlight]',
+        'dark:forced-colors:[--checkbox-check:HighlightText] dark:forced-colors:has-disabled:[--checkbox-check:Highlight]',
+    ],
+    variants: {
+        color: {
+            'dark/zinc': [
+                '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-zinc-900)] [--checkbox-checked-border:var(--color-zinc-950)]/90',
+                'dark:[--checkbox-checked-bg:var(--color-zinc-600)]',
+            ],
+            'dark/white': [
+                '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-zinc-900)] [--checkbox-checked-border:var(--color-zinc-950)]/90',
+                'dark:[--checkbox-check:var(--color-zinc-900)] dark:[--checkbox-checked-bg:var(--color-white)] dark:[--checkbox-checked-border:var(--color-zinc-950)]/15',
+            ],
+            white: '[--checkbox-check:var(--color-zinc-900)] [--checkbox-checked-bg:var(--color-white)] [--checkbox-checked-border:var(--color-zinc-950)]/15',
+            dark: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-zinc-900)] [--checkbox-checked-border:var(--color-zinc-950)]/90',
+            zinc: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-zinc-600)] [--checkbox-checked-border:var(--color-zinc-700)]/90',
+            red: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-red-600)] [--checkbox-checked-border:var(--color-red-700)]/90',
+            orange: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-orange-500)] [--checkbox-checked-border:var(--color-orange-600)]/90',
+            amber: '[--checkbox-check:var(--color-amber-950)] [--checkbox-checked-bg:var(--color-amber-400)] [--checkbox-checked-border:var(--color-amber-500)]/80',
+            yellow: '[--checkbox-check:var(--color-yellow-950)] [--checkbox-checked-bg:var(--color-yellow-300)] [--checkbox-checked-border:var(--color-yellow-400)]/80',
+            lime: '[--checkbox-check:var(--color-lime-950)] [--checkbox-checked-bg:var(--color-lime-300)] [--checkbox-checked-border:var(--color-lime-400)]/80',
+            green: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-green-600)] [--checkbox-checked-border:var(--color-green-700)]/90',
+            emerald: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-emerald-600)] [--checkbox-checked-border:var(--color-emerald-700)]/90',
+            teal: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-teal-600)] [--checkbox-checked-border:var(--color-teal-700)]/90',
+            cyan: '[--checkbox-check:var(--color-cyan-950)] [--checkbox-checked-bg:var(--color-cyan-300)] [--checkbox-checked-border:var(--color-cyan-400)]/80',
+            sky: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-sky-500)] [--checkbox-checked-border:var(--color-sky-600)]/80',
+            blue: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-blue-600)] [--checkbox-checked-border:var(--color-blue-700)]/90',
+            indigo: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-indigo-500)] [--checkbox-checked-border:var(--color-indigo-600)]/90',
+            violet: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-violet-500)] [--checkbox-checked-border:var(--color-violet-600)]/90',
+            purple: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-purple-500)] [--checkbox-checked-border:var(--color-purple-600)]/90',
+            fuchsia: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-fuchsia-500)] [--checkbox-checked-border:var(--color-fuchsia-600)]/90',
+            pink: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-pink-500)] [--checkbox-checked-border:var(--color-pink-600)]/90',
+            rose: '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-rose-500)] [--checkbox-checked-border:var(--color-rose-600)]/90',
+        },
+    },
+) -%}
+<span
+    data-slot="control"
+    class="{{ style.apply({color}, attributes.render('class')) }}"
+>
+    <input
+        type="checkbox"
+        class="{{ html_classes(
+            # Basic layout
+            'col-start-1 row-start-1 appearance-none rounded-[0.3125rem] size-4.5 sm:size-4',
+            # Background
+            'bg-white checked:bg-(--checkbox-checked-bg) indeterminate:bg-(--checkbox-checked-bg)',
+            'dark:bg-white/5 dark:checked:bg-(--checkbox-checked-bg) dark:indeterminate:bg-(--checkbox-checked-bg)',
+            # Border
+            'border border-zinc-950/15 checked:border-transparent enabled:hover:checked:border-transparent enabled:hover:border-zinc-950/30 checked:bg-(--checkbox-checked-border) indeterminate:border-transparent indeterminate:bg-(--checkbox-checked-border)',
+            'dark:border-white/15 dark:checked:border-white/5 dark:enabled:hover:checked:border-white/5 dark:enabled:hover:border-white/30 dark:indeterminate:border-white/5',
+            # Focus ring
+            'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500',
+            # Disabled state
+            'disabled:border-zinc-950/25 disabled:bg-zinc-950/5 disabled:checked:bg-zinc-950/5',
+            'dark:disabled:border-white/20 dark:disabled:bg-white/2.5 dark:disabled:checked:bg-white/2.5',
+            # Forced colors mode
+            'forced-colors:appearance-none forced-colors:[--checkbox-checked-bg:Highlight]',
+            'dark:forced-colors:[--checkbox-checked-bg:Highlight]',
+        ) }}"
+        {{ attributes.defaults({
+            checked: checked,
+            disabled: disabled,
+            'data-controller': 'checkbox',
+            'data-checkbox-indeterminate-value': indeterminate ? 'true' : 'false',
+        }).without('class') }}
+    />
+    <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 self-center justify-self-center size-4 stroke-(--checkbox-check) opacity-0 group-has-checked:opacity-100 group-has-indeterminate:opacity-100 sm:h-3.5 sm:w-3.5">
+        {# Checkmark icon #}
+        <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-100 group-has-indeterminate:opacity-0"></path>
+        {# Indeterminate icon #}
+        <path d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-has-indeterminate:opacity-100"></path>
+    </svg>
+</span>

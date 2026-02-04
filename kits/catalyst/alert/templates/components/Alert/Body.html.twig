@@ -1,0 +1,7 @@
+{# @block content The default block #}
+<div
+    class="{{ (attributes.render('class') ~ ' mt-4')|trim }}"
+    {{ attributes }}
+>
+    {%- block content %}{% endblock -%}
+</div>

@@ -1,0 +1,34 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+Use the `Select` component on its own to render a standalone select without an associated `Label` component:
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example') }}
+Make sure to provide an `aria-label` for assistive technology, or connect the `Select` to your own `<label>` element using an `id`.
+
+### With label
+Wrap a `Label` and `Select` with the `Field` component to automatically associate them using a generated ID:
+{{ toolkit_code_example(kit_id.value, component.name, 'With label') }}
+
+### With description
+Use the `Description` component to add a description above or below your `Select`:
+{{ toolkit_code_example(kit_id.value, component.name, 'With description') }}
+
+### Disabled state
+Add the `disabled` prop to the `Field` component to disable a `Select` and the associated `Label`:
+{{ toolkit_code_example(kit_id.value, component.name, 'Disabled state') }}
+You can also disable a select outside of a `Field` by adding the `disabled` prop directly to the `Select` itself.
+
+### Validation errors
+Add the `invalid` prop to the `Select` component to indicate a validation error, and render the error using the `ErrorMessage` component:
+{{ toolkit_code_example(kit_id.value, component.name, 'Validation errors') }}
+
+### Constraining width
+Use the `class` attribute on the `Select` component to make layout adjustments like adjusting the max-width:
+{{ toolkit_code_example(kit_id.value, component.name, 'Constraining width') }}
+Be aware that the `class` attribute is a sharp knife — make sure to only add classes that don't conflict with classes the component already includes or you'll get unexpected results.
+{% endblock %}

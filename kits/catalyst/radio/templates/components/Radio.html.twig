@@ -1,0 +1,78 @@
+{# @prop color string The color variant the radio should use, defaults to `dark/zinc` #}
+{# @prop value string The value to use when submitting an HTML form #}
+{# @prop checked boolean Whether or not the radio is checked, defaults to `false` #}
+{# @prop disabled boolean Whether or not to disable the radio, defaults to `false` #}
+{%- props color = 'dark/zinc', value = null, checked = false, disabled = false -%}
+{%- set disabled = disabled or radio_field_context.disabled|default(false) or fieldset_context.disabled|default(false) -%}
+{%- set style = html_cva(
+    base: [
+        # Basic layout
+        'relative appearance-none size-4.75 rounded-full sm:size-4.25',
+        # Background
+        'bg-white checked:bg-(--radio-checked-border)',
+        'dark:bg-white/5 dark:checked:bg-(--radio-checked-bg)',
+        # Border
+        'border border-zinc-950/15 checked:border-transparent hover:checked:border-transparent hover:border-zinc-950/30 checked:bg-(--radio-checked-border)',
+        'dark:border-white/15 dark:checked:border-white/5 dark:hover:checked:border-white/5 dark:hover:border-white/30',
+        # Indicator dot (before pseudo-element)
+        'before:absolute before:inset-0 before:rounded-full before:border-[4.5px] before:border-transparent before:bg-(--radio-indicator) before:bg-clip-padding',
+        'forced-colors:before:border-[Canvas] forced-colors:checked:before:border-[Highlight]',
+        # Indicator color (light mode)
+        '[--radio-indicator:transparent] checked:[--radio-indicator:var(--radio-checked-indicator)] hover:checked:[--radio-indicator:var(--radio-checked-indicator)] hover:[--radio-indicator:var(--color-zinc-900)]/10',
+        # Indicator color (dark mode)
+        'dark:hover:checked:[--radio-indicator:var(--radio-checked-indicator)] dark:hover:[--radio-indicator:var(--color-zinc-700)]',
+        # Focus ring
+        'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500',
+        # Disabled state
+        'disabled:opacity-50',
+        'disabled:border-zinc-950/25 disabled:bg-zinc-950/5 disabled:checked:bg-zinc-950/5 disabled:[--radio-checked-indicator:var(--color-zinc-950)]/50',
+        'dark:disabled:border-white/20 dark:disabled:bg-white/2.5 dark:disabled:checked:bg-white/2.5 dark:disabled:[--radio-checked-indicator:var(--color-white)]/50',
+        # Forced colors
+        'forced-colors:appearance-auto',
+    ],
+    variants: {
+        color: {
+            'dark/zinc': [
+                '[--radio-checked-bg:var(--color-zinc-900)] [--radio-checked-border:var(--color-zinc-950)]/90 [--radio-checked-indicator:var(--color-white)]',
+                'dark:[--radio-checked-bg:var(--color-zinc-600)]',
+            ],
+            'dark/white': [
+                '[--radio-checked-bg:var(--color-zinc-900)] [--radio-checked-border:var(--color-zinc-950)]/90 [--radio-checked-indicator:var(--color-white)]',
+                'dark:[--radio-checked-bg:var(--color-white)] dark:[--radio-checked-border:var(--color-zinc-950)]/15 dark:[--radio-checked-indicator:var(--color-zinc-900)]',
+            ],
+            white: '[--radio-checked-bg:var(--color-white)] [--radio-checked-border:var(--color-zinc-950)]/15 [--radio-checked-indicator:var(--color-zinc-900)]',
+            dark: '[--radio-checked-bg:var(--color-zinc-900)] [--radio-checked-border:var(--color-zinc-950)]/90 [--radio-checked-indicator:var(--color-white)]',
+            zinc: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-zinc-600)] [--radio-checked-border:var(--color-zinc-700)]/90',
+            red: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-red-600)] [--radio-checked-border:var(--color-red-700)]/90',
+            orange: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-orange-500)] [--radio-checked-border:var(--color-orange-600)]/90',
+            amber: '[--radio-checked-bg:var(--color-amber-400)] [--radio-checked-border:var(--color-amber-500)]/80 [--radio-checked-indicator:var(--color-amber-950)]',
+            yellow: '[--radio-checked-bg:var(--color-yellow-300)] [--radio-checked-border:var(--color-yellow-400)]/80 [--radio-checked-indicator:var(--color-yellow-950)]',
+            lime: '[--radio-checked-bg:var(--color-lime-300)] [--radio-checked-border:var(--color-lime-400)]/80 [--radio-checked-indicator:var(--color-lime-950)]',
+            green: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-green-600)] [--radio-checked-border:var(--color-green-700)]/90',
+            emerald: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-emerald-600)] [--radio-checked-border:var(--color-emerald-700)]/90',
+            teal: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-teal-600)] [--radio-checked-border:var(--color-teal-700)]/90',
+            cyan: '[--radio-checked-bg:var(--color-cyan-300)] [--radio-checked-border:var(--color-cyan-400)]/80 [--radio-checked-indicator:var(--color-cyan-950)]',
+            sky: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-sky-500)] [--radio-checked-border:var(--color-sky-600)]/80',
+            blue: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-blue-600)] [--radio-checked-border:var(--color-blue-700)]/90',
+            indigo: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-indigo-500)] [--radio-checked-border:var(--color-indigo-600)]/90',
+            violet: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-violet-500)] [--radio-checked-border:var(--color-violet-600)]/90',
+            purple: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-purple-500)] [--radio-checked-border:var(--color-purple-600)]/90',
+            fuchsia: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-fuchsia-500)] [--radio-checked-border:var(--color-fuchsia-600)]/90',
+            pink: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-pink-500)] [--radio-checked-border:var(--color-pink-600)]/90',
+            rose: '[--radio-checked-indicator:var(--color-white)] [--radio-checked-bg:var(--color-rose-500)] [--radio-checked-border:var(--color-rose-600)]/90',
+        },
+    },
+) -%}
+<span
+    data-slot="control"
+    class="{{ attributes.render('class') }}"
+>
+    <input
+        type="radio"
+        class="{{ style.apply({color}) }}"
+        {{ attributes.defaults({
+            checked: checked,
+            disabled: disabled,
+        }).without('class') }}
+    />
+</span>

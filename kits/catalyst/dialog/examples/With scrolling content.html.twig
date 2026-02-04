@@ -1,0 +1,25 @@
+<twig:Button command="show-modal" commandfor="dialog-terms">
+    Agree to terms
+</twig:Button>
+<twig:Dialog id="dialog-terms" size="xl">
+    <twig:Dialog:Title>Terms and conditions</twig:Dialog:Title>
+    <twig:Dialog:Description>Please agree to the following terms and conditions to continue.</twig:Dialog:Description>
+    <twig:Dialog:Body class="text-sm/6 text-zinc-900 dark:text-white">
+        <p class="mt-4">
+            By accessing and using our services, you are agreeing to these terms, which have been meticulously tailored
+            for our benefit and your compliance.
+        </p>
+        <h3 class="mt-6 font-bold">Comprehensive Acceptance of Terms</h3>
+        <p class="mt-4">
+            Your engagement with our application signifies your irrevocable acceptance of these terms, which are binding
+            regardless of your awareness or understanding of them. Your continued use acts as a silent nod of agreement
+            to any and all stipulations outlined herein.
+        </p>
+    </twig:Dialog:Body>
+    <twig:Dialog:Actions>
+        <twig:Button plain command="close" commandfor="dialog-terms">
+            Cancel
+        </twig:Button>
+        <twig:Button command="close" commandfor="dialog-terms">I agree</twig:Button>
+    </twig:Dialog:Actions>
+</twig:Dialog>
