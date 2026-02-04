@@ -1,0 +1,8 @@
+{# @block content The default block #}
+<h2
+    id="{{ _dialog_title_id }}"
+    class="{{ (attributes.render('class') ~ ' text-lg/6 font-semibold text-balance text-zinc-950 sm:text-base/6 dark:text-white')|trim }}"
+    {{ attributes }}
+>
+    {%- block content %}{% endblock -%}
+</h2>

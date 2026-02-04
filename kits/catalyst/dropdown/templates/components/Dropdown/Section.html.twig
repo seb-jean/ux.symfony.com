@@ -1,0 +1,10 @@
+{# @block content The default block #}
+<div
+    {# Define grid at the section level instead of the item level if subgrid is supported #}
+    class="{{ (attributes.render('class') ~ ' col-span-full supports-[grid-template-columns:subgrid]:grid supports-[grid-template-columns:subgrid]:grid-cols-[auto_1fr_1.5rem_0.5rem_auto]')|trim }}"
+    role="group"
+    {{ attributes }}
+>
+    {%- block content %}{% endblock -%}
+</div>
+                                                                                                            :

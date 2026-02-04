@@ -1,0 +1,42 @@
+{%- set players = [
+    {rank: 1, name: 'Mitchell Marner', position: 'R', gamesPlayed: 80, goals: 30, assists: 69, points: 99, plusMinus: '+18'},
+    {rank: 2, name: 'William Nylander', position: 'R', gamesPlayed: 82, goals: 40, assists: 47, points: 87, plusMinus: '+10'},
+    {rank: 3, name: 'Auston Matthews', position: 'C', gamesPlayed: 74, goals: 40, assists: 45, points: 85, plusMinus: '+31'},
+    {rank: 4, name: 'John Tavares', position: 'C', gamesPlayed: 80, goals: 36, assists: 44, points: 80, plusMinus: '-7'},
+    {rank: 5, name: 'Michael Bunting', position: 'L', gamesPlayed: 82, goals: 23, assists: 26, points: 49, plusMinus: '+21'},
+    {rank: 6, name: 'Morgan Rielly', position: 'D', gamesPlayed: 65, goals: 4, assists: 37, points: 41, plusMinus: '-9'},
+    {rank: 7, name: 'Calle Jarnkrok', position: 'C', gamesPlayed: 73, goals: 20, assists: 19, points: 39, plusMinus: '+9'},
+    {rank: 8, name: 'Alex Kerfoot', position: 'C', gamesPlayed: 82, goals: 10, assists: 22, points: 32, plusMinus: '+8'},
+    {rank: 9, name: 'David Kampf', position: 'C', gamesPlayed: 82, goals: 7, assists: 20, points: 27, plusMinus: '+6'},
+    {rank: 10, name: 'Mark Giordano', position: 'D', gamesPlayed: 78, goals: 4, assists: 20, points: 24, plusMinus: '+27'},
+] -%}
+<div class="-mt-4 w-full">
+    <twig:Table dense class="[--gutter:--spacing(6)] sm:[--gutter:--spacing(8)]">
+        <twig:Table:Head>
+            <twig:Table:Row>
+                <twig:Table:Header>Rank</twig:Table:Header>
+                <twig:Table:Header>Player</twig:Table:Header>
+                <twig:Table:Header class="text-right">Pos</twig:Table:Header>
+                <twig:Table:Header class="text-right">GP</twig:Table:Header>
+                <twig:Table:Header class="text-right">G</twig:Table:Header>
+                <twig:Table:Header class="text-right">A</twig:Table:Header>
+                <twig:Table:Header class="text-right">P</twig:Table:Header>
+                <twig:Table:Header class="text-right">+/-</twig:Table:Header>
+            </twig:Table:Row>
+        </twig:Table:Head>
+        <twig:Table:Body>
+            {%- for player in players -%}
+                <twig:Table:Row>
+                    <twig:Table:Cell class="tabular-nums">{{ player.rank }}</twig:Table:Cell>
+                    <twig:Table:Cell class="font-medium">{{ player.name }}</twig:Table:Cell>
+                    <twig:Table:Cell class="text-right">{{ player.position }}</twig:Table:Cell>
+                    <twig:Table:Cell class="text-right tabular-nums">{{ player.gamesPlayed }}</twig:Table:Cell>
+                    <twig:Table:Cell class="text-right tabular-nums">{{ player.goals }}</twig:Table:Cell>
+                    <twig:Table:Cell class="text-right tabular-nums">{{ player.assists }}</twig:Table:Cell>
+                    <twig:Table:Cell class="text-right tabular-nums">{{ player.points }}</twig:Table:Cell>
+                    <twig:Table:Cell class="text-right tabular-nums">{{ player.plusMinus }}</twig:Table:Cell>
+                </twig:Table:Row>
+            {%- endfor -%}
+        </twig:Table:Body>
+    </twig:Table>
+</div>

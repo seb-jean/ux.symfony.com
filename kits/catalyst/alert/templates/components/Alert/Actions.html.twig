@@ -1,0 +1,7 @@
+{# @block content The default block #}
+<div
+    class="{{ (attributes.render('class') ~ ' mt-6 flex flex-col-reverse items-center justify-end gap-3 *:w-full sm:mt-4 sm:flex-row sm:*:w-auto')|trim }}"
+    {{ attributes }}
+>
+    {%- block content %}{% endblock -%}
+</div>

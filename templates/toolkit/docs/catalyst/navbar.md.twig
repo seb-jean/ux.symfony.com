@@ -1,0 +1,56 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+Use the `Navbar`, `Navbar:Section` and `Navbar:Item` components to build a basic navbar with navigation links:
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example') }}
+The `Navbar:Item` component can be used either as a `<a>` element by providing an href prop or as a `Button` by omitting the href prop.
+
+### With logo
+Add your own logo as an image or component at the beginning of your navbar:
+{{ toolkit_code_example(kit_id.value, component.name, 'With logo') }}
+To best fit the navbar design, we recommend making your logo 40px tall at mobile sizes, and 32px tall at the `sm` breakpoint above.
+
+### With active state
+Use the `current` prop to specify which `Navbar:Item` is the current navigation item:
+{{ toolkit_code_example(kit_id.value, component.name, 'With active state') }}
+
+### With icon links
+Use an icon as the only child of a `Navbar:Item` to create icon-only links:
+{{ toolkit_code_example(kit_id.value, component.name, 'With icon links') }}
+When using icon-only links, make sure to provide an `aria-label` for assistive technology.
+
+The `Navbar:Item` component is designed to work best with 20×20 icons.
+
+If you're using your own custom icons, make sure they include the `data-slot="icon"` prop so they receive the correct styles.
+
+### With space between items
+Use the `Navbar:Spacer` component to add space between items in the navbar:
+{{ toolkit_code_example(kit_id.value, component.name, 'With space between items') }}
+
+### With divider
+Use the `Navbar:Divider` component to add a dividing line between items in the navbar:
+{{ toolkit_code_example(kit_id.value, component.name, 'With divider') }}
+
+### With dropdown
+Use the `Dropdown` component add a dropdown menu to a navbar by rendering the `Dropdown:Button` as a `Navbar:Item`:
+{{ toolkit_code_example(kit_id.value, component.name, 'With dropdown') }}
+
+### With avatar dropdown
+Use the `Dropdown` component with an `Avatar` to add an avatar-only dropdown to a navbar:
+{{ toolkit_code_example(kit_id.value, component.name, 'With avatar dropdown') }}
+Make sure to provide an `aria-label` for assistive technology when using avatar-only dropdowns.
+
+### With mobile menu
+If you'd like to add a mobile menu to a navbar, use the `StackedLayout` component which includes a navbar and a sidebar for mobile:
+{{ toolkit_code_example(kit_id.value, component.name, 'With mobile menu') }}
+The `Navbar` component itself isn't opinionated about how it should be rendered at different breakpoints, which gives you total control over how it should adapt to different viewport sizes.
+
+### Hiding items on mobile
+Use utility classes like `max-lg:hidden` to hide certain navbar items at different screen sizes:
+{{ toolkit_code_example(kit_id.value, component.name, 'Hiding items on mobile') }}
+{% endblock %}

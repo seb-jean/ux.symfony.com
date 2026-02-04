@@ -1,0 +1,21 @@
+<twig:Button command="show-modal" commandfor="dialog-refund-payment">
+    Refund payment
+</twig:Button>
+<twig:Dialog id="dialog-refund-payment" size="xl">
+    <twig:Dialog:Title>Refund payment</twig:Dialog:Title>
+    <twig:Dialog:Description>
+        The refund will be reflected in the customer's bank account 2 to 3 business days after processing.
+    </twig:Dialog:Description>
+    <twig:Dialog:Body>
+        <twig:Fieldset:Field>
+            <twig:Fieldset:Label>Amount</twig:Fieldset:Label>
+            <twig:Input name="amount" placeholder="$0.00" />
+        </twig:Fieldset:Field>
+    </twig:Dialog:Body>
+    <twig:Dialog:Actions>
+        <twig:Button plain command="close" commandfor="dialog-refund-payment">
+            Cancel
+        </twig:Button>
+        <twig:Button command="close" commandfor="dialog-refund-payment">Refund</twig:Button>
+    </twig:Dialog:Actions>
+</twig:Dialog>

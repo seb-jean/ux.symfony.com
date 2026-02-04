@@ -1,0 +1,19 @@
+{# @prop bleed boolean Whether the table should bleed into the gutter. Defaults to `false` #}
+{# @prop dense boolean Whether the table should use condensed spacing. Defaults to `false` #}
+{# @prop grid boolean Whether display vertical grid lines. Defaults to `false` #}
+{# @prop striped boolean Whether display striped table rows. Defaults to `false` #}
+{# @block content The default block #}
+{%- props bleed = false, dense = false, grid = false, striped = false -%}
+{%- set table_context = {bleed, dense, grid, striped} -%}
+<div class="flow-root">
+    <div
+        class="{{ (attributes.render('class') ~ ' -mx-(--gutter) overflow-x-auto whitespace-nowrap')|trim }}"
+        {{ attributes }}
+    >
+        <div class="inline-block min-w-full align-middle{{ not bleed ? ' sm:px-(--gutter)' }}">
+            <table class="min-w-full text-left text-sm/6 text-zinc-950 dark:text-white">
+                {%- block content %}{% endblock -%}
+            </table>
+        </div>
+    </div>
+</div>

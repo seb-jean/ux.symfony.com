@@ -1,0 +1,43 @@
+{%- set users = [
+    {name: 'Leslie Alexander', email: 'leslie.alexander@example.com', access: 'Admin', online: true, avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'},
+    {name: 'Michael Foster', email: 'michael.foster@example.com', access: 'Owner', online: true, avatarUrl: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'},
+    {name: 'Dries Vincent', email: 'dries.vincent@example.com', access: 'Member', online: false, avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'},
+    {name: 'Lindsay Walton', email: 'lindsay.walton@example.com', access: 'Member', online: true, avatarUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'},
+    {name: 'Courtney Henry', email: 'courtney.henry@example.com', access: 'Admin', online: true, avatarUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'},
+] -%}
+<div class="-mt-4 w-full">
+    <twig:Table class="[--gutter:--spacing(6)] sm:[--gutter:--spacing(8)]">
+        <twig:Table:Head>
+            <twig:Table:Row>
+                <twig:Table:Header>Name</twig:Table:Header>
+                <twig:Table:Header>Role</twig:Table:Header>
+                <twig:Table:Header>Status</twig:Table:Header>
+            </twig:Table:Row>
+        </twig:Table:Head>
+        <twig:Table:Body>
+            {%- for user in users -%}
+                <twig:Table:Row>
+                    <twig:Table:Cell>
+                        <div class="flex items-center gap-4">
+                            <twig:Avatar src="{{ user.avatarUrl }}" class="size-12" />
+                            <div>
+                                <div class="font-medium">{{ user.name }}</div>
+                                <div class="text-zinc-500">
+                                    <a href="#" class="hover:text-zinc-700">{{ user.email }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </twig:Table:Cell>
+                    <twig:Table:Cell class="text-zinc-500">{{ user.access }}</twig:Table:Cell>
+                    <twig:Table:Cell>
+                        {%- if user.online -%}
+                            <twig:Badge color="lime">Online</twig:Badge>
+                        {%- else -%}
+                            <twig:Badge color="zinc">Offline</twig:Badge>
+                        {%- endif -%}
+                    </twig:Table:Cell>
+                </twig:Table:Row>
+            {%- endfor -%}
+        </twig:Table:Body>
+    </twig:Table>
+</div>

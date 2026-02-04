@@ -1,0 +1,18 @@
+{# @prop href string The URL for the row when used as a link #}
+{# @prop target string The target for the row when used as a link #}
+{# @prop title string The title for the row whe used as a link #}
+{# @block content The default block #}
+{%- props href = null, target = null, title = null -%}
+{%- set table_row_context = {href, target, title} -%}
+{%- do {striped} = table_context -%}
+<tr
+    class="{{ html_classes(attributes.render('class')|default(''), {
+        'has-[[data-row-link]:focus-visible]:outline-2 has-[[data-row-link]:focus-visible]:-outline-offset-2 has-[[data-row-link]:focus-visible]:outline-blue-500 dark:has-[[data-row-link]:focus-visible]:bg-white/2.5': href,
+        'even:bg-zinc-950/2.5 dark:even:bg-white/2.5': striped,
+        'hover:bg-zinc-950/5 dark:hover:bg-white/5': href and striped,
+        'hover:bg-zinc-950/2.5 dark:hover:bg-white/2.5': href and not striped,
+    }) }}"
+    {{ attributes }}
+>
+    {%- block content %}{% endblock -%}
+</tr>

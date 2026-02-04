@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(symfony console tailwind:build:*)",
+      "WebFetch(domain:catalyst.tailwindui.com)",
+      "Bash(cmd /c \"dir \"\"C:\\\\wamp64\\\\www\\\\catalyst-symfonyux\\\\kits\\\\catalyst\\\\dropdown\\\\examples\"\" /b\")",
+      "Bash(cmd /c \"dir /b /s \"\"C:\\\\wamp64\\\\www\\\\catalyst-symfonyux\\\\kits\\\\catalyst\"\"\")",
+      "Bash(cmd /c \"dir /b \"\"C:\\\\wamp64\\\\www\\\\catalyst-symfonyux\\\\kits\"\"\")",
+      "Bash(git -C \"C:/wamp64/www/catalyst-symfonyux\" show \"HEAD:kits/catalyst/dropdown/examples/Basic example.html.twig\")",
+      "Bash(git -C \"C:/wamp64/www/catalyst-symfonyux\" log --oneline -1 -- \"kits/catalyst/dropdown/examples/Basic example.html.twig\")"
+    ]
+  }
+}
