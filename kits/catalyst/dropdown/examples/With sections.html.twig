@@ -1,0 +1,19 @@
+<twig:Dropdown>
+    <twig:Dropdown:Button outline>
+        Options
+        <twig:ux:icon name="heroicons:chevron-down-16-solid" data-slot="icon" />
+    </twig:Dropdown:Button>
+    <twig:Dropdown:Menu>
+        <twig:Dropdown:Section aria-label="Account">
+            <twig:Dropdown:Item href="/account">Account</twig:Dropdown:Item>
+            <twig:Dropdown:Item href="/notifications">Notifications</twig:Dropdown:Item>
+            <twig:Dropdown:Item href="/billing">Billing</twig:Dropdown:Item>
+        </twig:Dropdown:Section>
+        <twig:Dropdown:Divider />
+        <twig:Dropdown:Section>
+            <twig:Dropdown:Heading>My events</twig:Dropdown:Heading>
+            <twig:Dropdown:Item href="/upcoming-events">Upcoming events</twig:Dropdown:Item>
+            <twig:Dropdown:Item href="/past-events">Past events</twig:Dropdown:Item>
+        </twig:Dropdown:Section>
+    </twig:Dropdown:Menu>
+</twig:Dropdown>

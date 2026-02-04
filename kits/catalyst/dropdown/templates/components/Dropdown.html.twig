@@ -1,0 +1,7 @@
+{# @block content The default block #}
+<el-dropdown
+    class="{{ (attributes.render('class') ~ ' inline-block')|trim }}"
+    {{ attributes }}
+>
+    {%- block content %}{% endblock -%}
+</el-dropdown>

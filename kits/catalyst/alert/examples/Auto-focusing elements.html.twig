@@ -1,0 +1,16 @@
+<twig:Button command="show-modal" commandfor="alert-delete-repository">
+    Delete repository
+</twig:Button>
+<twig:Alert id="alert-delete-repository" size="sm">
+    <twig:Alert:Title>Verification required</twig:Alert:Title>
+    <twig:Alert:Description>To continue, please enter your password.</twig:Alert:Description>
+    <twig:Alert:Body>
+        <twig:Input autofocus name="password" type="password" aria-label="Password" placeholder="•••••••" />
+    </twig:Alert:Body>
+    <twig:Alert:Actions>
+        <twig:Button plain command="close" commandfor="alert-delete-repository">
+            Cancel
+        </twig:Button>
+        <twig:Button command="close" commandfor="alert-delete-repository">Continue</twig:Button>
+    </twig:Alert:Actions>
+</twig:Alert>

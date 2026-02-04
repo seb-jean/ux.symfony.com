@@ -1,0 +1,9 @@
+{# @block content The default block #}
+<p
+    data-slot="text"
+    id="{{ _alert_description_id }}"
+    class="{{ (attributes.render('class') ~ ' mt-2 text-center text-pretty sm:text-left text-base/6 text-zinc-500 sm:text-sm/6 dark:text-zinc-400')|trim }}"
+    {{ attributes }}
+>
+    {%- block content %}{% endblock -%}
+</p>

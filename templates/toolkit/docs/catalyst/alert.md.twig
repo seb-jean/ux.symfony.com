@@ -1,0 +1,24 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name, {height: '300px'}) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+Use the `Alert`, `Alert:Title`, `Alert:Description`, and `Alert:Actions` components to build an alert:
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example', {height: '300px'}) }}
+
+### Alert width
+Use the `size` prop on the `Alert` component to control the max-width of the alert dialog:
+{{ toolkit_code_example(kit_id.value, component.name, 'Alert width', {height: '300px'}) }}
+Available `size` options include `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, and `5xl`.
+
+### With body
+Add content to your alert using the `Alert:Body` component:
+{{ toolkit_code_example(kit_id.value, component.name, 'With body', {height: '300px'}) }}
+
+### Auto-focusing elements
+Add the `autofocus` attribute to any form control or button in the dialog to automatically focus it when the dialog opens:
+{{ toolkit_code_example(kit_id.value, component.name, 'Auto-focusing elements', {height: '300px'}) }}
+{% endblock %}

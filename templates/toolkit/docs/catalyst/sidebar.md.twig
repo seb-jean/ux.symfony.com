@@ -1,0 +1,50 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+Use the `Sidebar`, `Sidebar:Body`, `Sidebar:Section`, and `Sidebar:Item` components to build a basic sidebar:
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example') }}
+
+### With logo
+Add your own logo as an image or component to your sidebar, using utility classes to fine-tune the layout to suit your logo:
+{{ toolkit_code_example(kit_id.value, component.name, 'With logo') }}
+
+### With icons
+Add an icon as the first child of a `Sidebar:Item` to render it next to the link text:
+{{ toolkit_code_example(kit_id.value, component.name, 'With icons') }}
+The `Sidebar:Item` component is designed to work best with 20×20 icons.
+
+If you're using your own custom icons, make sure they include the `data-slot="icon"` prop so they receive the correct styles.
+
+### With active state
+Use the `current` prop to specify which `Sidebar:Item` is the current navigation item:
+{{ toolkit_code_example(kit_id.value, component.name, 'With active state') }}
+
+### With sticky header
+Use the `Sidebar:Header` component before the `Sidebar:Body` component to add a sticky header to the sidebar:
+{{ toolkit_code_example(kit_id.value, component.name, 'With sticky header') }}
+
+### With sticky footer
+Use the `Sidebar:Footer` component after the `Sidebar:Body` component to add a sticky footer to the sidebar:
+{{ toolkit_code_example(kit_id.value, component.name, 'With sticky footer') }}
+
+### With section headings
+Use the `Sidebar:Heading` component to add a heading to a section:
+{{ toolkit_code_example(kit_id.value, component.name, 'With section headings') }}
+
+### With space between sections
+Use the `Sidebar:Spacer` component to space out sections in a sidebar:
+{{ toolkit_code_example(kit_id.value, component.name, 'With space between sections') }}
+
+### With divider
+Use the `Sidebar:Divider` component to add a dividing line between sections in a sidebar:
+{{ toolkit_code_example(kit_id.value, component.name, 'With divider') }}
+
+### With dropdown
+Use the `Dropdown` component add a dropdown menu to a sidebar by rendering the `Dropdown:Button` as a `Sidebar:Item`:
+{{ toolkit_code_example(kit_id.value, component.name, 'With dropdown') }}
+{% endblock %}
