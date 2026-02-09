@@ -10212,16 +10212,16 @@
         },
         {
             "name": "kocal/phpstan-symfony-ux",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kocal/phpstan-symfony-ux.git",
-                "reference": "0746480622429b8b0ee2383251585213d9a87c7d"
+                "reference": "42ddbac0b31afdf867b16e70e7cb91e54950d9ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kocal/phpstan-symfony-ux/zipball/0746480622429b8b0ee2383251585213d9a87c7d",
-                "reference": "0746480622429b8b0ee2383251585213d9a87c7d",
+                "url": "https://api.github.com/repos/Kocal/phpstan-symfony-ux/zipball/42ddbac0b31afdf867b16e70e7cb91e54950d9ea",
+                "reference": "42ddbac0b31afdf867b16e70e7cb91e54950d9ea",
                 "shasum": ""
             },
             "require": {
@@ -10243,9 +10243,6 @@
                 }
             },
             "autoload": {
-                "files": [
-                    "src/deprecated-aliases.php"
-                ],
                 "psr-4": {
                     "Kocal\\PHPStanSymfonyUX\\": "src/"
                 }
@@ -10263,9 +10260,9 @@
             "description": "PHPStan rules for Symfony UX",
             "support": {
                 "issues": "https://github.com/Kocal/phpstan-symfony-ux/issues",
-                "source": "https://github.com/Kocal/phpstan-symfony-ux/tree/v1.1.0"
+                "source": "https://github.com/Kocal/phpstan-symfony-ux/tree/v1.1.1"
             },
-            "time": "2025-12-16T00:28:25+00:00"
+            "time": "2026-02-09T21:59:52+00:00"
         },
         {
             "name": "myclabs/deep-copy",
