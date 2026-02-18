@@ -5,12 +5,18 @@
         package: 'typed',
         eyebrowText: 'A Library that Types',
     } %}
+
         {% block title_header %}
             Typed brings text <em>to life</em>
         {% endblock %}
 
         {% block sub_content %}
             Spice up some text by typing, backspacing and re-typing with <a class="font-white text-underline" href="https://github.com/mattboldt/typed.js/" rel="noopener nofollow noreferrer">Typed.js</a>.
+        {% endblock %}
+
+        {% block deprecated_content %}
+            This component is <strong>deprecated</strong> and will not receive further updates.<br>
+            Please follow <a href="https://github.com/symfony/ux/tree/2.x/src/Typed" class="link">the migration steps</a> if you want to keep using Typed in your app.
         {% endblock %}
     {% endcomponent %}
 {% endblock %}

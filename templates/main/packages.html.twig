@@ -23,6 +23,16 @@
         </div>
     {% endblock %}
 </div>
+
+<h2 class="text-center mt-5">Deprecated packages</h2>
+<p class="text-center mt-2 mb-5">Packages that are still available but will be removed in future versions</p>
+<div class="container-fluid container-xxl px-4 pt-4 px-md-5">
+        <div style="display: grid; gap: 3rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));">
+            {% for package in deprecated_packages %}
+                <twig:Package:PackageBox package="{{ package }}" titleTag="h2" />
+            {% endfor %}
+        </div>
+</div>
 {% endblock %}
 
 {% block aside %}
