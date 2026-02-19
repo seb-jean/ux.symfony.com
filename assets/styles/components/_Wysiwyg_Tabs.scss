@@ -1,6 +1,10 @@
 .Wysiwyg_Tabs {
 }
 
+.Wysiwyg_Tabs:has(+ p) {
+  margin-bottom: 1rem;
+}
+
 .Wysiwyg_TabHead {
   display: flex;
   flex-direction: row;
