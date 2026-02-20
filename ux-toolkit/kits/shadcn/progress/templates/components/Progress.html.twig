@@ -1,12 +1,13 @@
 {# @prop value integer The progress percentage (0-100). Defaults to `0` #}
 {%- props value = 0 -%}
 <div
-    class="{{ ('relative h-4 w-full overflow-hidden rounded-full bg-secondary ' ~ attributes.render('class'))|tailwind_merge }}"
+    data-slot="progress"
+    class="{{ ('bg-primary/20 relative h-2 w-full overflow-hidden rounded-full ' ~ attributes.render('class'))|tailwind_merge }}"
     role="progressbar"
     aria-valuemin="0"
     aria-valuemax="100"
     aria-valuenow="{{ value }}"
     {{ attributes }}
 >
-    <div class="h-full w-full flex-1 bg-primary transition-all" style="transform: translateX(-{{ 100 - value }}%)"></div>
+    <div data-slot="progress-indicator" class="bg-primary h-full w-full flex-1 transition-all" style="transform: translateX(-{{ 100 - value }}%)"></div>
 </div>

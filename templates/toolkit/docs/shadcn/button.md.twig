@@ -9,6 +9,12 @@
 {% endblock %}
 
 {% block examples %}
+### Size
+
+Use the `size` prop to change the size of the button.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Size') }}
+
 ### Default
 
 {{ toolkit_code_example(kit_id.value, component.name, 'Default') }}
@@ -39,22 +45,31 @@
 
 ### With Icon
 
+Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the icon for the correct spacing.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'With Icon') }}
 
 ### Rounded
 
+Use the `rounded-full` class to make the button rounded.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Rounded') }}
 
-### Loading
+### Spinner
 
-{{ toolkit_code_example(kit_id.value, component.name, 'Loading') }}
+Render a `Spinner` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.
 
-### Different sizes
+{{ toolkit_code_example(kit_id.value, component.name, 'Spinner') }}
 
-{{ toolkit_code_example(kit_id.value, component.name, 'Different sizes') }}
+### Button Group
 
-### As link
+To create a button group, use the `ButtonGroup` component. See the Button Group documentation for more details.
 
-{{ toolkit_code_example(kit_id.value, component.name, 'As link') }}
+{{ toolkit_code_example(kit_id.value, component.name, 'Button Group') }}
 
+### Link (as)
+
+You can use the `as` prop on `Button` to make another component look like a button. Here's an example of a link that looks like a button.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Link (as)') }}
 {% endblock %}

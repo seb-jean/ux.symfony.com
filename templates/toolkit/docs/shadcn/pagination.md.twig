@@ -7,3 +7,17 @@
 {% block usage %}
 {{ toolkit_code_usage(kit_id.value, component.name) }}
 {% endblock %}
+
+{% block examples %}
+### Simple
+
+A simple pagination with only page numbers.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Simple') }}
+
+### Icons Only
+
+Use just the previous and next buttons without page numbers. This is useful for data tables with a rows per page selector.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Icons Only') }}
+{% endblock %}

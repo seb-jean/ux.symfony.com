@@ -210,6 +210,9 @@ return [
     '@symfony/ux-toolkit/kits/shadcn/tooltip/assets/controllers/tooltip_controller.js' => [
         'path' => './vendor/symfony/ux-toolkit/kits/shadcn/tooltip/assets/controllers/tooltip_controller.js',
     ],
+    '@symfony/ux-toolkit/kits/shadcn/avatar/assets/controllers/avatar_controller.js' => [
+        'path' => './vendor/symfony/ux-toolkit/kits/shadcn/avatar/assets/controllers/avatar_controller.js',
+    ],
     'el-transition' => [
         'version' => '0.0.7',
     ],

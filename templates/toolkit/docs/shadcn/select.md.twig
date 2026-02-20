@@ -7,3 +7,28 @@
 {% block usage %}
 {{ toolkit_code_usage(kit_id.value, component.name) }}
 {% endblock %}
+
+{% block examples %}
+
+### Groups
+
+Use `Select:Group`, `Select:Label`, and `Select:Separator` to organize items.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Groups') }}
+
+### Scrollable
+
+A select with many items that scrolls.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Scrollable') }}
+
+### Disabled
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Disabled') }}
+
+### Invalid
+
+Add the `data-invalid` attribute to the `Field` component and the `aria-invalid` attribute to the `Select:Trigger` component to show an error state.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Invalid') }}
+{% endblock %}

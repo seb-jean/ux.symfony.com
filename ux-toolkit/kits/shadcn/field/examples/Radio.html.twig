@@ -1,0 +1,24 @@
+<twig:Field:Set class="w-full max-w-xs">
+    <twig:Field:Legend variant="label">Subscription Plan</twig:Field:Legend>
+    <twig:Field:Description>
+        Yearly and lifetime plans offer significant savings.
+    </twig:Field:Description>
+    <twig:Field orientation="horizontal">
+        <input type="radio" id="plan-monthly" name="plan" value="monthly" class="peer size-4 inline-block align-middle accent-primary" checked />
+        <twig:Field:Label for="plan-monthly" class="font-normal">
+            Monthly ($9.99/month)
+        </twig:Field:Label>
+    </twig:Field>
+    <twig:Field orientation="horizontal">
+        <input type="radio" id="plan-yearly" name="plan" value="yearly" class="peer size-4 inline-block align-middle accent-primary" />
+        <twig:Field:Label for="plan-yearly" class="font-normal">
+            Yearly ($99.99/year)
+        </twig:Field:Label>
+    </twig:Field>
+    <twig:Field orientation="horizontal">
+        <input type="radio" id="plan-lifetime" name="plan" value="lifetime" class="peer size-4 inline-block align-middle accent-primary" />
+        <twig:Field:Label for="plan-lifetime" class="font-normal">
+            Lifetime ($299.99)
+        </twig:Field:Label>
+    </twig:Field>
+</twig:Field:Set>

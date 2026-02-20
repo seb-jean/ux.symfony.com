@@ -1,0 +1,22 @@
+<div class="flex w-full max-w-sm flex-col gap-4">
+    <div class="flex justify-between text-sm">
+        <twig:Label for="progress-slider">Progress</twig:Label>
+        <span id="progress-value" class="text-muted-foreground">60%</span>
+    </div>
+    <twig:Progress id="controlled-progress" value="60" />
+    <input
+        id="progress-slider"
+        type="range"
+        min="0"
+        max="100"
+        value="60"
+        class="w-full accent-primary"
+        oninput="
+            var v = this.value;
+            document.getElementById('progress-value').textContent = v + '%';
+            var bar = document.getElementById('controlled-progress');
+            bar.setAttribute('aria-valuenow', v);
+            bar.querySelector('div').style.transform = 'translateX(-' + (100 - v) + '%)';
+        "
+    />
+</div>

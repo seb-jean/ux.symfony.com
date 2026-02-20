@@ -16,21 +16,52 @@
 
 {% block examples %}
 ### Orientation
+
+Set the `orientation` prop to change the button group layout.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Orientation', { height: '200px' }) }}
 
 ### Size
+
+Control the size of buttons using the `size` prop on individual buttons.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Size', { height: '420px' }) }}
 
-### Input
-{{ toolkit_code_example(kit_id.value, component.name, 'Input', { height: '200px' }) }}
-
 ### Nested
+
+Nest `ButtonGroup` components to create button groups with spacing.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Nested', { height: '240px' }) }}
 
 ### Separator
+
+The `ButtonGroup:Separator` component visually divides buttons within a group.
+
+Buttons with variant `outline` do not need a separator since they have a border. For other variants, a separator is recommended to improve the visual hierarchy.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Separator', { height: '200px' }) }}
 
 ### Split
+
+Create a split button group by adding two buttons separated by a `ButtonGroup:Separator`.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Split', { height: '200px' }) }}
 
+### Input
+
+Wrap an `Input` component with buttons.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Input', { height: '200px' }) }}
+
+### Input Group
+
+Wrap an `InputGroup` component to create complex input layouts.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Input Group') }}
+
+### Select
+
+Pair with a `Select` component.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Select') }}
 {% endblock %}

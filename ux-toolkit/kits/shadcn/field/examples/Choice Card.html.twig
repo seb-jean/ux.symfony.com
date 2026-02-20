@@ -1,0 +1,30 @@
+<twig:Field:Group class="w-full max-w-xs">
+    <twig:Field:Set>
+        <twig:Field:Legend variant="label">Compute Environment</twig:Field:Legend>
+        <twig:Field:Description>
+            Select the compute environment for your cluster.
+        </twig:Field:Description>
+        <twig:Field:Label for="kubernetes-r2h">
+            <twig:Field orientation="horizontal">
+                <twig:Field:Content>
+                    <twig:Field:Title>Kubernetes</twig:Field:Title>
+                    <twig:Field:Description>
+                        Run GPU workloads on a K8s cluster.
+                    </twig:Field:Description>
+                </twig:Field:Content>
+                <input type="radio" id="kubernetes-r2h" name="compute" value="kubernetes" class="peer size-4 inline-block align-middle accent-primary" checked />
+            </twig:Field>
+        </twig:Field:Label>
+        <twig:Field:Label for="vm-z4k">
+            <twig:Field orientation="horizontal">
+                <twig:Field:Content>
+                    <twig:Field:Title>Virtual Machine</twig:Field:Title>
+                    <twig:Field:Description>
+                        Access a cluster to run GPU workloads.
+                    </twig:Field:Description>
+                </twig:Field:Content>
+                <input type="radio" id="vm-z4k" name="compute" value="vm" class="peer size-4 inline-block align-middle accent-primary" />
+            </twig:Field>
+        </twig:Field:Label>
+    </twig:Field:Set>
+</twig:Field:Group>

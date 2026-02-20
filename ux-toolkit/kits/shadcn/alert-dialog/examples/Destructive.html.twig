@@ -1,0 +1,21 @@
+<twig:AlertDialog id="alert-destructive">
+    <twig:AlertDialog:Trigger>
+        <twig:Button variant="destructive" {{ ...trigger_attrs }}>Delete Chat</twig:Button>
+    </twig:AlertDialog:Trigger>
+    <twig:AlertDialog:Content class="sm:max-w-sm">
+        <twig:AlertDialog:Header>
+            <twig:AlertDialog:Media class="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
+                <twig:ux:icon name="lucide:trash-2" />
+            </twig:AlertDialog:Media>
+            <twig:AlertDialog:Title>Delete chat?</twig:AlertDialog:Title>
+            <twig:AlertDialog:Description>
+                This will permanently delete this chat conversation. View
+                <a href="#">Settings</a> delete any memories saved during this chat.
+            </twig:AlertDialog:Description>
+        </twig:AlertDialog:Header>
+        <twig:AlertDialog:Footer>
+            <twig:AlertDialog:Cancel variant="outline">Cancel</twig:AlertDialog:Cancel>
+            <twig:AlertDialog:Action variant="destructive">Delete</twig:AlertDialog:Action>
+        </twig:AlertDialog:Footer>
+    </twig:AlertDialog:Content>
+</twig:AlertDialog>

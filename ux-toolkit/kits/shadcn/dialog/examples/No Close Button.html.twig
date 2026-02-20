@@ -1,0 +1,14 @@
+<twig:Dialog id="dialog_no_close">
+    <twig:Dialog:Trigger>
+        <twig:Button variant="outline" {{ ...trigger_attrs }}>No Close Button</twig:Button>
+    </twig:Dialog:Trigger>
+    <twig:Dialog:Content showCloseButton="{{ false }}">
+        <twig:Dialog:Header>
+            <twig:Dialog:Title>No Close Button</twig:Dialog:Title>
+            <twig:Dialog:Description>
+                This dialog doesn&apos;t have a close button in the top-right
+                corner.
+            </twig:Dialog:Description>
+        </twig:Dialog:Header>
+    </twig:Dialog:Content>
+</twig:Dialog>

@@ -7,3 +7,17 @@
 {% block usage %}
 {{ toolkit_code_usage(kit_id.value, component.name) }}
 {% endblock %}
+
+{% block examples %}
+### Label
+
+Use a `Field` component to add a label to the progress bar.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Label') }}
+
+### Controlled
+
+A progress bar that can be controlled by a slider.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Controlled') }}
+{% endblock %}

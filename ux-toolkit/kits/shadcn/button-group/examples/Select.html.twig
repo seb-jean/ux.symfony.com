@@ -1,0 +1,15 @@
+<twig:ButtonGroup>
+    <twig:ButtonGroup>
+        <twig:Select class="font-mono">
+            <option value="$">$ <span class="text-muted-foreground">US Dollar</span></option>
+            <option value="€">€ <span class="text-muted-foreground">Euro</span></option>
+            <option value="£">£ <span class="text-muted-foreground">British Pound</span></option>
+        </twig:Select>
+        <twig:Input placeholder="10.00" pattern="[0-9]*" />
+    </twig:ButtonGroup>
+    <twig:ButtonGroup>
+        <twig:Button aria-label="Send" size="icon" variant="outline">
+            <twig:ux:icon name="lucide:arrow-right" />
+        </twig:Button>
+    </twig:ButtonGroup>
+</twig:ButtonGroup>

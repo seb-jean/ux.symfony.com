@@ -10,8 +10,20 @@
 
 {% block examples %}
 ### Group
+
+Use the `Kbd:Group` component to group keyboard keys together.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Group') }}
 
 ### Button
+
+Use the `Kbd` component inside a `Button` component to display a keyboard key inside a button.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Button') }}
+
+### Input Group
+
+You can use the `Kbd` component inside a `InputGroup:Addon` component to display a keyboard key inside an input group.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Input Group') }}
 {% endblock %}

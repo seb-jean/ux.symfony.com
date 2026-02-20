@@ -9,15 +9,27 @@
 {% endblock %}
 
 {% block examples %}
-### Default
-{{ toolkit_code_example(kit_id.value, component.name, 'Default') }}
+### Field
+
+Use `Field`, `Field:Label`, and `Field:Description` to create a textarea with a label and description.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Field') }}
 
 ### Disabled
+
+Use the `disabled` prop to disable the textarea. To style the disabled state, add the `data-disabled` attribute to the `Field` component.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Disabled') }}
 
-### With Label
-{{ toolkit_code_example(kit_id.value, component.name, 'With Label') }}
+### Invalid
 
-### With Text
-{{ toolkit_code_example(kit_id.value, component.name, 'With Text') }}
+Use the `aria-invalid` prop to mark the textarea as invalid. To style the invalid state, add the `data-invalid` attribute to the `Field` component.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Invalid') }}
+
+### Button
+
+Pair with `Button` to create a textarea with a submit button.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Button') }}
 {% endblock %}

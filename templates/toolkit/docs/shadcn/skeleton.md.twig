@@ -9,6 +9,18 @@
 {% endblock %}
 
 {% block examples %}
+### Avatar
+{{ toolkit_code_example(kit_id.value, component.name, 'Avatar') }}
+
 ### Card
-{{ toolkit_code_example(kit_id.value, component.name, 'Card', { height: '300px' }) }}
+{{ toolkit_code_example(kit_id.value, component.name, 'Card', { height: '350px' }) }}
+
+### Text
+{{ toolkit_code_example(kit_id.value, component.name, 'Text') }}
+
+### Form
+{{ toolkit_code_example(kit_id.value, component.name, 'Form', { height: '350px' }) }}
+
+### Table
+{{ toolkit_code_example(kit_id.value, component.name, 'Table', { height: '250px' }) }}
 {% endblock %}

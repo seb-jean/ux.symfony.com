@@ -1,0 +1,27 @@
+<form class="w-full max-w-sm">
+    <twig:Field:Group>
+        <twig:Field>
+            <twig:Field:Label for="form-name">Full name</twig:Field:Label>
+            <twig:Input id="form-name" type="text" placeholder="John Doe" required />
+        </twig:Field>
+        <twig:Field>
+            <twig:Field:Label for="form-email">Email</twig:Field:Label>
+            <twig:Input id="form-email" type="email" placeholder="m@example.com" required />
+        </twig:Field>
+        <twig:Field>
+            <twig:Field:Label for="form-country">Country</twig:Field:Label>
+            <twig:Select id="form-country">
+                <option value="">Select a country</option>
+                <option value="us">United States</option>
+                <option value="uk">United Kingdom</option>
+                <option value="fr">France</option>
+                <option value="de">Germany</option>
+            </twig:Select>
+        </twig:Field>
+        <twig:Field>
+            <twig:Field:Label for="form-bio">Bio</twig:Field:Label>
+            <twig:Textarea id="form-bio" placeholder="Tell us a little about yourself..." />
+        </twig:Field>
+        <twig:Button type="submit" class="w-full">Submit</twig:Button>
+    </twig:Field:Group>
+</form>

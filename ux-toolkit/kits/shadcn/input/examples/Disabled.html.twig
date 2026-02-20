@@ -1,1 +1,10 @@
-<twig:Input type="email" placeholder="Email" disabled class="max-w-sm" />
+<twig:Field data-disabled>
+    <twig:Field:Label for="input-demo-disabled">Email</twig:Field:Label>
+    <twig:Input
+        id="input-demo-disabled"
+        type="email"
+        placeholder="Email"
+        disabled
+    />
+    <twig:Field:Description>This field is currently disabled.</twig:Field:Description>
+</twig:Field>

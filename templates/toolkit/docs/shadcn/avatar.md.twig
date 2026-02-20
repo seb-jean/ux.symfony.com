@@ -10,20 +10,44 @@
 
 {% block examples %}
 ### Basic
+
+A basic avatar component with an image and a fallback.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Basic') }}
 
 ### Badge
+
+Use the `Avatar:Badge` component to add a badge to the avatar. The badge is positioned at the bottom right of the avatar.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Badge') }}
 
 ### Badge with Icon
+
+You can also use an icon inside `Avatar:Badge`.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Badge with Icon') }}
 
 ### Avatar Group
+
+Use the `Avatar:Group` component to add a group of avatars.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Avatar Group') }}
 
+### Avatar Group Count
+
+Use `Avatar:GroupCount` to add a count to the group.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Avatar Group Count') }}
+
 ### Avatar Group with Icon
+
+You can also use an icon inside `Avatar:GroupCount`.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Avatar Group with Icon') }}
 
 ### Sizes
+
+Use the `size` prop to change the size of the avatar.
+
 {{ toolkit_code_example(kit_id.value, component.name, 'Sizes') }}
 {% endblock %}
