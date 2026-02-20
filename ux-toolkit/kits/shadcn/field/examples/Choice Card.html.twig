@@ -1,0 +1,51 @@
+<div class="w-full max-w-md">
+    <twig:Field:Group>
+        <twig:Field:Set>
+            <twig:Field:Legend variant="label">Notifications</twig:Field:Legend>
+            <twig:Field:Group class="gap-3">
+                <twig:Field:Label for="card-marketing">
+                    <twig:Field orientation="horizontal">
+                        <twig:Field:Content>
+                            <twig:Field:Title>Marketing emails</twig:Field:Title>
+                            <twig:Field:Description>Receive emails about new products and features.</twig:Field:Description>
+                        </twig:Field:Content>
+                        <twig:Switch id="card-marketing" />
+                    </twig:Field>
+                </twig:Field:Label>
+                <twig:Field:Label for="card-security">
+                    <twig:Field orientation="horizontal">
+                        <twig:Field:Content>
+                            <twig:Field:Title>Security alerts</twig:Field:Title>
+                            <twig:Field:Description>Get notified about suspicious activity.</twig:Field:Description>
+                        </twig:Field:Content>
+                        <twig:Switch id="card-security" />
+                    </twig:Field>
+                </twig:Field:Label>
+            </twig:Field:Group>
+        </twig:Field:Set>
+        <twig:Field:Separator />
+        <twig:Field:Set>
+            <twig:Field:Legend variant="label">Plan</twig:Field:Legend>
+            <twig:Field:Group class="gap-3">
+                <twig:Field:Label for="card-free">
+                    <twig:Field orientation="horizontal">
+                        <twig:Field:Content>
+                            <twig:Field:Title>Free</twig:Field:Title>
+                            <twig:Field:Description>Up to 3 projects, 1GB storage.</twig:Field:Description>
+                        </twig:Field:Content>
+                        <twig:Checkbox id="card-free" />
+                    </twig:Field>
+                </twig:Field:Label>
+                <twig:Field:Label for="card-pro">
+                    <twig:Field orientation="horizontal">
+                        <twig:Field:Content>
+                            <twig:Field:Title>Pro</twig:Field:Title>
+                            <twig:Field:Description>Unlimited projects, 50GB storage.</twig:Field:Description>
+                        </twig:Field:Content>
+                        <twig:Checkbox id="card-pro" checked />
+                    </twig:Field>
+                </twig:Field:Label>
+            </twig:Field:Group>
+        </twig:Field:Set>
+    </twig:Field:Group>
+</div>

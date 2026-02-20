@@ -7,3 +7,17 @@
 {% block usage %}
 {{ toolkit_code_usage(kit_id.value, component.name) }}
 {% endblock %}
+
+{% block examples %}
+### Size
+
+Use the `size="sm"` prop to set the size of the card to small. The small size variant uses smaller spacing.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Size', {height: '400px'}) }}
+
+### Image
+
+Add an image before the card header to create a card with an image.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Image', {height: '500px'}) }}
+{% endblock %}

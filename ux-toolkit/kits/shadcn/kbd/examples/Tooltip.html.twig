@@ -1,0 +1,32 @@
+<div class="flex gap-2">
+    <twig:Tooltip id="tooltip-bold">
+        <twig:Tooltip:Trigger>
+            <twig:Button {{ ...trigger_attrs }} variant="outline" size="icon">
+                <twig:ux:icon name="lucide:bold" class="size-4" />
+            </twig:Button>
+        </twig:Tooltip:Trigger>
+        <twig:Tooltip:Content>
+            <p>Bold <twig:KbdGroup><twig:Kbd>⌘</twig:Kbd><twig:Kbd>B</twig:Kbd></twig:KbdGroup></p>
+        </twig:Tooltip:Content>
+    </twig:Tooltip>
+    <twig:Tooltip id="tooltip-italic">
+        <twig:Tooltip:Trigger>
+            <twig:Button {{ ...trigger_attrs }} variant="outline" size="icon">
+                <twig:ux:icon name="lucide:italic" class="size-4" />
+            </twig:Button>
+        </twig:Tooltip:Trigger>
+        <twig:Tooltip:Content>
+            <p>Italic <twig:KbdGroup><twig:Kbd>⌘</twig:Kbd><twig:Kbd>I</twig:Kbd></twig:KbdGroup></p>
+        </twig:Tooltip:Content>
+    </twig:Tooltip>
+    <twig:Tooltip id="tooltip-underline">
+        <twig:Tooltip:Trigger>
+            <twig:Button {{ ...trigger_attrs }} variant="outline" size="icon">
+                <twig:ux:icon name="lucide:underline" class="size-4" />
+            </twig:Button>
+        </twig:Tooltip:Trigger>
+        <twig:Tooltip:Content>
+            <p>Underline <twig:KbdGroup><twig:Kbd>⌘</twig:Kbd><twig:Kbd>U</twig:Kbd></twig:KbdGroup></p>
+        </twig:Tooltip:Content>
+    </twig:Tooltip>
+</div>

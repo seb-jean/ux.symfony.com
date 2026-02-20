@@ -7,3 +7,11 @@
 {% block usage %}
 {{ toolkit_code_usage(kit_id.value, component.name) }}
 {% endblock %}
+
+{% block examples %}
+### Footer
+
+Use the `Table:Footer` component to add a footer to the table.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Footer', {height: '420px'}) }}
+{% endblock %}

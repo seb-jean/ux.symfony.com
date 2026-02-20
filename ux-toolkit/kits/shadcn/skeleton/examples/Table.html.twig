@@ -1,0 +1,16 @@
+<div class="w-full space-y-3">
+    <div class="flex gap-4">
+        <twig:Skeleton class="h-4 w-[100px]" />
+        <twig:Skeleton class="h-4 w-[120px]" />
+        <twig:Skeleton class="h-4 w-[100px]" />
+        <twig:Skeleton class="h-4 flex-1" />
+    </div>
+    {% for i in 1..5 %}
+        <div class="flex gap-4">
+            <twig:Skeleton class="h-4 w-[100px]" />
+            <twig:Skeleton class="h-4 w-[120px]" />
+            <twig:Skeleton class="h-4 w-[100px]" />
+            <twig:Skeleton class="h-4 flex-1" />
+        </div>
+    {% endfor %}
+</div>

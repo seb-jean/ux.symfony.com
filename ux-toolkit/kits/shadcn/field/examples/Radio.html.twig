@@ -1,0 +1,25 @@
+<div class="w-full max-w-md">
+    <twig:Field:Set>
+        <twig:Field:Legend variant="label">Notification preference</twig:Field:Legend>
+        <twig:Field:Description>
+            Choose how you want to be notified.
+        </twig:Field:Description>
+        <twig:Field:Group class="gap-3">
+            <twig:Field orientation="horizontal">
+                <input type="radio" id="notif-email" name="notification" value="email" class="peer size-4 inline-block align-middle accent-primary" checked />
+                <twig:Field:Label for="notif-email" class="font-normal">Email</twig:Field:Label>
+            </twig:Field>
+            <twig:Field orientation="horizontal">
+                <input type="radio" id="notif-sms" name="notification" value="sms" class="peer size-4 inline-block align-middle accent-primary" />
+                <twig:Field:Label for="notif-sms" class="font-normal">SMS</twig:Field:Label>
+            </twig:Field>
+            <twig:Field orientation="horizontal">
+                <input type="radio" id="notif-push" name="notification" value="push" class="peer size-4 inline-block align-middle accent-primary" />
+                <twig:Field:Content>
+                    <twig:Field:Label for="notif-push" class="font-normal">Push notification</twig:Field:Label>
+                    <twig:Field:Description>Receive notifications on your mobile device.</twig:Field:Description>
+                </twig:Field:Content>
+            </twig:Field>
+        </twig:Field:Group>
+    </twig:Field:Set>
+</div>

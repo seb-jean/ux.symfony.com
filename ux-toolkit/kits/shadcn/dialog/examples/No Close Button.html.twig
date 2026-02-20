@@ -1,0 +1,19 @@
+<twig:Dialog id="dialog_no_close">
+    <twig:Dialog:Trigger>
+        <twig:Button variant="outline" {{ ...trigger_attrs }}>Open Dialog</twig:Button>
+    </twig:Dialog:Trigger>
+    <twig:Dialog:Content showCloseButton="{{ false }}">
+        <twig:Dialog:Header>
+            <twig:Dialog:Title>Are you sure?</twig:Dialog:Title>
+            <twig:Dialog:Description>
+                This dialog doesn't have a close button in the top-right corner.
+            </twig:Dialog:Description>
+        </twig:Dialog:Header>
+        <twig:Dialog:Footer>
+            <twig:Dialog:Close>
+                <twig:Button variant="outline" {{ ...close_attrs }}>Cancel</twig:Button>
+            </twig:Dialog:Close>
+            <twig:Button>Confirm</twig:Button>
+        </twig:Dialog:Footer>
+    </twig:Dialog:Content>
+</twig:Dialog>
