@@ -12,6 +12,17 @@
             </p>
         </div>
 
+        {% if package.isDeprecated %}
+            <div class="d-flex justify-content-center">
+                <div class="alert alert-warning my-2" role="alert">
+                    <twig:ux:icon name="bi:exclamation-triangle" class="flex-shrink-0 me-1" width="1em" height="1em" />
+                    {% block deprecated_content %}
+                        This component is <strong>deprecated</strong> and will not receive further updates.<br>
+                    {% endblock %}
+                </div>
+            </div>
+        {% endif %}
+
         <div class="d-flex justify-content-center flex-column-reverse flex-md-row">
             {% if command is not defined or command %}
                 <twig:TerminalCommand

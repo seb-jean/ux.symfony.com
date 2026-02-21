@@ -18,7 +18,7 @@ class UxPackageRepository
     /**
      * @return array<UxPackage>
      */
-    public function findAll(?string $query = null): array
+    public function findAll(?string $query = null, ?bool $deprecated = null): array
     {
         $packages = [
             new UxPackage(
@@ -254,17 +254,20 @@ class UxPackageRepository
                 'linear-gradient(95deg, #20A091 -5%, #4EC9B3 105%)',
                 'Animated Typing with Typed.js',
                 'Animated typing with Typed.js',
+                isDeprecated: true
             ))
                 ->setDocsLink('https://github.com/mattboldt/typed.js/', 'Typed.js documentation'),
         ];
 
-        if (!$query) {
-            return $packages;
+        if ($query) {
+            $packages = array_filter($packages, static fn (UxPackage $package) => str_contains($package->getName(), $query) || str_contains($package->getHumanName(), $query));
         }
 
-        return array_filter($packages, function (UxPackage $package) use ($query) {
-            return str_contains($package->getName(), $query) || str_contains($package->getHumanName(), $query);
-        });
+        if (null !== $deprecated) {
+            $packages = array_filter($packages, static fn (UxPackage $package) => $package->isDeprecated() === $deprecated);
+        }
+
+        return $packages;
     }
 
     public function find(string $name): UxPackage
