@@ -12,6 +12,11 @@
         {% block sub_content %}
             Replace full page refreshes with Ajax-powered, stylized page transitions (an alternative to Turbo).
         {% endblock %}
+
+        {% block deprecated_content %}
+            This component is <strong>deprecated</strong> and will not receive further updates.<br>
+            Please consider using <a href="{{ path('app_turbo') }}" class="link">Symfony UX Turbo</a> for modern page transitions.
+        {% endblock %}
     {% endcomponent %}
 {% endblock %}
 
