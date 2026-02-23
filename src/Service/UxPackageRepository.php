@@ -209,6 +209,7 @@ class UxPackageRepository
                 'linear-gradient(95deg, #D87036 -5%, #EA9633 105%)',
                 'Stylized Page Transitions',
                 'Integration with the page transition library Swup',
+                isDeprecated: true,
             ))
                 ->setDocsLink('https://swup.js.org/', 'Swup documentation'),
 
