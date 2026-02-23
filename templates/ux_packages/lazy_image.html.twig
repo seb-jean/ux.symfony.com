@@ -13,6 +13,11 @@
             Serve small or <a class="font-white" style="color: transparent; text-shadow: 0 0 1.5px rgba(255,255,255,0.5);" href="https://blurha.sh/" rel="external noopener noreferrer">blurred</a>
             images first, then load the real thing after the page loads.
         {% endblock %}
+
+        {% block deprecated_content %}
+            This component is <strong>deprecated</strong> and will not receive further updates.<br>
+            Instead, use the <a href="https://web.dev/learn/images/performance-issues" class="link">modern techniques to improve image loading performance</a> natively supported by all major browsers.
+        {% endblock %}
     {% endcomponent %}
 {% endblock %}
 
