@@ -74,9 +74,7 @@ final class UploadFiles
     private function validateSingleFile(UploadedFile $singleFileUpload): void
     {
         $errors = $this->validator->validate($singleFileUpload, [
-            new Assert\File([
-                'maxSize' => '1M',
-            ]),
+            new Assert\File(maxSize: '1M'),
         ]);
 
         if (0 === \count($errors)) {
