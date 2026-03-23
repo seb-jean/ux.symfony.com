@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@source "../../templates/**/*.html.twig";
+@source "../controllers/**/*.js";
+@source "../**/*.html.twig";
+
+/* Dark mode: class="dark" (aligned with toolkit-shadcn.css) */
+/* Transitional phase: also supports data-bs-theme for coexistence */
+@custom-variant dark (&:is(.dark *, [data-bs-theme="dark"] *));
+
+/* ─── Design tokens ─── */
+
+:root {
+    /* Neutral palette (ex SCSS $n-50...$n-900) */
+    --n-50: #F2F2F2;
+    --n-100: #D9D9D9;
+    --n-200: #BFBFBF;
+    --n-300: #A6A6A6;
+    --n-400: #8C8C8C;
+    --n-500: #737373;
+    --n-600: #595959;
+    --n-700: #404040;
+    --n-800: #262626;
+    --n-900: #0D0D0D;
+
+    /* Signal colors */
+    --signal-red: #FB4040;
+    --signal-yellow: #FBC640;
+    --signal-green: #84DE2C;
+
+    /* Semantic colors (replaces --bs-body-bg, --bs-body-color, etc.) */
+    --color-body-bg: #fff;
+    --color-body-text: #212529;
+    --color-secondary-text: #6c757d;
+    --color-tertiary-text: #adb5bd;
+    --color-secondary-bg: #e9ecef;
+    --color-secondary-bg-subtle: #f8f9fa;
+    --color-tertiary-bg: #f8f9fa;
+    --color-border: #dee2e6;
+    --color-border-subtle: #e9ecef;
+    --color-border-translucent: rgba(0, 0, 0, .175);
+    --color-code: #d63384;
+    --color-link: #0d6efd;
+
+    /* Spacing tokens (existing, unchanged) */
+    --space-smaller: 0.5rem;
+    --space-small: 0.75rem;
+    --space-regular: 1rem;
+    --space-large: 1.5rem;
+    --space-larger: 2rem;
+
+    /* Border radius tokens (existing, unchanged) */
+    --border-radius-small: 0.5rem;
+    --border-radius: 1rem;
+    --border-radius-large: 1.5rem;
+
+    /* Font stacks (existing, unchanged) */
+    --font-family-title: "Ubuntu Sans", "Ubuntu", system-ui, sans-serif;
+    --font-family-text: system-ui, sans-serif;
+    --font-family-code: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+}
+
+.dark {
+    --color-body-bg: #212529;
+    --color-body-text: #dee2e6;
+    --color-secondary-text: #adb5bd;
+    --color-tertiary-text: #6c757d;
+    --color-secondary-bg: #343a40;
+    --color-secondary-bg-subtle: #2b3035;
+    --color-tertiary-bg: #2b3035;
+    --color-border: #495057;
+    --color-border-subtle: #343a40;
+    --color-border-translucent: rgba(255, 255, 255, .175);
+    --color-code: #e685b5;
+    --color-link: #6ea8fe;
+}
+
+@theme inline {
+    /* Semantic colors */
+    --color-body: var(--color-body-bg);
+    --color-body-text: var(--color-body-text);
+    --color-subtle: var(--color-secondary-bg-subtle);
+    --color-muted: var(--color-secondary-text);
+    --color-surface: var(--color-secondary-bg);
+    --color-border: var(--color-border);
+    --color-code: var(--color-code);
+    --color-link: var(--color-link);
+
+    /* Neutral scale */
+    --color-n-50: var(--n-50);
+    --color-n-100: var(--n-100);
+    --color-n-200: var(--n-200);
+    --color-n-300: var(--n-300);
+    --color-n-400: var(--n-400);
+    --color-n-500: var(--n-500);
+    --color-n-600: var(--n-600);
+    --color-n-700: var(--n-700);
+    --color-n-800: var(--n-800);
+    --color-n-900: var(--n-900);
+
+    /* Signal colors */
+    --color-signal-red: var(--signal-red);
+    --color-signal-yellow: var(--signal-yellow);
+    --color-signal-green: var(--signal-green);
+
+    /* Font families */
+    --font-title: var(--font-family-title);
+    --font-text: var(--font-family-text);
+    --font-code: var(--font-family-code);
+
+    /* Radius */
+    --radius-sm: var(--border-radius-small);
+    --radius-md: var(--border-radius);
+    --radius-lg: var(--border-radius-large);
+
+    /* Custom breakpoints (based on actual project usage) */
+    --breakpoint-xs: 480px;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-nav: 860px;
+    --breakpoint-lg: 980px;
+    --breakpoint-xl: 1114px;
+    --breakpoint-2xl: 1400px;
+}
+
+@layer base {
+    body {
+        font-family: var(--font-family-text);
+        color: var(--color-body-text);
+        background-color: var(--color-body-bg);
+    }
+
+    * {
+        border-color: var(--color-border);
+    }
+}
