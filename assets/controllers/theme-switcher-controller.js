@@ -4,7 +4,7 @@ export default class extends Controller {
     switch() {
         let currentTheme = localStorage.getItem('user-theme');
         if (!currentTheme) {
-            currentTheme = document.documentElement.getAttribute('data-bs-theme');
+            currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
         }
 
         const theme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -20,6 +20,8 @@ export default class extends Controller {
         // Small delay to allow CSS transitions during theme switch.
         this.timeout = setTimeout(() => {
             localStorage.setItem('user-theme', theme);
+            document.documentElement.classList.toggle('dark', theme === 'dark');
+            // Temporary BC-layer during Tailwind migration
             document.documentElement.setAttribute('data-bs-theme', theme);
         }, 250);
     }
