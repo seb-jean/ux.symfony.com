@@ -27,6 +27,7 @@
                 <img
                     src="{{ asset('images/taskflow-without-native.webp') }}"
                     alt="A Symfony + Bootstrap todo-list app displayed inside a mobile browser, with the browser navigation bar and the web navbar visible."
+                    class="mx-auto"
                     style="width: 540px; max-width: 100%"
                     loading="lazy"
                 />
@@ -39,6 +40,7 @@
                 <img
                     src="{{ asset('images/taskflow-with-native.webp') }}"
                     alt="The same Symfony + Bootstrap todo-list app but with Hotwire Native: native title bar, no browser chrome, clean native experience."
+                    class="mx-auto"
                     style="width: 540px; max-width: 100%"
                     loading="lazy"
                 />
@@ -50,9 +52,18 @@
 
         {% block package_code_blocks %}
             <div class="row mb-5">
-                <div class="col-12 col-md-6">
-                    {% block code_block_left %}
-                        {% apply markdown_to_html %}
+                <div class="col-12 col-md-6 Wysiwyg">
+                    {% apply markdown_to_html %}
+                    ## One codebase, two experiences
+
+                    No need to duplicate templates.  The `ux_is_native()` Twig function lets you adapt your existing Twig templates for native clients. For example:
+                    - hide the navbar,
+                    - remove the footer,
+                    - or show mobile-specific content, all from the same code.
+                    {% endapply %}
+                </div>
+                <div class="col-12 col-md-6 mt-4 mt-md-0">
+                    {% apply markdown_to_html %}
                         ```twig {"filename":"templates/base.html.twig"}
                         {% verbatim -%}
                         {# Navbar only visible in the web browser #}
@@ -66,64 +77,212 @@
                         <!-- ... -->
                         {%- endverbatim %}
                         ```
-                        {% endapply %}
-                    {% endblock %}
-                </div>
-                <div class="col-12 col-md-6">
-                    <h2 class="ubuntu mt-5">One codebase, two experiences</h2>
-                    <p>No need to duplicate templates. The <code>ux_is_native()</code> Twig function lets you adapt your existing Twig templates for native clients: hide the navbar, remove the footer, or show mobile-specific content, all from the same code.</p>
+                    {% endapply %}
                 </div>
             </div>
-            <div class="row mb-5 mt-3 mt-md-0">
-                <div class="col-12 col-md-5">
-                    <h2 class="ubuntu mt-5">JSON configurations, the Symfony way</h2>
-                    <p>Use PHP attributes to declare your native configurations: path rules, settings, per-platform overrides.</p>
-                    <p>UX Native serves them dynamically during development and can dump them as static JSON files for production deployment.</p>
+            <div class="row mb-5 mt-4">
+                <div class="col-12 col-md-5 order-md-2 Wysiwyg">
+                    {% apply markdown_to_html %}
+                    ## JSON configurations, the Symfony way
+
+                    Use PHP attributes `AsNativeConfigurationProvider` and `AsNativeConfiguration` to declare your native configurations: path rules, settings, per-platform overrides.
+
+                    UX Native serves them dynamically during development and can dump them as static JSON files for production deployment.
+                    {% endapply %}
                 </div>
-                <div class="col-12 col-md-7">
-                    {% block code_block_right %}
-                        {% apply markdown_to_html %}
-                        ```php {"filename":"src/Native/AppNativeConfiguration.php"}
-                        {% verbatim -%}
-                        namespace App\Native;
+                <div class="col-12 col-md-7 mt-4 mt-md-0 order-md-1">
+                    {% apply markdown_to_html %}
+                    ```php {"filename":"src/Native/AppNativeConfiguration.php"}
+                    namespace App\Native;
 
-                        use Symfony\UX\Native\Attribute\AsNativeConfiguration;
-                        use Symfony\UX\Native\Attribute\AsNativeConfigurationProvider;
-                        use Symfony\UX\Native\Configuration\Configuration;
-                        use Symfony\UX\Native\Configuration\Rule;
+                    use Symfony\UX\Native\Attribute\AsNativeConfiguration;
+                    use Symfony\UX\Native\Attribute\AsNativeConfigurationProvider;
+                    use Symfony\UX\Native\Configuration\Configuration;
+                    use Symfony\UX\Native\Configuration\Rule;
 
-                        #[AsNativeConfigurationProvider]
-                        final class AppNativeConfiguration
+                    #[AsNativeConfigurationProvider]
+                    final class AppNativeConfiguration
+                    {
+                        #[AsNativeConfiguration('/config/ios_v1.json')]
+                        public function iosV1(): Configuration
                         {
-                            #[AsNativeConfiguration('/config/ios_v1.json')]
-                            public function iosV1(): Configuration
-                            {
-                                return new Configuration(
-                                    rules: [
-                                        new Rule(
-                                            patterns: ['.*'],
-                                            properties: [
-                                                'context' => 'default',
-                                                'pull_to_refresh_enabled' => true,
-                                            ],
-                                        ),
-                                        new Rule(
-                                            patterns: ['^/tasks/new$'],
-                                            properties: [
-                                                'context' => 'modal',
-                                                'pull_to_refresh_enabled' => false,
-                                            ],
-                                        ),
-                                    ],
-                                );
-                            }
+                            return new Configuration(
+                                rules: [
+                                    new Rule(
+                                        patterns: ['.*'],
+                                        properties: [
+                                            'context' => 'default',
+                                            'pull_to_refresh_enabled' => true,
+                                        ],
+                                    ),
+                                ],
+                            );
                         }
-                        {%- endverbatim %}
-                        ```
-                        {% endapply %}
-                    {% endblock %}
+                    }
+                    ```
+                    {% endapply %}
                 </div>
             </div>
+
+        <div class="row mb-5 mt-4">
+            <div class="col-12 col-md-6 Wysiwyg">
+                {% apply markdown_to_html %}
+                ## Bridge Components
+
+                Bridge components let you progressively enhance specific web elements with native UI (like replacing a web link with a native navigation bar button), and without changing your server-side code.
+                {% endapply %}
+            </div>
+            <div class="col-12 col-md-6 mt-4 mt-md-0 text-center">
+                <img
+                    src="{{ asset('images/taskflow-bridge-component-native.webp') }}"
+                    alt="The TaskFlow app showing a native navigation bar button added via a bridge component, replacing the original web link."
+                    style="max-width: 100%"
+                    loading="lazy"
+                />
+            </div>
+        </div>
+
+        <div class="row mb-5 mt-4">
+            <div class="col-12 col-md-6 order-md-2 Wysiwyg">
+                {% apply markdown_to_html %}
+                ## Three layers, one component
+
+                A bridge component is made of three parts: an HTML element with `data-controller`, a Stimulus controller extending `BridgeComponent`, and a matching Swift class.
+
+                The web and native sides are linked by a shared component name:  `button` in this example.
+                {% endapply %}
+            </div>
+            <div class="col-12 col-md-6 mt-4 mt-md-0 order-md-1">
+                {% apply markdown_to_html %}
+                ```twig {"filename":"templates/tasks/index.html.twig"}
+                {% verbatim -%}
+                <a href="/profile"
+                   {{ stimulus_controller('button') }}
+                   data-bridge-title="Profile"
+                >
+                    View profile
+                </a>
+                {%- endverbatim %}
+                ```
+                {% endapply %}
+            </div>
+        </div>
+
+        <div class="row mb-5 mt-4">
+            <div class="col-12 col-md-6 Wysiwyg">
+                {% apply markdown_to_html %}
+                ## Stimulus sends, native handles
+
+                The Stimulus controller calls `this.send("connect", {/* ... */}, callback)` to pass data to the native side.
+
+                When the native button is tapped, it replies and the callback fires: clicking the original web element.
+                {% endapply %}
+            </div>
+            <div class="col-12 col-md-6 mt-4 mt-md-0">
+                {% apply markdown_to_html %}
+                ```js {"filename":"assets/controllers/button_controller.js"}
+                {% verbatim -%}
+                import {BridgeComponent} from "@hotwired/hotwire-native-bridge"
+
+                export default class extends BridgeComponent {
+                    static component = "button"
+
+                    connect() {
+                        super.connect()
+
+                        const element = this.bridgeElement
+                        const title = element.bridgeAttribute("title")
+                        this.send("connect", {title}, () => {
+                            this.element.click()
+                        })
+                    }
+                }
+                {%- endverbatim %}
+                ```
+                {% endapply %}
+            </div>
+        </div>
+
+        <div class="row mb-5 mt-4">
+            <div class="col-12 col-md-5 order-md-2 Wysiwyg">
+                {% apply markdown_to_html %}
+                ## Native code, same component name
+
+                The Swift component overrides `name` to match the Stimulus identifier `button`.
+
+                When a message arrives, it builds a `UIBarButtonItem` and places it in the navigation bar.
+                Tapping it replies to the Stimulus controller, which clicks the original link.
+
+                Register it one in your `AppDelegate.swift`:
+
+                ```swift {"filename":"ios/AppDelegate.swift"}
+                {% verbatim -%}
+                Hotwire.registerBridgeComponents([
+                    ButtonComponent.self
+                ])
+                {%- endverbatim %}
+                ```
+                {% endapply %}
+            </div>
+            <div class="col-12 col-md-7 mt-4 mt-md-0 order-md-1">
+                {% apply markdown_to_html %}
+                ```swift {"filename":"ios/ButtonComponent.swift"}
+                import HotwireNative
+                import UIKit
+
+                final class ButtonComponent: BridgeComponent {
+                    override class var name: String { "button" }
+
+                    override func onReceive(message: Message) {
+                        guard let viewController else { return }
+                        addButton(via: message, to: viewController)
+                    }
+
+                    private func addButton(via message: Message,
+                                           to viewController: UIViewController) {
+                        guard let data: MessageData = message.data() else { return }
+
+                        let action = UIAction { [unowned self] _ in
+                            self.reply(to: "connect")
+                        }
+                        let item = UIBarButtonItem(title: data.title, primaryAction: action)
+                        viewController.navigationItem.rightBarButtonItem = item
+                    }
+                }
+
+                private extension ButtonComponent {
+                    struct MessageData: Decodable {
+                        let title: String
+                    }
+                }
+                ```
+                {% endapply %}
+            </div>
+        </div>
+
+        <div class="row mb-5 mt-4">
+            <div class="col-12 col-md-6 Wysiwyg">
+                {% apply markdown_to_html %}
+                ## Hide web elements in native apps
+
+                When a native button is displayed in the navigation bar, the original web link can be hidden.
+
+                This CSS selector targets elements marked as supported bridge components, preventing duplicate UI from appearing in the native app.
+                {% endapply %}
+            </div>
+            <div class="col-12 col-md-6 mt-4 mt-md-0">
+                {% apply markdown_to_html %}
+                ```css {"filename":"assets/styles/bridge.css"}
+                {% verbatim -%}
+                [data-bridge-components~="button"]
+                [data-controller~="button"] {
+                  display: none;
+                }
+                {%- endverbatim %}
+                ```
+                {% endapply %}
+            </div>
+        </div>
         {% endblock %}
     </section>
 {% endblock %}
