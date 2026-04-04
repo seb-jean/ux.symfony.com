@@ -36,6 +36,10 @@ return [
         'path' => './assets/toolkit-shadcn.js',
         'entrypoint' => true,
     ],
+    'toolkit-flowbite-4' => [
+        'path' => './assets/toolkit-flowbite-4.js',
+        'entrypoint' => true,
+    ],
     '@symfony/stimulus-bundle' => [
         'path' => '@symfony/stimulus-bundle/loader.js',
     ],
@@ -216,6 +220,15 @@ return [
     '@symfony/ux-toolkit/kits/shadcn/toggle/assets/controllers/toggle_controller.js' => [
         'path' => './vendor/symfony/ux-toolkit/kits/shadcn/toggle/assets/controllers/toggle_controller.js',
     ],
+    '@symfony/ux-toolkit/kits/flowbite-4/alert/assets/controllers/alert_controller.js' => [
+        'path' => './vendor/symfony/ux-toolkit/kits/flowbite-4/alert/assets/controllers/alert_controller.js',
+    ],
+    '@symfony/ux-toolkit/kits/flowbite-4/modal/assets/controllers/modal_controller.js' => [
+        'path' => './vendor/symfony/ux-toolkit/kits/flowbite-4/modal/assets/controllers/modal_controller.js',
+    ],
+    '@symfony/ux-toolkit/kits/flowbite-4/tabs/assets/controllers/tabs_controller.js' => [
+        'path' => './vendor/symfony/ux-toolkit/kits/flowbite-4/tabs/assets/controllers/tabs_controller.js',
+    ],
     'el-transition' => [
         'version' => '0.0.7',
     ],
@@ -229,5 +242,18 @@ return [
     ],
     'react-dom/client' => [
         'version' => '18.3.1',
+    ],
+    'flowbite' => [
+        'version' => '4.0.1',
+    ],
+    'flowbite-datepicker' => [
+        'version' => '2.0.0',
+    ],
+    'flowbite/dist/flowbite.min.css' => [
+        'version' => '4.0.1',
+        'type' => 'css',
+    ],
+    '@hotwired/hotwire-native-bridge' => [
+        'version' => '1.2.2',
     ],
 ];
