@@ -97,6 +97,6 @@ final class ToolkitRuntime implements RuntimeExtensionInterface
 
     public function kitColor(string $kitId): string
     {
-        return ToolkitKitId::getMainColor(ToolkitKitId::from($kitId));
+        return ToolkitKitId::from($kitId)->color();
     }
 }
