@@ -7,8 +7,12 @@
 
     <div class="PackageBox_content">
         <{{ titleTag }} class="PackageBox_title">
-            <a href="{{ path(package.route) }}" class="PackageBox_link">{{ package.humanName }}</a>
-            <twig:ux:icon name="arrow-right" class="PackageBox_arrow Icon" />
+            <a href="{{ package.isRemoved ? package.githubRepositoryUrl ~ '#readme' : url(package.route) }}" class="PackageBox_link">{{ package.humanName }}</a>
+            {% if package.isRemoved %}
+                <twig:ux:icon name="flowbite:arrow-up-right-from-square-outline" class="PackageBox_arrow Icon"/>
+            {% else %}
+                <twig:ux:icon name="arrow-right" class="PackageBox_arrow Icon" />
+            {% endif %}
         </{{ titleTag }}>
         <div class="PackageBox_description Wysiwyg">
             {{ package.description|markdown_to_html }}

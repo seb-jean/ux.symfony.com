@@ -16,9 +16,9 @@ use App\Model\UxPackage;
 class UxPackageRepository
 {
     /**
-     * @return array<UxPackage>
+     * @return list<UxPackage>
      */
-    public function findAll(?string $query = null, ?bool $deprecated = null): array
+    public function findAll(?string $query = null, ?bool $removed = null): array
     {
         $packages = [
             new UxPackage(
@@ -164,7 +164,7 @@ class UxPackageRepository
                 'Quickly render `<Svelte />` components &amp; pass them props.',
                 null,
                 'svelte.svg',
-                isDeprecated: true,
+                isRemoved: true,
             ))
                 ->setDocsLink('https://svelte.dev/', 'Go deeper with the Svelte docs.'),
 
@@ -188,7 +188,7 @@ class UxPackageRepository
                 'linear-gradient(136deg, #AC2777 -8%, #F246AD 105%)',
                 'Delay Loading with Blurhash',
                 'Optimize Image Loading with BlurHash',
-                isDeprecated: true,
+                isRemoved: true,
             ),
 
             new UxPackage(
@@ -210,7 +210,7 @@ class UxPackageRepository
                 'linear-gradient(95deg, #D87036 -5%, #EA9633 105%)',
                 'Stylized Page Transitions',
                 'Integration with the page transition library Swup',
-                isDeprecated: true,
+                isRemoved: true,
             ))
                 ->setDocsLink('https://swup.js.org/', 'Swup documentation'),
 
@@ -232,7 +232,7 @@ class UxPackageRepository
                 'linear-gradient(142deg, #FD963C -15%, #BE0404 95%)',
                 'Password Visibility Switch',
                 'Switch the visibility of a password field',
-                isDeprecated: true,
+                isRemoved: true,
             ),
 
             new UxPackage(
@@ -271,7 +271,7 @@ class UxPackageRepository
                 'linear-gradient(95deg, #20A091 -5%, #4EC9B3 105%)',
                 'Animated Typing with Typed.js',
                 'Animated typing with Typed.js',
-                isDeprecated: true
+                isRemoved: true
             ))
                 ->setDocsLink('https://github.com/mattboldt/typed.js/', 'Typed.js documentation'),
         ];
@@ -280,11 +280,11 @@ class UxPackageRepository
             $packages = array_filter($packages, static fn (UxPackage $package) => str_contains($package->getName(), $query) || str_contains($package->getHumanName(), $query));
         }
 
-        if (null !== $deprecated) {
-            $packages = array_filter($packages, static fn (UxPackage $package) => $package->isDeprecated() === $deprecated);
+        if (null !== $removed) {
+            $packages = array_filter($packages, static fn (UxPackage $package) => $package->isRemoved() === $removed);
         }
 
-        return $packages;
+        return array_values($packages);
     }
 
     public function find(string $name): UxPackage

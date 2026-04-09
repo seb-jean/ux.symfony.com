@@ -31,7 +31,7 @@ class UxPackage
         private ?string $composerName = null,
         private bool $isDevDependency = false,
         private bool $showDocsLink = true,
-        private bool $isDeprecated = false,
+        private bool $isRemoved = false,
     ) {
     }
 
@@ -159,8 +159,13 @@ class UxPackage
         return 'images/ux_packages/'.$this->getImageFilename($format);
     }
 
-    public function isDeprecated(): bool
+    public function isRemoved(): bool
     {
-        return $this->isDeprecated;
+        return $this->isRemoved;
+    }
+
+    public function getGithubRepositoryUrl(): string
+    {
+        return \sprintf('https://github.com/symfony/ux-%s', $this->name);
     }
 }

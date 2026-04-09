@@ -47,7 +47,7 @@ class UxPackagesTest extends KernelTestCase
     public static function getSmokeTests(): \Generator
     {
         $repository = new UxPackageRepository();
-        foreach ($repository->findAll() as $package) {
+        foreach ($repository->findAll(removed: false) as $package) {
             if ('live-component' === $package->getName()) {
                 // Live Component has a different bottom section
                 yield $package->getName() => [$package, 'Read full Documentation'];
@@ -56,12 +56,6 @@ class UxPackagesTest extends KernelTestCase
             if ('icons' === $package->getName()) {
                 // Icons has a different bottom section
                 yield $package->getName() => [$package, 'Documentation'];
-                continue;
-            }
-
-            if ($package->isDeprecated()) {
-                // Deprecated packages have a minimal layout
-                yield $package->getName() => [$package, 'This component is deprecated'];
                 continue;
             }
 

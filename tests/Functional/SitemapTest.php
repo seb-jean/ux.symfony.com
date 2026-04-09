@@ -45,7 +45,7 @@ class SitemapTest extends KernelTestCase
         }
 
         $packageRepository = new UxPackageRepository();
-        foreach ($packageRepository->findAll() as $package) {
+        foreach ($packageRepository->findAll(removed: false) as $package) {
             yield $package->getRoute() => $router->generate($package->getRoute(), [], UrlGeneratorInterface::ABSOLUTE_URL);
         }
     }

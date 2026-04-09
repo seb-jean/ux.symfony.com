@@ -566,9 +566,6 @@
             "assets/icons/symfony.svg"
         ]
     },
-    "symfony/ux-lazy-image": {
-        "version": "v2.1.1"
-    },
     "symfony/ux-leaflet-map": {
         "version": "2.19",
         "recipe": {
@@ -611,15 +608,6 @@
     "symfony/ux-react": {
         "version": "2.x-dev"
     },
-    "symfony/ux-svelte": {
-        "version": "2.x-dev"
-    },
-    "symfony/ux-swup": {
-        "version": "v2.1.1"
-    },
-    "symfony/ux-toggle-password": {
-        "version": "2.x-dev"
-    },
     "symfony/ux-toolkit": {
         "version": "2.x-dev"
     },
@@ -643,9 +631,6 @@
     },
     "symfony/ux-twig-component": {
         "version": "v2.1.0"
-    },
-    "symfony/ux-typed": {
-        "version": "2.x-dev"
     },
     "symfony/ux-vue": {
         "version": "2.x-dev"

@@ -20,10 +20,6 @@ return [
         'path' => './assets/react/app-react.js',
         'entrypoint' => true,
     ],
-    'app-svelte' => [
-        'path' => './assets/svelte/app-svelte.js',
-        'entrypoint' => true,
-    ],
     'app-vue' => [
         'path' => './assets/vue/app-vue.js',
         'entrypoint' => true,
@@ -48,9 +44,6 @@ return [
     ],
     '@symfony/ux-vue' => [
         'path' => '@symfony/ux-vue/loader.js',
-    ],
-    '@symfony/ux-svelte' => [
-        'path' => '@symfony/ux-svelte/loader.js',
     ],
     '@symfony/ux-translator' => [
         'path' => '@symfony/ux-translator/translator_controller.js',
@@ -115,15 +108,6 @@ return [
     ],
     'cropperjs' => [
         'version' => '1.6.2',
-    ],
-    'svelte/transition' => [
-        'version' => '4.2.18',
-    ],
-    'svelte/animate' => [
-        'version' => '4.2.18',
-    ],
-    'svelte/internal' => [
-        'version' => '3.59.2',
     ],
     'intl-messageformat' => [
         'version' => '10.5.14',

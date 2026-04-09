@@ -952,23 +952,19 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     theme?: "dark"|"light"|Param, // Changes the color of the dump() output when rendered directly on the templating. "dark" (default) or "light". // Default: "dark"
  * }
  * @psalm-type TwigComponentConfig = array{
- *     defaults?: array<string, string|array{ // Default: ["__deprecated__use_old_naming_behavior"]
+ *     defaults: array<string, string|array{ // Default: []
  *         template_directory?: scalar|null|Param, // Default: "components"
  *         name_prefix?: scalar|null|Param, // Default: ""
  *     }>,
- *     anonymous_template_directory?: scalar|null|Param, // Defaults to `components`
+ *     anonymous_template_directory: scalar|null|Param, // Defaults to `components`
  *     profiler?: bool|array{ // Enables the profiler for Twig Component
  *         enabled?: bool|Param, // Default: "%kernel.debug%"
  *         collect_components?: bool|Param, // Collect components instances // Default: true
  *     },
- *     controllers_json?: scalar|null|Param, // Deprecated: The "twig_component.controllers_json" config option is deprecated, and will be removed in 3.0. // Default: null
  * }
  * @psalm-type LiveComponentConfig = array{
  *     secret?: scalar|null|Param, // The secret used to compute fingerprints and checksums // Default: "%kernel.secret%"
- * }
- * @psalm-type LazyImageConfig = array{
- *     cache?: scalar|null|Param,
- *     fetch_image_content?: scalar|null|Param, // Default: null
+ *     fetch_credentials?: "same-origin"|"include"|"omit"|Param, // The default fetch credentials mode for all Live Components ('same-origin', 'include', 'omit') // Default: "same-origin"
  * }
  * @psalm-type DoctrineConfig = array{
  *     dbal?: array{
@@ -1194,10 +1190,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     controllers_path?: scalar|null|Param, // The path to the directory where Vue controller components are stored - relevant only when using symfony/asset-mapper. // Default: "%kernel.project_dir%/assets/vue/controllers"
  *     name_glob?: list<scalar|null|Param>,
  * }
- * @psalm-type SvelteConfig = array{
- *     controllers_path?: scalar|null|Param, // The path to the directory where Svelte controller components are stored - relevant only when using symfony/asset-mapper. // Default: "%kernel.project_dir%/assets/svelte/controllers"
- *     name_glob?: list<scalar|null|Param>,
- * }
  * @psalm-type UxTranslatorConfig = array{
  *     dump_directory?: scalar|null|Param, // The directory where translations and TypeScript types are dumped. // Default: "%kernel.project_dir%/var/translations"
  *     dump_typescript?: bool|Param, // Control whether TypeScript types are dumped alongside translations. Disable this if you do not use TypeScript (e.g. in production when using AssetMapper). // Default: true
@@ -1279,6 +1271,9 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         path?: scalar|null|Param, // The local icon set directory path. (cannot be used with 'alias')
  *         alias?: scalar|null|Param, // The remote icon set identifier. (cannot be used with 'path')
  *         icon_attributes?: array<string, scalar|null|Param>,
+ *         suffixes?: array<string, array{ // The suffix name (e.g. "solid", "20-solid") // Default: []
+ *             icon_attributes?: array<string, scalar|null|Param>,
+ *         }>,
  *     }>,
  *     aliases?: array<string, string|Param>,
  *     iconify?: bool|array{ // Configuration for the remote icon service.
@@ -1324,13 +1319,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     monolog?: MonologConfig,
  *     twig_component?: TwigComponentConfig,
  *     live_component?: LiveComponentConfig,
- *     lazy_image?: LazyImageConfig,
  *     doctrine?: DoctrineConfig,
  *     doctrine_migrations?: DoctrineMigrationsConfig,
  *     notify?: NotifyConfig,
  *     react?: ReactConfig,
  *     vue?: VueConfig,
- *     svelte?: SvelteConfig,
  *     ux_translator?: UxTranslatorConfig,
  *     stimulus?: StimulusConfig,
  *     symfonycasts_sass?: SymfonycastsSassConfig,
@@ -1354,14 +1347,12 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         debug?: DebugConfig,
  *         twig_component?: TwigComponentConfig,
  *         live_component?: LiveComponentConfig,
- *         lazy_image?: LazyImageConfig,
  *         doctrine?: DoctrineConfig,
  *         doctrine_migrations?: DoctrineMigrationsConfig,
  *         maker?: MakerConfig,
  *         notify?: NotifyConfig,
  *         react?: ReactConfig,
  *         vue?: VueConfig,
- *         svelte?: SvelteConfig,
  *         ux_translator?: UxTranslatorConfig,
  *         stimulus?: StimulusConfig,
  *         zenstruck_foundry?: ZenstruckFoundryConfig,
@@ -1385,13 +1376,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         monolog?: MonologConfig,
  *         twig_component?: TwigComponentConfig,
  *         live_component?: LiveComponentConfig,
- *         lazy_image?: LazyImageConfig,
  *         doctrine?: DoctrineConfig,
  *         doctrine_migrations?: DoctrineMigrationsConfig,
  *         notify?: NotifyConfig,
  *         react?: ReactConfig,
  *         vue?: VueConfig,
- *         svelte?: SvelteConfig,
  *         ux_translator?: UxTranslatorConfig,
  *         stimulus?: StimulusConfig,
  *         symfonycasts_sass?: SymfonycastsSassConfig,
@@ -1415,13 +1404,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         monolog?: MonologConfig,
  *         twig_component?: TwigComponentConfig,
  *         live_component?: LiveComponentConfig,
- *         lazy_image?: LazyImageConfig,
  *         doctrine?: DoctrineConfig,
  *         doctrine_migrations?: DoctrineMigrationsConfig,
  *         notify?: NotifyConfig,
  *         react?: ReactConfig,
  *         vue?: VueConfig,
- *         svelte?: SvelteConfig,
  *         ux_translator?: UxTranslatorConfig,
  *         stimulus?: StimulusConfig,
  *         zenstruck_foundry?: ZenstruckFoundryConfig,

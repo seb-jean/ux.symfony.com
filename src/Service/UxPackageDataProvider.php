@@ -26,7 +26,7 @@ class UxPackageDataProvider
      */
     public function getPackages(): array
     {
-        $packages = $this->packageRepository->findAll();
+        $packages = $this->packageRepository->findAll(removed: false);
 
         return $this->normalizer->normalize($packages);
     }
