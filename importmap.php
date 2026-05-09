@@ -255,4 +255,12 @@ return [
     '@hotwired/hotwire-native-bridge' => [
         'version' => '1.2.2',
     ],
+    'tw-animate-css/dist/tw-animate.css' => [
+        'version' => '1.4.0',
+        'type' => 'css',
+    ],
+    'shadcn/dist/tailwind.css' => [
+        'version' => '4.6.0',
+        'type' => 'css',
+    ],
 ];
