@@ -1,6 +1,4 @@
 import './styles/toolkit-shadcn.css';
-import '@fontsource-variable/geist/index.min.css';
-import '@fontsource-variable/geist-mono/index.min.css';
 import { startStimulusApp } from '@symfony/stimulus-bundle';
 import Accordion from '@symfony/ux-toolkit/kits/shadcn/accordion/assets/controllers/accordion_controller.js';
 import AlertDialog from '@symfony/ux-toolkit/kits/shadcn/alert-dialog/assets/controllers/alert_dialog_controller.js';
