@@ -14,10 +14,10 @@ namespace App\Twig\Components\Package;
 use App\Model\UxPackage;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
-#[AsTwigComponent('PackageBox', template: 'components/Package/PackageBox.html.twig')]
-final class PackageBox
+#[AsTwigComponent('PackageListItem', template: 'components/Package/PackageListItem.html.twig')]
+final class PackageListItem
 {
     public UxPackage $package;
 
-    public string $titleTag = 'h3';
+    public string $titleTag = 'h4';
 }

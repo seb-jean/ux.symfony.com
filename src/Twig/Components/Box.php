@@ -9,15 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Twig\Components\Package;
+namespace App\Twig\Components;
 
-use App\Model\UxPackage;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
-#[AsTwigComponent('PackageBox', template: 'components/Package/PackageBox.html.twig')]
-final class PackageBox
+#[AsTwigComponent('Box')]
+final class Box
 {
-    public UxPackage $package;
+    public string $color;
+
+    public ?string $gradient = null;
 
     public string $titleTag = 'h3';
+
+    public ?string $logoSize = null;
+
+    public string $titleClass = '';
 }

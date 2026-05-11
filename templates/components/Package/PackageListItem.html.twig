@@ -1,8 +1,17 @@
-<div class="PackageListItem">
-    <div class="PackageListItem__icon" style="--gradient: {{ package.gradient }};">
-        <img src="{{ asset('images/ux_packages/' ~ package.imageFilename) }}" alt="Symfony UX {{ package.humanName }}" />
+{% set box_style = '--color: ' ~ package.color ~ '; --gradient: ' ~ (package.gradient ?: 'none') ~ '; --logo-size: 48px' %}
+
+<div
+    class="group relative flex gap-6 p-2 self-stretch border border-surface rounded-md bg-body"
+    style="{{ box_style }}"
+>
+    <div class="flex items-center justify-center shrink-0 rounded-[14%] [background-image:var(--gradient)] bg-(--color) w-(--logo-size) h-(--logo-size) [&_img]:w-[calc(0.4*var(--logo-size))] [&_img]:h-auto [&_img]:filter-[drop-shadow(4px_4px_4px_rgba(0,0,0,0))]">
+        <img width="36" height="36" src="{{ asset('images/ux_packages/' ~ package.imageFilename) }}"
+             alt="Image for the {{ package.humanName }} UX package">
     </div>
-    <h4 class="PackageListItem__label">
-        <a href="{{ package.isRemoved ? package.githubRepositoryUrl ~ '#readme' : url(package.route) }}">{{ package.humanName }}</a>
-    </h4>
+
+    <div class="flex flex-col justify-center flex-1">
+        <{{ titleTag }} class="flex flex-row items-center gap-3 font-title font-semibold text-xl leading-normal text-body-text m-0">
+            <a href="{{ package.isRemoved ? package.migrationGuideUrl : url(package.route) }}" class="stretched-link text-body-text no-underline">{{ package.humanName }}</a>
+        </{{ titleTag }}>
+    </div>
 </div>

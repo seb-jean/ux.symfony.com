@@ -3,8 +3,6 @@
 @source "../../templates/**/*.html.twig";
 @source "../controllers/**/*.js";
 
-/* Dark mode: class="dark" (aligned with toolkit-shadcn.css) */
-/* Transitional phase: also supports data-bs-theme for coexistence */
 @custom-variant dark (&:is(.dark *, [data-bs-theme="dark"] *));
 
 /* ─── Design tokens ─── */
@@ -104,7 +102,7 @@
     --radius-md: var(--border-radius);
     --radius-lg: var(--border-radius-large);
 
-    /* Custom breakpoints (based on actual project usage) */
+    /* Custom breakpoints */
     --breakpoint-xs: 480px;
     --breakpoint-sm: 576px;
     --breakpoint-md: 768px;
