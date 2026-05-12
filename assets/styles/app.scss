@@ -114,7 +114,6 @@ mark {
 }
 //@import "../../vendor/twbs/bootstrap/scss/type";
 @import "../../vendor/twbs/bootstrap/scss/images";
-@import "../../vendor/twbs/bootstrap/scss/containers";
 @import "../../vendor/twbs/bootstrap/scss/tables";
 @import "../../vendor/twbs/bootstrap/scss/forms";
 @import "../../vendor/twbs/bootstrap/scss/buttons";
@@ -163,9 +162,6 @@ mark {
 // Base
 @import "app/font";
 @import "app/root";
-
-// Layouts
-@import "layouts/container";
 
 // Components
 @import "components/Changelog";

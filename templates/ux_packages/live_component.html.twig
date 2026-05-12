@@ -41,7 +41,7 @@
 {% block documentation_links %}{% endblock %}
 
 {% block package_links %}
-<section class="container-fluid container-xxl px-6 pt-6 md:px-12 md:pt-12">
+<section class="max-w-[1400px] mx-auto px-6 pt-6 md:px-12 md:pt-12">
     <h2 class="eyebrows mt-12" id="demos">Live Component Demos</h2>
     <div class="md:flex md:justify-between text-center items-center md:text-start">
         <h2 class="ubuntu pt-2 component-headlines">Find out what else you can <span style="color: #AE5929;">build</span></h2>
@@ -52,7 +52,7 @@
         </a>
     </div>
 
-    <div class="grid grid-cols-12 gap-x-6 mt-12 pb-12">
+    <div class="mt-12 pb-12">
         <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));">
             {% for demo in demos %}
                 <twig:Demo:DemoCard demo="{{ demo }}" />
