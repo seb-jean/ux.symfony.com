@@ -77,21 +77,21 @@
             </a>
         </div>
 
-        <div class="grid grid-cols-12 gap-x-6">
-            <div class="col-span-4">
-                <h3 class="ubuntu mb-6" style="font-weight: 400;" title="Install UX Icons">Installation</h3>
+        <div class="grid sm:grid-cols-3 gap-x-6 gap-y-3">
+            <div class="col-span-1">
+                <h3 class="ubuntu mb-3 sm:mb-6" style="font-weight: 400;" title="Install UX Icons">Installation</h3>
                 <twig:Terminal bottomPadding="20">
                     composer require {{ package.composerName }}
                 </twig:Terminal>
             </div>
-            <div class="col-span-4">
-                <h3 class="ubuntu mb-6" style="font-weight: 400;" title="Search UX Icons">Search Icons</h3>
+            <div class="col-span-1">
+                <h3 class="ubuntu mb-3 sm:mb-6" style="font-weight: 400;" title="Search UX Icons">Search Icons</h3>
                 <twig:Terminal bottomPadding="20">
                     php bin/console ux:icons:search lucide
                 </twig:Terminal>
             </div>
-            <div class="col-span-4">
-               <h3 class="ubuntu mb-6" style="font-weight: 400;" title="Symfony UX Bundle Configuration">Configuration</h3>
+            <div class="col-span-1">
+               <h3 class="ubuntu mb-3 sm:mb-6" style="font-weight: 400;" title="Symfony UX Bundle Configuration">Configuration</h3>
                 <twig:Terminal bottomPadding="20">
                     php bin/console debug:config ux_icons
                 </twig:Terminal>

@@ -16,7 +16,7 @@
                 <h2 class="ChangelogItem__Title">
                     {{- this.getTitle() -}}
                 </h2>
-                <twig:ux:icon name="arrow-down" class="Icon ChangelogItem__Toggle" />
+                <twig:ux:icon name="chevron-down" class="Icon ChangelogItem__Toggle" />
             </summary>
             <div class="border-t mt-4 pt-4 Wysiwyg [&_a]:text-[#0969da]">
                 {{ this.getContent()|markdown_to_html }}
