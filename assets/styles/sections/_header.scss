@@ -14,13 +14,13 @@
     padding-top: 2rem;
   }
 }
-[data-bs-theme="dark"] {
-  .AppHeader {
-    --color-background-rgb: 0 0 0;
-  }
+.dark .AppHeader {
+  --color-background-rgb: 20 20 20;
 }
+
 .AppHeader--white {
   --text-color: #fff;
+  --color-background-rgb: 80 80 80;
 }
 
 .AppHeader::before {

@@ -28,6 +28,7 @@
     padding: .5rem;
     opacity: var(--header-opacity, 1);
     transition: all 250ms ease-in-out;
+    overflow-x: auto;
 
     .Terminal:hover & {
       opacity: 1;
@@ -129,19 +130,19 @@
 
   .Terminal_actions {
     .btn-link {
-      color: $n-200;
+      color: $n-200 !important;
       background: none;
     }
     .btn-copy {
-      color: $n-200;
+      color: $n-200 !important;
       background: none;
       transition: all 250ms ease-in-out;
       &:hover {
-        color: $n-100;
+        color: $n-100 !important;
       }
     }
     .btn-link:hover {
-      color: $n-100;
+      color: $n-100 !important;
     }
     white-space: nowrap;
   }

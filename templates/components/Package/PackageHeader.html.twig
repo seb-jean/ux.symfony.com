@@ -14,7 +14,7 @@
             </p>
         </div>
 
-        <div class="flex gap-4 justify-center translate-y-1/2">
+        <div class="flex flex-wrap gap-4 justify-center translate-y-1/2">
             {% if command is not defined or command %}
                 <twig:TerminalCommand
                     aria-label="Composer command to install {{ package.humanName }}"
