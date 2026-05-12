@@ -1,10 +1,10 @@
 {% set parameters = parameters ?? {} %}
 
-<div class="grid grid-cols-12 gap-x-6 mt-6 mb-6 items-center"
+<div class="flex flex-col sm:flex-row gap-3 py-3 sm:gap-6 sm:py-6 border-b border-n-200"
      data-controller="translator-demo-block"
      data-translator-demo-block-message-value="{{ message }}"
 >
-    <div class="col-span-5">
+    <div class="sm:flex-5">
         <div class="Terminal Terminal_body">
             <div class="Terminal_content">
                 <pre data-translator-demo-block-target="code">
@@ -19,10 +19,10 @@
             </div>
         </div>
     </div>
-    <div class="col-span-3">
+    <div class="sm:flex-3">
         {% block parameters %}{% endblock %}
     </div>
-    <div class="col-span-4 justify-between">
+    <div class="sm:flex-4 justify-between">
         <div class="mb-2">
             🇬🇧 <span data-translator-demo-block-target="outputs" data-locale="en"></span>
         </div>

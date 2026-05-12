@@ -2,6 +2,8 @@
 
 @source "../../templates/**/*.html.twig";
 @source "../controllers/**/*.js";
+@source "../react/src/**/*.jsx";
+@source "../vue/src/**/*.js";
 
 @custom-variant dark (&:is(.dark *, [data-bs-theme="dark"] *));
 
