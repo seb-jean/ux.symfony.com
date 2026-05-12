@@ -3,11 +3,11 @@
         <div class="alert alert-success">{{ flashMessage }}</div>
     {% endif %}
 
-    <div class="d-inline-flex">
+    <div class="inline-flex">
         {% if isEditing %}
             {# The form isn't used, but allows the user to hit enter to save. #}
-            <form class="row g-3">
-                <div class="input-group mb-4 col">
+            <form class="flex flex-col gap-4">
+                <div class="input-group mb-4">
                     {% set error = this.getError('food.name') %}
 
                     <div class="form-floating">

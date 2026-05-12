@@ -1,6 +1,6 @@
 <div {{ attributes }}>
-    <div class="row">
-        <div class="col-2">
+    <div class="grid grid-cols-12 gap-x-6">
+        <div class="col-span-2">
             <label for="fromYear" class="form-label">
                 From: <code><small>({{ fromYear|abs }} mya)</small></code>
             </label>
@@ -14,7 +14,7 @@
             >
         </div>
 
-        <div class="col-2">
+        <div class="col-span-2">
             <label for="toYear" class="form-label">
                 To: <code><small>({{ toYear|abs }} mya)</small></code>
             </label>
@@ -28,7 +28,7 @@
             >
         </div>
 
-        <div class="col-8">
+        <div class="col-span-8">
             <label for="dinoTypes" class="form-label">Choose Dino Types</label>
             <select
                 data-model="currentTypes"

@@ -54,16 +54,16 @@
                 <div class="p-6 markdown-container bg-body shadow-blur shadow-blur--rainbow" id="demo">
                     {% block demo_content %}{% endblock %}
                 </div>
-                <div class="arrow-2 mb-4 d-sm-block" style="position:absolute; bottom: 0; left: 0; transform: scaleX(-1) translateY(70px) translateX(20px)"></div>
+                <div class="arrow-2 mb-4 sm:block" style="position:absolute; bottom: 0; left: 0; transform: scaleX(-1) translateY(70px) translateX(20px)"></div>
             </div>
 
             {% block code_block_full %}
-                <div class="arrow mb-4 d-none d-md-block"></div>
-                <div class="row mb-12">
-                    <div class="col-12 col-md-6">
+                <div class="arrow mb-4 hidden md:block"></div>
+                <div class="grid grid-cols-12 gap-x-6 mb-12">
+                    <div class="col-span-12 md:col-span-6">
                         {% block code_block_left %}{% endblock %}
                     </div>
-                    <div class="col-12 col-md-6 mt-4 md:mt-0">
+                    <div class="col-span-12 md:col-span-6 mt-4 md:mt-0">
                         {% block code_block_right %}{% endblock %}
                     </div>
                 </div>
@@ -72,7 +72,7 @@
     {% endblock %}
 
     <div class="container container-xl x-4 pt-6 md:px-12 md:pt-12">
-        <div class="flex flex-wrap gap-4 justify-center items-center">
+        <div class="flex flex-wrap gap-6 justify-center items-center">
             <twig:Badge:Github label="Author" username="{{ demo.author }}" />
             <twig:Badge:Date label="Published" date="{{ demo.publishedAt }}" />
         </div>

@@ -1,18 +1,18 @@
 <footer>
     <div class="container-fluid container-xxl py-12 lg:px-12">
-        <div class="row align-items-center" style="--bs-gutter-x: 0;">
-            <div class="col-12 col-xl-3 order-xl-3 text-center text-xl-end">
-                <p class="d-flex align-items-center justify-content-center justify-content-xl-end mb-0" style="gap: .5rem;">
+        <div class="grid grid-cols-12 gap-x-6 items-center" style="--bs-gutter-x: 0;">
+            <div class="col-span-12 xl:col-span-3 xl:order-3 text-center xl:text-end">
+                <p class="flex items-center justify-center xl:justify-end mb-0" style="gap: .5rem;">
                     <a href="https://github.com/symfony/ux" rel="external noopener noreferrer"
                        style="font-size: 1.5rem;"
                        aria-label="Symfony UX on GitHub"
-                       class="order-lg-1"
+                       class="lg:order-1"
                     >
                         <twig:ux:icon name="github"/>
                     </a>
-                    <a href="{{ url('app_documentation') }}" style="font-size: 11px; text-transform: uppercase;" class="order-lg-0">Docs</a>
-                    <a href="{{ url('app_changelog') }}" style="font-size: 11px; text-transform: uppercase;" class="order-lg-0">Changelog</a>
-                    <a href="{{ url('app_support') }}" style="font-size: 11px; text-transform: uppercase;" class="order-lg-0">Support</a>
+                    <a href="{{ url('app_documentation') }}" style="font-size: 11px; text-transform: uppercase;" class="lg:order-0">Docs</a>
+                    <a href="{{ url('app_changelog') }}" style="font-size: 11px; text-transform: uppercase;" class="lg:order-0">Changelog</a>
+                    <a href="{{ url('app_support') }}" style="font-size: 11px; text-transform: uppercase;" class="lg:order-0">Support</a>
                     <a href="https://symfony.com" rel="external noopener noreferrer"
                        style="font-size: 1.5rem;"
                        aria-label="Symfony website"
@@ -21,9 +21,9 @@
                     </a>
                 </p>
             </div>
-            <div class="col-12 col-xl-6 order-xl-2">
+            <div class="col-span-12 xl:col-span-6 xl:order-2">
                 <p class="xl:mb-0 mt-4 xl:mt-0 text-center" style="font-size: 12px; text-transform: uppercase;">
-                    <span class="d-block d-md-inline">
+                    <span class="block md:inline">
                         crafted by
                         <a href="https://symfonycasts.com"
                            rel="external noopener noreferrer"
@@ -33,9 +33,9 @@
                         <a href="https://locastic.com"
                            rel="external noopener noreferrer"
                            style="font-weight: 700;"
-                        >Locastic</a><span class="d-none d-md-inline">,</span>
+                        >Locastic</a><span class="hidden md:inline">,</span>
                     </span>
-                    <span class="d-block d-md-inline">
+                    <span class="block md:inline">
                         hosted with
                         <span style="font-weight: 700;">
                             <a href="https://upsun.com"
@@ -46,7 +46,7 @@
                     </span>
                 </p>
             </div>
-            <div class="col-12 col-xl-3 text-center text-xl-start">
+            <div class="col-span-12 xl:col-span-3 text-center xl:text-start">
                 <p class="mb-0" style="font-size: 11px; text-transform: uppercase;">
                     &copy;
                     <a href="https://symfony.com" style="font-weight: 700;">Symfony</a>

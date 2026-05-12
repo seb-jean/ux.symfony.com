@@ -11,13 +11,13 @@
 <div class="hero hero-background">
     <div class="container-fluid container-xxl px-6 py-6 md:px-12 md:py-12">
 
-        <div class="row justify-content-center g-5 pt-4 mt-2">
-          <div class="col-12 text-center text-lg-start col-lg-6 mt-0 sm:mt-12">
+        <div class="grid grid-cols-12 justify-center gap-12 pt-4 mt-2">
+          <div class="col-span-12 text-center lg:text-start lg:col-span-6 mt-0 sm:mt-12">
             <span class="eyebrows">curated by symfony</span>
             <h1 class="my-4">JavaScript <em class="rainbow-emphasis">tools</em> you can't live without.</h1>
             <p>A set of PHP &amp; JavaScript packages to solve every day frontend problems featuring Stimulus and Turbo.</p>
           </div>
-          <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+          <div class="col-span-12 sm:col-span-10 md:col-span-8 lg:col-span-6">
               <twig:HomepageTerminalSwapper class="shadow-blur shadow-blur--rainbow" style="--shadow-bottom: 2rem;" />
           </div>
         </div>
@@ -27,17 +27,17 @@
 <div class="container-fluid container-xxl px-6 py-6 md:px-12 md:py-12">
     <h2 class="ubuntu">Install it</h2>
 
-    <div class="arrow mb-4 d-none d-md-block"></div>
+    <div class="arrow mb-4 hidden md:block"></div>
 
-    <div class="row">
-        <div class="col-12 col-md-6">
+    <div class="grid grid-cols-12 gap-x-6">
+        <div class="col-span-12 md:col-span-6">
             <twig:Terminal bottomPadding="145">
                 composer require symfony/asset-mapper symfony/stimulus-bundle
             </twig:Terminal>
         </div>
 
-        <div class="col-12 col-md-6 mt-4 md:mt-0">
-            <div data-controller="tooltips" class="ux-container FileTree  flex-grow-1 ms-2 py-4">
+        <div class="col-span-12 md:col-span-6 mt-4 md:mt-0">
+            <div data-controller="tooltips" class="ux-container FileTree grow ms-2 py-4">
                 <div style="height: 185px; overflow: auto;">
                     <twig:FileTree files="{{ recipeFileTree.files }}" />
                 </div>
@@ -46,7 +46,7 @@
     </div>
 
     <p class="eyebrows" style="margin: 70px 0 0;">Stimulus Controllers</p>
-    <div class="d-md-flex justify-content-md-between align-items-center text-center text-md-start">
+    <div class="md:flex md:justify-between items-center text-center md:text-start">
         <h2 class="ubuntu pt-2 component-headlines">Write custom JavaScript inside <em class="rainbow-emphasis">Stimulus Controllers</em></h2>
         <a style="height: 100%;" class="btn btn-md btn-outline-primary my-4 md:my-0" href="https://symfony.com/doc/current/frontend/ux.html">
             Read full Documentation
@@ -54,10 +54,10 @@
         </a>
     </div>
 
-    <div class="arrow mb-4 d-none d-md-block"></div>
+    <div class="arrow mb-4 hidden md:block"></div>
 
-    <div class="row">
-        <div class="col-12 col-md-6">
+    <div class="grid grid-cols-12 gap-x-6">
+        <div class="col-span-12 md:col-span-6">
             <twig:CodeBlock
                 filename="templates/main/homepage.html.twig"
                 targetTwigBlock="markdown_example"
@@ -65,7 +65,7 @@
                 :stripExcessHtml="true"
             />
         </div>
-        <div class="col-12 col-md-6  mt-4 md:mt-0">
+        <div class="col-span-12 md:col-span-6 mt-4 md:mt-0">
             <twig:CodeBlock
                 filename="assets/controllers/markdown-controller.js"
             />
@@ -73,13 +73,13 @@
     </div>
 
     <div class="shadow-blur shadow-blur--rainbow mt-12" style="--shadow-bottom: 2rem;">
-        <div class="DemoContainer py-2 px-6 d-flex justify-content-center">
+        <div class="DemoContainer py-2 px-6 flex justify-center">
             <small style="opacity: 80%;">And you have a Markdown live converter!</small>
         </div>
         <div class="DemoContainer-inner p-6">
             {% block markdown_example %}
-                <div class="d-flex align-items-stretch row" data-controller="markdown">
-                    <div class="col d-flex">
+                <div class="grid grid-cols-12 gap-x-6 items-stretch" data-controller="markdown">
+                    <div class="col-span-6 flex">
                         <textarea
                             rows="2" class="form-control p-4"
                             aria-label="Type markdown into this box"
@@ -88,7 +88,7 @@
                             data-action="markdown#render"
                         >Writing _JavaScript_ is... a **dream** with Stimulus 🤩</textarea>
                     </div>
-                    <div class="col d-flex">
+                    <div class="col-span-6 flex">
                         <div class="bg-body border rounded-sm w-full p-4" data-markdown-target="preview">
                             <small>&lt;- Write something in the textarea!</small>
                         </div>
@@ -100,14 +100,14 @@
     </div>
 
     <p class="eyebrows" style="margin: 111px 0 0;">Packages</p>
-    <div class="d-md-flex justify-content-md-between text-center align-items-center text-md-start">
+    <div class="md:flex md:justify-between text-center items-center md:text-start">
         <h2 class="ubuntu pt-2 component-headlines">Install UX <em class="rainbow-emphasis">Components</em></h2>
         <a style="height: 100%;" class="btn btn-md btn-outline-primary mt-4 md:mt-0"  href="{{ path('app_packages') }}">
             Browse all Packages
             <twig:ux:icon name="arrow-right" style="transform: rotate(-45deg);"/>
         </a>
     </div>
-    <div class="row mt-4 md:mt-12">
+    <div class="grid grid-cols-12 gap-x-6 mt-4 md:mt-12">
         <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));">
             {% for package in packages|slice(0, 12) %}
                 <twig:Package:PackageBox package="{{ package }}" titleTag="h3" />

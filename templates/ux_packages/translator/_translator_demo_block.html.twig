@@ -1,10 +1,10 @@
 {% set parameters = parameters ?? {} %}
 
-<div class="row mt-6 mb-6 align-items-center"
+<div class="grid grid-cols-12 gap-x-6 mt-6 mb-6 items-center"
      data-controller="translator-demo-block"
      data-translator-demo-block-message-value="{{ message }}"
 >
-    <div class="col-5">
+    <div class="col-span-5">
         <div class="Terminal Terminal_body">
             <div class="Terminal_content">
                 <pre data-translator-demo-block-target="code">
@@ -19,10 +19,10 @@
             </div>
         </div>
     </div>
-    <div class="col-3">
+    <div class="col-span-3">
         {% block parameters %}{% endblock %}
     </div>
-    <div class="col justify-content-between">
+    <div class="col-span-4 justify-between">
         <div class="mb-2">
             🇬🇧 <span data-translator-demo-block-target="outputs" data-locale="en"></span>
         </div>

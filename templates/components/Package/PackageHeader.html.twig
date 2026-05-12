@@ -8,13 +8,13 @@
 
         <h1 class="text-center text-white text-balance text-shadow-lg [&_em]:inline-flex [&_em]:font-normal [&_em]:not-italic [&_em]:-skew-x-16 [&_em]:scale-y-95">{% block title_header %}{{ title|default }}{% endblock %}</h1>
 
-        <div class="d-flex justify-content-center">
+        <div class="flex justify-center">
             <p class="text-center text-white mt-4 pb-4 hero-sub-text">
                 {% block sub_content %}{{ subtitle|default }}{% endblock %}
             </p>
         </div>
 
-        <div class="flex gap-3 justify-center translate-y-1/2">
+        <div class="flex gap-4 justify-center translate-y-1/2">
             {% if command is not defined or command %}
                 <twig:TerminalCommand
                     aria-label="Composer command to install {{ package.humanName }}"

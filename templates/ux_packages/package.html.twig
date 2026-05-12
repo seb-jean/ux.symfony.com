@@ -30,13 +30,13 @@
 
     {% block package_content %}
         <section class="container-fluid container-xxl px-6 pt-6 md:px-12 md:pt-12">
-            <div class="arrow mb-4 d-none d-md-block"></div>
+            <div class="arrow mb-4 hidden md:block"></div>
             {% block package_code_blocks %}
-                <div class="row mb-12">
-                    <div class="col-12 col-md-6">
+                <div class="grid grid-cols-12 gap-x-6 mb-12">
+                    <div class="col-span-12 md:col-span-6">
                         {% block code_block_left %}{% endblock %}
                     </div>
-                    <div class="col-12 col-md-6 mt-4 md:mt-0">
+                    <div class="col-span-12 md:col-span-6 mt-4 md:mt-0">
                         {% block code_block_right %}{% endblock %}
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     {% set demo_title = block('demo_title') %}
                     {% set demo_content = block('demo_content') %}
                     <div id="demo" style="position: relative;">
-                        <div class="arrow-2 mb-4 d-sm-block" style="position:absolute; top:-55px; right: -25px;"></div>
+                        <div class="arrow-2 mb-4 sm:block" style="position:absolute; top:-55px; right: -25px;"></div>
                         {% embed 'ux_packages/_package_demo.html.twig' %}
                             {% block title %}{{ demo_title|raw }}{% endblock %}
                             {% block content %}{{ demo_content|raw }}{% endblock %}
