@@ -59,6 +59,29 @@ $utilities: map-remove(
     "translate-middle",
     // Shadow
     "shadow",
+    // Margin
+    "margin",
+    "margin-x",
+    "margin-y",
+    "margin-top",
+    "margin-end",
+    "margin-bottom",
+    "margin-start",
+    "negative-margin",
+    "negative-margin-x",
+    "negative-margin-y",
+    "negative-margin-top",
+    "negative-margin-end",
+    "negative-margin-bottom",
+    "negative-margin-start",
+    // Paddings
+    "padding",
+    "padding-x",
+    "padding-y",
+    "padding-top",
+    "padding-end",
+    "padding-bottom",
+    "padding-start",
 );
 
 // Layout & components
@@ -93,7 +116,6 @@ mark {
 //@import "../../vendor/twbs/bootstrap/scss/type";
 @import "../../vendor/twbs/bootstrap/scss/images";
 @import "../../vendor/twbs/bootstrap/scss/containers";
-@import "../../vendor/twbs/bootstrap/scss/grid";
 @import "../../vendor/twbs/bootstrap/scss/tables";
 @import "../../vendor/twbs/bootstrap/scss/forms";
 @import "../../vendor/twbs/bootstrap/scss/buttons";

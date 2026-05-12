@@ -1,7 +1,7 @@
 {% extends 'demos/live_demo.html.twig' %}
 
 {% block code_block_full %}
-    <twig:Code:CodeWithExplanationRow filename="src/Twig/Components/InvoiceCreator.php" sticky class="pt-5">
+    <twig:Code:CodeWithExplanationRow filename="src/Twig/Components/InvoiceCreator.php" sticky class="pt-12">
 ## Main Component
 
 This main component keeps track of the `Invoice` (which may be new) and
@@ -18,7 +18,7 @@ This triggers the `removeLineItem()` method on this component, which
 removes the line item from the `$lineItems` array.
     </twig:Code:CodeWithExplanationRow>
 
-    <twig:Code:CodeWithExplanationRow filename="templates/components/InvoiceCreator.html.twig" sticky reversed class="pt-5">
+    <twig:Code:CodeWithExplanationRow filename="templates/components/InvoiceCreator.html.twig" sticky reversed class="pt-12">
 ## Main Template
 
 The template is fairly simple: rendering form fields with `data-model` to
@@ -30,7 +30,7 @@ data: `productId`, `quantity`, and `isEditing`. It also passes a `key`,
 which is needed so LiveComponents can track which row is which.
     </twig:Code:CodeWithExplanationRow>
 
-    <twig:Code:CodeWithExplanationRow filename="src/Twig/Components/InvoiceCreatorLineItem.php" sticky class="pt-5">
+    <twig:Code:CodeWithExplanationRow filename="src/Twig/Components/InvoiceCreatorLineItem.php" sticky class="pt-12">
 ## Child Component
 
 The child component for each "line item". This handles validating, saving,
@@ -51,7 +51,7 @@ by emitting events - e.g. `line_item:save`.
         filename="templates/components/InvoiceCreatorLineItem.html.twig"
         sticky
         reversed
-        class="pt-5"
+        class="pt-12"
     >
 ## Item template
 
@@ -71,7 +71,7 @@ we emit the event directly.
             <twig:InvoiceCreator :invoice="invoice"/>
         </div>
     </div>
-    <div class="mt-3">
+    <div class="mt-4">
         <small>
             Inspired by:
             <a href="https://www.youtube.com/watch?v=udvFu31sFpk" rel="external noopener noreferrer">Livewire Invoice Editor Component: Parent-Child Example by Laravel Daily</a>

@@ -18,12 +18,12 @@
 {% endblock %}
 
 {% block package_content %}
-    <section class="container-fluid container-xxl px-4 pt-4 px-md-5 pt-md-5">
-        <div class="arrow mb-3 d-none d-md-block"></div>
+    <section class="container-fluid container-xxl px-6 pt-6 md:px-12 md:pt-12">
+        <div class="arrow mb-4 d-none d-md-block"></div>
 
-        <div class="row mb-5">
+        <div class="row mb-12">
             <div class="col-12 col-md-6 text-center">
-                <p class="fw-bold mb-3" style="font-size: 1.15rem;">Without UX Native</p>
+                <p class="fw-bold mb-4" style="font-size: 1.15rem;">Without UX Native</p>
                 <img
                     src="{{ asset('images/taskflow-without-native.webp') }}"
                     alt="A Symfony + Bootstrap todo-list app displayed inside a mobile browser, with the browser navigation bar and the web navbar visible."
@@ -35,8 +35,8 @@
                     Browser navigation bar, web navbar &mdash; it feels like a website.
                 </p>
             </div>
-            <div class="col-12 col-md-6 text-center mt-4 mt-md-0">
-                <p class="fw-bold mb-3" style="font-size: 1.15rem;">With UX Native</p>
+            <div class="col-12 col-md-6 text-center mt-6 md:mt-0">
+                <p class="fw-bold mb-4" style="font-size: 1.15rem;">With UX Native</p>
                 <img
                     src="{{ asset('images/taskflow-with-native.webp') }}"
                     alt="The same Symfony + Bootstrap todo-list app but with Hotwire Native: native title bar, no browser chrome, clean native experience."
@@ -51,7 +51,7 @@
         </div>
 
         {% block package_code_blocks %}
-            <div class="row mb-5">
+            <div class="row mb-12">
                 <div class="col-12 col-md-6 Wysiwyg">
                     {% apply markdown_to_html %}
                     ## One codebase, two experiences
@@ -62,7 +62,7 @@
                     - or show mobile-specific content, all from the same code.
                     {% endapply %}
                 </div>
-                <div class="col-12 col-md-6 mt-4 mt-md-0">
+                <div class="col-12 col-md-6 mt-6 md:mt-0">
                     {% apply markdown_to_html %}
                         ```twig {"filename":"templates/base.html.twig"}
                         {% verbatim -%}
@@ -80,7 +80,7 @@
                     {% endapply %}
                 </div>
             </div>
-            <div class="row mb-5 mt-4">
+            <div class="row mb-12 mt-6">
                 <div class="col-12 col-md-5 order-md-2 Wysiwyg">
                     {% apply markdown_to_html %}
                     ## JSON configurations, the Symfony way
@@ -90,7 +90,7 @@
                     UX Native serves them dynamically during development and can dump them as static JSON files for production deployment.
                     {% endapply %}
                 </div>
-                <div class="col-12 col-md-7 mt-4 mt-md-0 order-md-1">
+                <div class="col-12 col-md-7 mt-6 md:mt-0 order-md-1">
                     {% apply markdown_to_html %}
                     ```php {"filename":"src/Native/AppNativeConfiguration.php"}
                     namespace App\Native;
@@ -124,7 +124,7 @@
                 </div>
             </div>
 
-        <div class="row mb-5 mt-4">
+        <div class="row mb-12 mt-6">
             <div class="col-12 col-md-6 Wysiwyg">
                 {% apply markdown_to_html %}
                 ## Bridge Components
@@ -132,7 +132,7 @@
                 Bridge components let you progressively enhance specific web elements with native UI (like replacing a web link with a native navigation bar button), and without changing your server-side code.
                 {% endapply %}
             </div>
-            <div class="col-12 col-md-6 mt-4 mt-md-0 text-center">
+            <div class="col-12 col-md-6 mt-6 md:mt-0 text-center">
                 <img
                     src="{{ asset('images/taskflow-bridge-component-native.webp') }}"
                     alt="The TaskFlow app showing a native navigation bar button added via a bridge component, replacing the original web link."
@@ -142,7 +142,7 @@
             </div>
         </div>
 
-        <div class="row mb-5 mt-4">
+        <div class="row mb-12 mt-6">
             <div class="col-12 col-md-6 order-md-2 Wysiwyg">
                 {% apply markdown_to_html %}
                 ## Three layers, one component
@@ -152,7 +152,7 @@
                 The web and native sides are linked by a shared component name:  `button` in this example.
                 {% endapply %}
             </div>
-            <div class="col-12 col-md-6 mt-4 mt-md-0 order-md-1">
+            <div class="col-12 col-md-6 mt-6 md:mt-0 order-md-1">
                 {% apply markdown_to_html %}
                 ```twig {"filename":"templates/tasks/index.html.twig"}
                 {% verbatim -%}
@@ -168,7 +168,7 @@
             </div>
         </div>
 
-        <div class="row mb-5 mt-4">
+        <div class="row mb-12 mt-6">
             <div class="col-12 col-md-6 Wysiwyg">
                 {% apply markdown_to_html %}
                 ## Stimulus sends, native handles
@@ -178,7 +178,7 @@
                 When the native button is tapped, it replies and the callback fires: clicking the original web element.
                 {% endapply %}
             </div>
-            <div class="col-12 col-md-6 mt-4 mt-md-0">
+            <div class="col-12 col-md-6 mt-6 md:mt-0">
                 {% apply markdown_to_html %}
                 ```js {"filename":"assets/controllers/button_controller.js"}
                 {% verbatim -%}
@@ -203,7 +203,7 @@
             </div>
         </div>
 
-        <div class="row mb-5 mt-4">
+        <div class="row mb-12 mt-6">
             <div class="col-12 col-md-5 order-md-2 Wysiwyg">
                 {% apply markdown_to_html %}
                 ## Native code, same component name
@@ -224,7 +224,7 @@
                 ```
                 {% endapply %}
             </div>
-            <div class="col-12 col-md-7 mt-4 mt-md-0 order-md-1">
+            <div class="col-12 col-md-7 mt-6 md:mt-0 order-md-1">
                 {% apply markdown_to_html %}
                 ```swift {"filename":"ios/ButtonComponent.swift"}
                 import HotwireNative
@@ -260,7 +260,7 @@
             </div>
         </div>
 
-        <div class="row mb-5 mt-4">
+        <div class="row mb-12 mt-6">
             <div class="col-12 col-md-6 Wysiwyg">
                 {% apply markdown_to_html %}
                 ## Hide web elements in native apps
@@ -270,7 +270,7 @@
                 This CSS selector targets elements marked as supported bridge components, preventing duplicate UI from appearing in the native app.
                 {% endapply %}
             </div>
-            <div class="col-12 col-md-6 mt-4 mt-md-0">
+            <div class="col-12 col-md-6 mt-6 md:mt-0">
                 {% apply markdown_to_html %}
                 ```css {"filename":"assets/styles/bridge.css"}
                 {% verbatim -%}
