@@ -26,8 +26,8 @@
 {% block demo_title %}UX Twig Components{% endblock %}
 
 {% block demo_content %}
-    <div class="row">
-        <div class="col-6">
+    <div class="grid grid-cols-12 gap-x-6">
+        <div class="col-span-6">
             <twig:CodeBlock
                 filename="templates/ux_packages/twig_component.html.twig"
                 :showFilename="false"
@@ -36,15 +36,15 @@
                 height="auto"
             />
         </div>
-        <div class="col-6">
+        <div class="col-span-6">
             {% block alert_success_example %}
                 <twig:Alert message="I am a success alert!" />
             {% endblock %}
         </div>
     </div>
 
-    <div class="row my-2">
-        <div class="col-6">
+    <div class="grid grid-cols-12 gap-x-6 my-2">
+        <div class="col-span-6">
             <twig:CodeBlock
                 filename="templates/ux_packages/twig_component.html.twig"
                 :showFilename="false"
@@ -53,7 +53,7 @@
                 height="auto"
             />
         </div>
-        <div class="col-6">
+        <div class="col-span-6">
             {% block alert_danger_example %}
                 <twig:Alert
                     type="danger"

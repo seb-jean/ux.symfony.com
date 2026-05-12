@@ -7,7 +7,7 @@
 
     <turbo-frame id="daily-todos">
         <a href="{{ path('app_turbo_todo_list') }}"><twig:ux:icon name="arrow-left" /> Back to list</a>
-        <form class="mt-4" action="{{ path('app_turbo_add_todo_item') }}" method="POST" novalidate>
+        <form class="mt-6" action="{{ path('app_turbo_add_todo_item') }}" method="POST" novalidate>
             {{ form_row(form.item, {
                 attr: {
                     placeholder: 'Go on a run... to the donut shop',
@@ -16,7 +16,7 @@
                 label: 'What should we do?',
             }) }}
 
-            <button type="submit" class="btn btn-dark mt-4" style="width: 100%;">Create!</button>
+            <button type="submit" class="btn btn-dark mt-6" style="width: 100%;">Create!</button>
         </form>
     </turbo-frame>
 {% endblock %}

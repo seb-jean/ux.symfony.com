@@ -1,9 +1,9 @@
 <div{{ attributes.defaults({class: 'IconSearch'}) }}>
 
     <div class="IconSearchBox">
-        <div class="p-4 markdown-container bg-white/75 dark:bg-black/75 shadow-blur shadow-blur--rainbow mt-5"
+        <div class="p-6 markdown-container bg-white/75 dark:bg-black/75 shadow-blur shadow-blur--rainbow mt-12"
              style="border-radius: .75rem">
-            <fieldset class="flex gap-4">
+            <fieldset class="flex gap-6">
 
                 <div class="input-group" style="max-width: 200px;">
                     <label class="input-group-text" for="IconSearch-Set">
@@ -38,7 +38,7 @@
                     </p>
                 </div>
 
-                <div class="d-flex flex-shrink-0 IconSearch__Display">
+                <div class="flex shrink-0 IconSearch__Display">
                     <div class="btn-group" role="group" data-controller="icon-size">
                         <button class="btn" data-action="icon-size#small">
                             <twig:ux:icon name="grid-small"/>
@@ -62,11 +62,11 @@
         </div>
     </div>
 
-    <div id="IconSearchResults" class="mt-5">
+    <div id="IconSearchResults" class="mt-12">
         {% if this.icons|length > 0 %}
             <twig:Icon:IconGrid icons="{{ this.icons }}" id="IconGrid-{{ this.hash }}" iconSet="{{ this.iconSet ?? null }}" />
         {% elseif this.query %}
-            <p class="pt-3 text-center">No icons found matching "{{ query }}".</p>
+            <p class="pt-4 text-center">No icons found matching "{{ query }}".</p>
         {% endif %}
     </div>
 

@@ -1,7 +1,7 @@
 <div>
-    <h2 class="ubuntu text-center mt-5">Install It</h2>
-    <div class="d-flex justify-content-center mt-5">
-        <div class="col-12 col-md-6">
+    <h2 class="ubuntu text-center mt-12">Install It</h2>
+    <div class="grid grid-cols-12 justify-center mt-12">
+        <div class="col-span-12 md:col-span-6 md:col-start-4">
             {% component Terminal with {bottomPadding: 20} %}
                 {% block content %}
                     {{ package.composerRequireCommand }}

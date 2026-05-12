@@ -1,5 +1,5 @@
 <header class="AppHeader {{ theme is defined ? ('AppHeader--' ~ theme) }}" data-controller="ux-header">
-    <div class="container-xxl px-4 px-md-5">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-12">
 
         <nav class="AppNav AppNav--white">
 
@@ -18,7 +18,7 @@
                 <twig:ThemeSwitcher class="AppNav_item AppNav_item--icon" aria-label="Switch dark/light mode"/>
                 <div class="AppNav_socials">
                     <a
-                        class="AppNav_item AppNav_item--icon d-grid"
+                        class="AppNav_item AppNav_item--icon grid"
                         href="https://x.com/symfonyux"
                         rel="external me"
                         title="Symfony UX on X (Twitter)"
@@ -26,7 +26,7 @@
                         <twig:ux:icon name="x-twitter"/>
                     </a>
                     <a
-                        class="AppNav_item AppNav_item--icon d-grid"
+                        class="AppNav_item AppNav_item--icon grid"
                         href="https://bsky.app/profile/ux.symfony.com"
                         rel="external me"
                         title="Symfony UX on BlueSky"
@@ -35,7 +35,7 @@
                         <twig:ux:icon name="bluesky"/>
                     </a>
                     <a
-                        class="AppNav_item AppNav_item--icon d-grid"
+                        class="AppNav_item AppNav_item--icon grid"
                         href="https://github.com/symfony/ux"
                         rel="external me"
                         title="Symfony UX on GitHub"

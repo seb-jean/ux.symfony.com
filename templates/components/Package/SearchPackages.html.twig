@@ -2,9 +2,9 @@
 
     <input type="text"  data-model="query" placeholder="Results update as you type..." class="form-control" />
 
-    <div class="PackageList pt-3" data-loading="addClass(opacity-50)">
+    <div class="pt-3 grid gap-2 grid-cols-[repeat(auto-fill,minmax(260px,1fr))]" data-loading="addClass(opacity-50)">
         {% for package in computed.packages %}
-            {{ include('components/Package/PackageListItem.html.twig', {package: package}) }}
+            <twig:PackageListItem package="{{ package }}" titleTag="h4" />
          {% else %}
             No packages found "{{ query }}"
         {% endfor %}

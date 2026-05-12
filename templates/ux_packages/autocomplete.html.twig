@@ -37,9 +37,9 @@
         {% endfor %}
 
         {{ form_start(form) }}
-            {{ form_row(form.foods) }}
+            {{ form_row(form.foods, {attr: {class: 'mb-3'}}) }}
 
-            {{ form_row(form.name) }}
+            {{ form_row(form.name, {attr: {class: 'mb-3'}}) }}
 
             <button type="submit" class="btn btn-primary">Let's Nom!</button>
         {{ form_end(form) }}

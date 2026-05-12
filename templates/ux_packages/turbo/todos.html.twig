@@ -10,7 +10,7 @@
             {% for key, item in todos %}
                 <li>
                     {{ item }}
-                    <form class="d-inline" action="{{ path('app_turbo_remove_todo_item', {
+                    <form class="inline" action="{{ path('app_turbo_remove_todo_item', {
                         id: key,
                     }) }}">
                         <button type="submit" class="btn btn-link p-0" title="All done!"><twig:ux:icon name="circle-check" /></button>
@@ -23,6 +23,6 @@
             <div class="alert alert-success">You did it! Order a 🍕 and take the afternoon off.</div>
         {% endif %}
 
-        <a class="btn btn-dark mt-5" style="width: 100%;" href="{{ path('app_turbo_add_todo_item') }}">+ Add another item</a>
+        <a class="btn btn-dark mt-12" style="width: 100%;" href="{{ path('app_turbo_add_todo_item') }}">+ Add another item</a>
     </turbo-frame>
 {% endblock %}
