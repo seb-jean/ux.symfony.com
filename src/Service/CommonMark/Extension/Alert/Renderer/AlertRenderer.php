@@ -29,7 +29,7 @@ final class AlertRenderer implements NodeRendererInterface
             throw new \InvalidArgumentException(\sprintf('Expected instance of "%s", got "%s"', Alert::class, $node::class));
         }
 
-        return $this->twig->render('toolkit/docs/_alert.html.twig', [
+        return $this->twig->render('common_mark/alert.html.twig', [
             'variant' => $node->getType(),
             'content' => $childRenderer->renderNodes($node->children()),
         ]);

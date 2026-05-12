@@ -87,7 +87,7 @@ final class ConverterFactory
             ->addExtension(new FrontMatterExtension())
             ->addExtension(new TableExtension())
             ->addExtension(new HeadingPermalinkExtension())
-            ->addExtension(new TabsExtension())
+            ->addExtension(new TabsExtension($this->twig))
             ->addExtension(new AlertExtension($this->twig))
             ->addExtension(new ToolkitPreviewExtension($this->uriSigner, $this->urlGenerator, $this->twig))
             ->addRenderer(FencedCode::class, new FencedCodeRenderer($this->componentRenderer))

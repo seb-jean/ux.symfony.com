@@ -22,12 +22,17 @@ use League\CommonMark\Extension\ExtensionInterface;
 
 final readonly class TabsExtension implements ExtensionInterface
 {
+    public function __construct(
+        private \Twig\Environment $twig,
+    ) {
+    }
+
     public function register(EnvironmentBuilderInterface $environment): void
     {
         $environment
             ->addBlockStartParser(TabsParser::createBlockStartParser(), 100)
             ->addBlockStartParser(TabParser::createBlockStartParser(), 90)
-            ->addRenderer(Tabs::class, new TabsRenderer())
+            ->addRenderer(Tabs::class, new TabsRenderer($this->twig))
             ->addRenderer(Tab::class, new TabRenderer())
         ;
     }
