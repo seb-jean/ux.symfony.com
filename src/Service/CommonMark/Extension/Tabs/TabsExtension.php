@@ -20,7 +20,7 @@ use App\Service\CommonMark\Extension\Tabs\Renderer\TabsRenderer;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\ExtensionInterface;
 
-final readonly class TabsExtension implements ExtensionInterface
+final class TabsExtension implements ExtensionInterface
 {
     public function __construct(
         private \Twig\Environment $twig,
