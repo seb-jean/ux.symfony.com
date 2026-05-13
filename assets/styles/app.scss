@@ -24,6 +24,8 @@ $utilities: map-remove(
     // Background
     "bg-opacity",
     "subtle-background-color",
+    // Opacity
+    "opacity",
 
     // Negative margin
     "negative-margin",
@@ -174,7 +176,6 @@ mark {
 @import "components/Tag";
 @import "components/Terminal";
 @import "components/TerminalCommand";
-@import "components/ThemeSwitcher";
 
 // Vendors customization
 @import "vendor/bootstrap";

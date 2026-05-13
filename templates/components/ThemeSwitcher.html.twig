@@ -1,10 +1,10 @@
 <button {{ attributes.defaults({
-    class: 'ThemeSwitcher',
+    class: 'relative inline-flex border-none bg-transparent h-[1em] w-[1em] text-body-text',
     type: 'button',
 }) }}
     data-controller="theme-switcher"
     data-action="theme-switcher#switch"
 >
-    <twig:ux:icon name="theme-light" class="Icon Icon--theme-light" />
-    <twig:ux:icon name="theme-dark" class="Icon Icon--theme-dark" />
+    <twig:ux:icon name="theme-light" class="Icon absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-[opacity,scale] duration-[250ms] ease-in-out opacity-0 scale-0 dark:opacity-100 dark:scale-100" />
+    <twig:ux:icon name="theme-dark" class="Icon absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-[opacity,scale] duration-[250ms] ease-in-out opacity-100 scale-100 dark:opacity-0 dark:scale-0" />
 </button>
