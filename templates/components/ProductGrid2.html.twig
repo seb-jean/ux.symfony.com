@@ -20,8 +20,8 @@
                         <svg><use href="#svg-tshirt" /></svg>
                         <span>{{ item.emoji }}</span>
                     </div>
-                    <data class="ProductGrid_price">
-                        {{ item.id }}<small>.99</small>
+                    <data class="ProductGrid_price" value="{{ item.id }}" data-currency="$">
+                        {{ item.id + 1 }}<small>.99</small>
                     </data>
                 </article>
             {% endfor %}
