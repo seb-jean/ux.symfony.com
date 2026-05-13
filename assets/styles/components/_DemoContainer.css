@@ -1,0 +1,31 @@
+@layer components {
+    .DemoContainer {
+        background-color: var(--color-body-bg);
+        border: 1px solid var(--color-border);
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+    .DemoContainer-inner {
+        background-color: var(--color-secondary-bg);
+        border: 1px solid var(--color-border);
+        border-top: transparent;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+    }
+
+    .demo-introduction {
+        max-inline-size: 800px;
+        margin-inline: auto;
+    }
+
+    .demo-introduction a {
+        color: var(--color-code);
+        font-weight: 500;
+    }
+
+    .demo-introduction code {
+        font-size: 0.95em;
+        letter-spacing: -.01em;
+    }
+}

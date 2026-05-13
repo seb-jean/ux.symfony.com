@@ -1,0 +1,12 @@
+<twig:Wysiwyg:Tabs active="{{ active_tab_id }}">
+    <twig:block name="controls">
+        {% for tab in tabs %}
+            <twig:Wysiwyg:TabControl id="{{ tab.id }}" :active="tab.id == active_tab_id">{{ tab.title }}</twig:Wysiwyg:TabControl>
+        {% endfor %}
+    </twig:block>
+    <twig:block name="panels">
+        {% for tab in tabs %}
+            <twig:Wysiwyg:TabPanel target="{{ tab.id }}" :active="tab.id == active_tab_id">{{ tab.content|raw }}</twig:Wysiwyg:TabPanel>
+        {% endfor %}
+    </twig:block>
+</twig:Wysiwyg:Tabs>

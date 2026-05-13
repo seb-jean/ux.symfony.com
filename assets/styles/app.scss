@@ -24,6 +24,8 @@ $utilities: map-remove(
     // Background
     "bg-opacity",
     "subtle-background-color",
+    // Opacity
+    "opacity",
 
     // Negative margin
     "negative-margin",
@@ -165,20 +167,11 @@ mark {
 
 // Components
 @import "components/Changelog";
-@import "components/DemoContainer";
 @import "components/Icon";
 @import "components/IconGrid";
 @import "components/IconModal";
 @import "components/IconSearch";
-@import "components/ProductGrid";
-@import "components/SidebarNav";
-@import "components/SupportBox";
-@import "components/Tabs";
-@import "components/Tag";
 @import "components/Terminal";
-@import "components/TerminalCommand";
-@import "components/ThemeSwitcher";
-@import "components/Wysiwyg_Tabs";
 
 // Vendors customization
 @import "vendor/bootstrap";

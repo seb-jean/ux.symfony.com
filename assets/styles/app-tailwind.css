@@ -355,6 +355,8 @@
     }
 }
 
+@import "./components/_DemoContainer.css";
+@import "./components/_ProductGrid.css";
 @import "./components/_Wysiwyg.css";
 @import "./utilities/_arrow.css";
 @import "./utilities/_font.css";

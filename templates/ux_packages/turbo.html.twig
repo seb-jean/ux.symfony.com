@@ -131,13 +131,9 @@
                                 {{ include('ux_packages/turbo/_chat_list.html.twig') }}
                             </ul>
                         </div>
-                    {% endblock %}
-                    {% block content_secondary %}
-                    <div class="DemoContainer-inner p-6">
-                        <form id="chat-form" action="{{ path('app_turbo_chat') }}" method="POST">
+                        <form id="chat-form" action="{{ path('app_turbo_chat') }}" method="POST" class="mt-6">
                             {{ include('ux_packages/turbo/_chat_form.html.twig') }}
                         </form>
-                    </div>
                     {% endblock %}
                 {% endembed %}
             </div>

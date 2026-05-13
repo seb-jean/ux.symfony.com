@@ -21,12 +21,22 @@
 
         {% block javascripts %}
             <script>
+              const applyTheme = (theme) => {
+                theme = theme === 'light' ? 'light' : 'dark';
+                // Temporary BC-layer during Tailwind migration
+                document.documentElement.setAttribute('data-bs-theme', theme);
+                document.documentElement.classList.toggle('dark', theme === 'dark');
+              };
+
               let theme = localStorage.getItem('user-theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-              theme = theme === 'light' ? 'light' : 'dark';
-              // Temporary BC-layer during Tailwind migration
-              document.documentElement.setAttribute('data-bs-theme', theme);
-              document.documentElement.classList.toggle('dark', theme === 'dark');
+              applyTheme(theme);
               localStorage.setItem('user-theme', theme);
+
+              window.addEventListener('storage', (e) => {
+                if (e.key === 'user-theme' && e.newValue) {
+                  applyTheme(e.newValue);
+                }
+              });
             </script>
             {% block importmap %}
                 <script>

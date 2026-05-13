@@ -15,7 +15,7 @@
         {% set icon = this.iconMeta() %}
         {% set icon_set = this.iconSet() %}
 
-        <div class="Tabs" id="IconModal--{{ icon }}">
+        <div id="IconModal--{{ icon }}">
             <div class="IconModal__header">
                 <p class="IconModal__title">
                     <span>{{ icon.prefix }}</span><span>:</span><span>{{ icon.name }}</span>
@@ -44,20 +44,19 @@
                 </div>
 
                 <div class="IconModal__main">
-                    <div class="Tabs"
-                         data-controller="tabs"
+                    <div data-controller="tabs"
                          data-tabs-tab-value="icon"
                          data-tabs-active-class="active"
                     >
 
-                        <nav class="TabHead">
+                        <nav class="flex justify-center gap-1 rounded-xl bg-surface p-1">
                             {% for _tab, _label in {
                                 icon: 'Icon',
                                 svg: 'SVG code',
                                 meta: 'Metadata',
                             } %}
                                 <button
-                                    class="TabControl"
+                                    class="m-0 cursor-pointer rounded-xl border-none px-4 py-1.5 text-sm font-medium text-muted transition-all duration-150 ease-in-out hover:text-body-text [&.active]:bg-black/10 [&.active]:text-body-text"
                                     data-action="tabs#show {% if 'svg' == _tab %} live#action{% endif %}"
                                     data-live-action-param="loadSvg"
                                     data-tabs-tab-param="{{ _tab }}"
@@ -66,9 +65,9 @@
                             {% endfor %}
                         </nav>
 
-                        <div class="TabBody">
+                        <div class="py-8">
 
-                            <div class="TabPanel" data-tab="icon" data-tabs-target="tab">
+                            <div class="[&:not(.active)]:hidden" data-tab="icon" data-tabs-target="tab">
                                 <h3>Import Icon</h3>
                                 <twig:Code:CodeLine class="IconModal__code">
                                     symfony console ux:icon:import <span>{{ icon }}</span>
@@ -85,7 +84,7 @@
                                 </twig:Code:CodeLine>
                             </div>
 
-                            <div class="TabPanel" data-tabs-target="tab" id="IconModal-Tab-Svg" data-tab="svg">
+                            <div class="[&:not(.active)]:hidden" data-tabs-target="tab" id="IconModal-Tab-Svg" data-tab="svg">
                                 {% set _svg = this.svg() %}
                                 {% if _svg %}
                                     <div data-live-ignore id="IconModal-Tab-Svg--{{ icon }}">
@@ -97,7 +96,7 @@
                                 {% endif %}
                             </div>
 
-                            <div class="TabPanel" data-tabs-target="tab" id="IconModal-Tab-Meta" data-tab="meta">
+                            <div class="[&:not(.active)]:hidden" data-tabs-target="tab" id="IconModal-Tab-Meta" data-tab="meta">
                                 <twig:DataList items="{{ {
                                     Name: icon.name,
                                     Author: icon_set.author.name,

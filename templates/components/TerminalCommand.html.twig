@@ -1,14 +1,14 @@
-<div {{ attributes.defaults({class: 'TerminalCommand'}) }}
+<div {{ attributes.defaults({class: 'relative z-[1] flex flex-row items-center self-center gap-2 p-2 max-w-full w-fit overflow-clip rounded-sm before:content-[""] before:absolute before:inset-0 before:-z-[1] before:block before:bg-black before:opacity-90 before:backdrop-blur-[5px]'}) }}
     data-controller="clipboarder"
     data-clipboarder-source-value="{{ command }}"
 >
     <pre
-        class="TerminalCommand_input"
+        class="z-4 m-0 px-2 w-[inherit] overflow-x-auto border-0 bg-transparent outline-none text-white text-[.9rem] font-monospace"
         aria-label="{{ label|default }}"
     ><code>{{ command }}</code></pre>
     <button
         type="button"
-        class="TerminalCommand_action btn btn-copy p-2.5 rounded"
+        class="relative z-4 py-1.5 px-2.5 rounded border-0 bg-(--color-accent) text-white opacity-90 hover:opacity-100"
         aria-label="Copy command"
         data-action="clipboarder#copy"
     >
