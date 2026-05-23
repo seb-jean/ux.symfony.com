@@ -64,6 +64,7 @@ hooks:
 
         (>&2 symfony-deploy)
 
+        rm -rf var/llms
         cp -r tmp/llms var/llms
         php bin/console app:load-data
 
