@@ -35,6 +35,8 @@ use Symfony\UX\TwigComponent\ComponentRendererInterface;
 #[AsDecorator('twig.markdown.league_common_mark_converter_factory')]
 final class ConverterFactory
 {
+    public const HEADING_ID_PREFIX = 'content';
+
     public function __construct(
         private ComponentRendererInterface $componentRenderer,
         private UriSigner $uriSigner,
@@ -74,7 +76,7 @@ final class ConverterFactory
                 ],
             ],
             'heading_permalink' => [
-                'id_prefix' => 'content',
+                'id_prefix' => self::HEADING_ID_PREFIX,
                 'apply_id_to_heading' => true,
                 'insert' => 'none',
             ],
