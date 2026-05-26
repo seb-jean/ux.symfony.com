@@ -267,4 +267,12 @@ return [
         'version' => '4.6.0',
         'type' => 'css',
     ],
+    '@fontsource/inter/latin.css' => [
+        'version' => '5.2.8',
+        'type' => 'css',
+    ],
+    '@fontsource/inter/latin-italic.css' => [
+        'version' => '5.2.8',
+        'type' => 'css',
+    ],
 ];

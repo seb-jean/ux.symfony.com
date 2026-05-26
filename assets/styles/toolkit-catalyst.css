@@ -8,3 +8,9 @@
     --font-sans: Inter, sans-serif;
     --font-sans--font-feature-settings: 'cv11';
 }
+
+@layer base {
+    body {
+        @apply bg-zinc-900;
+    }
+}
