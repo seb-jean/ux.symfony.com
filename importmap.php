@@ -36,6 +36,10 @@ return [
         'path' => './assets/toolkit-flowbite-4.js',
         'entrypoint' => true,
     ],
+    'toolkit-catalyst' => [
+        'path' => './assets/toolkit-catalyst.js',
+        'entrypoint' => true,
+    ],
     '@symfony/stimulus-bundle' => [
         'path' => '@symfony/stimulus-bundle/loader.js',
     ],

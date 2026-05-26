@@ -147,7 +147,8 @@
         "tailwind:build": [
             "@php bin/console tailwind:build assets/styles/app-tailwind.css",
             "@php bin/console tailwind:build assets/styles/toolkit-shadcn.css",
-            "@php bin/console tailwind:build assets/styles/toolkit-flowbite-4.css"
+            "@php bin/console tailwind:build assets/styles/toolkit-flowbite-4.css",
+            "@php bin/console tailwind:build assets/styles/toolkit-catalyst.css"
         ]
     }
 }

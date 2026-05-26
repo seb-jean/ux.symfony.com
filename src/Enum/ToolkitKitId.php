@@ -22,12 +22,14 @@ enum ToolkitKitId: string
 {
     case Shadcn = 'shadcn';
     case Flowbite4 = 'flowbite-4';
+    case Catalyst = 'catalyst';
 
     public function color(): string
     {
         return match ($this) {
             self::Shadcn => 'hsl(0,0%,0%)',
             self::Flowbite4 => 'hsl(221,79%,48%)',
+            self::Catalyst => 'hsl(260,6%,10%)',
         };
     }
 }
