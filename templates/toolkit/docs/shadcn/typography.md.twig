@@ -11,27 +11,27 @@
 {% block examples %}
 ### H1
 
-{{ toolkit_code_example(kit_id.value, component.name, 'H1', {height: '100px'}) }}
+{{ toolkit_code_example(kit_id.value, component.name, 'H1', {height: '200px'}) }}
 
 ### H2
 
-{{ toolkit_code_example(kit_id.value, component.name, 'H2', {height: '100px'}) }}
+{{ toolkit_code_example(kit_id.value, component.name, 'H2', {height: '200px'}) }}
 
 ### H3
 
-{{ toolkit_code_example(kit_id.value, component.name, 'H3', {height: '100px'}) }}
+{{ toolkit_code_example(kit_id.value, component.name, 'H3', {height: '200px'}) }}
 
 ### H4
 
-{{ toolkit_code_example(kit_id.value, component.name, 'H4', {height: '100px'}) }}
+{{ toolkit_code_example(kit_id.value, component.name, 'H4', {height: '200px'}) }}
 
 ### Paragraph
 
-{{ toolkit_code_example(kit_id.value, component.name, 'Paragraph', {height: '100px'}) }}
+{{ toolkit_code_example(kit_id.value, component.name, 'Paragraph', {height: '200px'}) }}
 
 ### Blockquote
 
-{{ toolkit_code_example(kit_id.value, component.name, 'Blockquote', {height: '100px'}) }}
+{{ toolkit_code_example(kit_id.value, component.name, 'Blockquote', {height: '200px'}) }}
 
 ### Table
 
@@ -43,21 +43,33 @@
 
 ### Inline Code
 
-{{ toolkit_code_example(kit_id.value, component.name, 'Inline Code', {height: '80px'}) }}
+{{ toolkit_code_example(kit_id.value, component.name, 'Inline Code', {height: '200px'}) }}
 
 ### Lead
 
-{{ toolkit_code_example(kit_id.value, component.name, 'Lead', {height: '80px'}) }}
+{{ toolkit_code_example(kit_id.value, component.name, 'Lead', {height: '200px'}) }}
 
 ### Large
 
-{{ toolkit_code_example(kit_id.value, component.name, 'Large', {height: '80px'}) }}
+{{ toolkit_code_example(kit_id.value, component.name, 'Large', {height: '200px'}) }}
 
 ### Small
 
-{{ toolkit_code_example(kit_id.value, component.name, 'Small', {height: '80px'}) }}
+{{ toolkit_code_example(kit_id.value, component.name, 'Small', {height: '200px'}) }}
 
 ### Muted
 
-{{ toolkit_code_example(kit_id.value, component.name, 'Muted', {height: '80px'}) }}
+{{ toolkit_code_example(kit_id.value, component.name, 'Muted', {height: '200px'}) }}
+
+### Arabic
+
+To enable RTL support, set the `dir="rtl"` attribute on the root element.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Arabic', {height: '900px'}) }}
+
+### Hebrew
+
+To enable RTL support, set the `dir="rtl"` attribute on the root element.
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Hebrew', {height: '900px'}) }}
 {% endblock %}
