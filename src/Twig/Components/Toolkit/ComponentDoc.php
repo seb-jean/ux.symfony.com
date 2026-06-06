@@ -15,11 +15,9 @@ use App\Enum\ToolkitKitId;
 use App\Service\CommonMark\ConverterFactory;
 use App\Service\Toolkit\ToolkitService;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
-use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
-use League\CommonMark\Extension\TableOfContents\Node\TableOfContents as TocNode;
-use League\CommonMark\Node\Inline\Text;
 use League\CommonMark\Node\NodeIterator;
 use League\CommonMark\Parser\MarkdownParser;
+use League\CommonMark\Renderer\HtmlRenderer;
 use Symfony\UX\Toolkit\Recipe\Recipe;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
@@ -47,38 +45,26 @@ final class ComponentDoc
      */
     public function getTocItems(): array
     {
-        $converter = ($this->converterFactory)(withTableOfContents: true);
-        $document = new MarkdownParser($converter->getEnvironment())
-            ->parse($this->getMarkdownContent());
-
-        $headingLevels = [];
-        foreach ($document->iterator(NodeIterator::FLAG_BLOCKS_ONLY) as $node) {
-            if ($node instanceof Heading) {
-                $id = $node->data->get('attributes/id', null);
-                if (null !== $id) {
-                    $headingLevels[$id] = $node->getLevel();
-                }
-            }
-        }
-
-        $tocNode = $document->firstChild();
-        if (!$tocNode instanceof TocNode) {
-            return [];
-        }
+        $environment = ($this->converterFactory)()->getEnvironment();
+        $document = new MarkdownParser($environment)->parse($this->getMarkdownContent());
+        $renderer = new HtmlRenderer($environment);
 
         $items = [];
-        foreach ($tocNode->iterator() as $node) {
-            if (!$node instanceof Link) {
+        foreach ($document->iterator(NodeIterator::FLAG_BLOCKS_ONLY) as $node) {
+            if (!$node instanceof Heading) {
                 continue;
             }
-
-            $id = ltrim($node->getUrl(), '#');
-            $firstChild = $node->firstChild();
-            $title = $firstChild instanceof Text ? $firstChild->getLiteral() : '';
-
+            $level = $node->getLevel();
+            if ($level < 2 || $level > 3) {
+                continue;
+            }
+            $id = $node->data->get('attributes/id', null);
+            if (null === $id) {
+                continue;
+            }
             $items[] = [
-                'level' => $headingLevels[$id] ?? 2,
-                'title' => $title,
+                'level' => $level,
+                'title' => (string) $renderer->renderNodes($node->children()),
                 'id' => $id,
             ];
         }
