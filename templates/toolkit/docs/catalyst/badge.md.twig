@@ -1,0 +1,25 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name, {height: '122px'}) }}
+{% endblock %}
+
+{% block examples %}
+### Badge colors
+
+Use the `color` prop to set the color of the badge:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Badge colors', {height: '122px'}) }}
+
+### Using as buttons
+
+Use the `Badge:Button` component to render a badge as a button:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Using as buttons', {height: '122px'}) }}
+
+### Using as links
+
+Use the `Badge:Button` component with the `href` prop to render a badge as a link:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Using as links', {height: '122px'}) }}
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name, {height: '171px'}) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+
+Use the `Input` component on its own to render a standalone input without an associated `Fieldset:Label` component:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example', {height: '134px'}) }}
+
+Make sure to provide an `aria-label` for assistive technology, or connect the `Input` to your own `<label>` element using an `id`.
+
+### With label
+
+Wrap a `Fieldset:Label` and `Input` with the `Fieldset:Field` component to automatically associate them:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With label', {height: '171px'}) }}
+
+### With description
+
+Use the `Fieldset:Description` component to add a description above or below your `Input`:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With description', {height: '199px'}) }}
+
+### With icon
+
+Wrap an icon and `Input` with the `Input:Group` component to render an input with an icon:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With icon', {height: '134px'}) }}
+
+The `Input:Group` component is designed to work best with 16×16 icons.
+
+If you're using your own custom icons, make sure they include the `data-slot="icon"` attribute so they receive the correct styles.
+
+### Setting the type
+
+Use the `type` prop to set the input type to any supported text input type:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Setting the type', {height: '171px'}) }}
+
+The supported types are `email`, `number`, `password`, `search`, `tel`, `text`, `url`, `date`, `datetime-local`, `month`, `time`, and `week`.
+
+### Disabled state
+
+Add the `disabled` prop to the `Fieldset:Field` component to disable an `Input` and the associated `Fieldset:Label`:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Disabled state', {height: '171px'}) }}
+
+You can also disable an input outside of a `Fieldset:Field` by adding the `disabled` attribute directly to the `Input` itself.
+
+### Validation errors
+
+Add the `invalid` prop to the `Input` component to indicate a validation error, and render the error using the `Fieldset:ErrorMessage` component:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Validation errors', {height: '207px'}) }}
+
+### Constraining width
+
+Use the `class` attribute on the `Input` component to make layout adjustments like adjusting the max-width:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Constraining width', {height: '171px'}) }}
+
+Be aware that the `class` attribute is a sharp knife — make sure to only add classes that don't conflict with classes the component already includes or you'll get unexpected results.
+{% endblock %}

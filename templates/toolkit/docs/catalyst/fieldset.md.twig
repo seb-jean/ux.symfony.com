@@ -1,0 +1,37 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name, {height: '553px'}) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+
+Use the `Fieldset`, `Fieldset:Legend`, `Text`, and `Fieldset:FieldGroup` components to group a subset of form controls together:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example', {height: '553px'}) }}
+
+### Without legend
+
+Use a `Fieldset` with `aria-label` to group a set of form controls together without a `Fieldset:Legend`:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Without legend', {height: '477px'}) }}
+
+### Without role
+
+Use the `Fieldset:FieldGroup` component on its own to use it solely for layout, without adding `role="group"` and announcing it to assistive technology like a traditional fieldset:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Without role', {height: '477px'}) }}
+
+### With grid layout
+
+For more complex layouts like grids, use wrapper elements to create nested form control groups and style them yourself with utility classes:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With grid layout', {height: '622px'}) }}
+
+### Disabled state
+
+Add the `disabled` prop to a `Fieldset` component to disable the entire fieldset:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Disabled state', {height: '553px'}) }}
+{% endblock %}

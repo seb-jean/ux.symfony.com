@@ -1,0 +1,73 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name, {height: '326px'}) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+
+Use the `Checkbox` component on its own to render a standalone checkbox without an associated `Fieldset:Label` component:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example', {height: '122px'}) }}
+
+Make sure to provide an `aria-label` for assistive technology, or connect the `Checkbox` to your own `<label>` element using an `id`.
+
+### With label
+
+Wrap a `Fieldset:Label` and `Checkbox` with the `Checkbox:Field` component to automatically associate them:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With label', {height: '122px'}) }}
+
+### With description
+
+Use the `Checkbox:Field`, `Fieldset:Label`, and `Fieldset:Description` components to add a description below the checkbox:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With description', {height: '150px'}) }}
+
+### With accent color
+
+Use the `color` prop to choose a different accent color for a checkbox:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With accent color', {height: '122px'}) }}
+
+### With custom value
+
+Use the `value` attribute to specify a custom value to use when submitting a form:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With custom value', {height: '122px'}) }}
+
+### Default checked state
+
+Use the `checked` attribute to set the default state of the checkbox:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Default checked state', {height: '122px'}) }}
+
+### Indeterminate state
+
+Use the `indeterminate` prop to indicate that the `Checkbox` is in an indeterminate state, neither toggled on nor off:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Indeterminate state', {height: '194px'}) }}
+
+### Multiple checkboxes
+
+Use the `Checkbox:Group` component to stack multiple checkboxes together in a list:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Multiple checkboxes', {height: '250px'}) }}
+
+You can optionally add `role="group"` and an `aria-label` to the `Checkbox:Group` if all of the checkboxes are related and you want them announced to assistive technology as a group.
+
+### With fieldset
+
+Use the `Fieldset`, `Fieldset:Legend`, and `Text` components to add a title and description to a group of checkboxes:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With fieldset', {height: '326px'}) }}
+
+### Disabled state
+
+Add the `disabled` prop to a `Checkbox` or `Checkbox:Field` component to disable it:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Disabled state', {height: '326px'}) }}
+
+You can also add the `disabled` prop to a `Fieldset` to disable the entire fieldset.
+{% endblock %}

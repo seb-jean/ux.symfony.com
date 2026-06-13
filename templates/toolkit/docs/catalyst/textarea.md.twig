@@ -1,0 +1,41 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name, {height: '195px'}) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+
+Use the `Textarea` component on its own to render a standalone textarea without an associated `Label` component:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example', {height: '158px'}) }}
+
+Make sure to provide an `aria-label` for assistive technology, or connect the `Textarea` to your own `<label>` element using an `id`.
+
+### With label
+
+Wrap a `Fieldset:Label` and `Textarea` with the `Fieldset:Field` component to automatically associate them:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With label', {height: '195px'}) }}
+
+### With description
+
+Use the `Fieldset:Description` component to add a description above or below your `Textarea`:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With description', {height: '223px'}) }}
+
+### Disabled state
+
+Add the `disabled` prop to the `Fieldset:Field` component to disable the `Textarea` and the associated `Fieldset:Label`:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Disabled state', {height: '195px'}) }}
+
+You can also disable a textarea outside of a `Fieldset:Field` by adding the `disabled` prop directly to the `Textarea` itself.
+
+### Validation errors
+
+Add the `invalid` prop to the `Fieldset:Field` component to indicate a validation error, and render the error using the `Fieldset:ErrorMessage` component:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Validation errors', {height: '231px'}) }}
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name, {height: '122px'}) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+
+Use the `Avatar` component along with a `size-*` utility to render an avatar image:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example', {height: '138px'}) }}
+
+### With initials
+
+Use the `initials` prop to render an avatar with initials:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With initials', {height: '138px'}) }}
+
+Be sure to include `bg-{color}` and `text-{color}` utilities for both light mode and dark mode.
+
+### With initials as fallback
+
+Include both the `src` and `initials` props to show the initials as a fallback while the avatar image loads:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With initials as fallback', {height: '138px'}) }}
+
+### Square avatars
+
+Use the `square` prop to render a square avatar:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Square avatars', {height: '130px'}) }}
+
+### Avatar groups
+
+Use utility classes to overlap a list of avatars and style them as a group:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Avatar groups', {height: '130px'}) }}
+
+Use the `ring-{color}` and `dark:ring-{color}` utilities to match the notched area with your background color.
+
+### Using as buttons
+
+Use the `Avatar:Button` component to render an avatar as a button:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Using as buttons', {height: '130px'}) }}
+
+### Using as links
+
+Use the `Avatar:Button` component with the `href` prop to render an avatar as a link:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Using as links', {height: '130px'}) }}
+{% endblock %}

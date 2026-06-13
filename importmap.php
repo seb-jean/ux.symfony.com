@@ -190,6 +190,9 @@ return [
     '@symfony/ux-leaflet-map' => [
         'path' => './vendor/symfony/ux-leaflet-map/assets/dist/map_controller.js',
     ],
+    '@tailwindplus/elements' => [
+        'version' => '1.0.22',
+    ],
     '@symfony/ux-toolkit/kits/shadcn/accordion/assets/controllers/accordion_controller.js' => [
         'path' => './vendor/symfony/ux-toolkit/kits/shadcn/accordion/assets/controllers/accordion_controller.js',
     ],

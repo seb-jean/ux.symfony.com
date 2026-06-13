@@ -1,0 +1,101 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name, {height: '134px'}) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+
+Use the `Dropdown`, `Dropdown:Button`, `Dropdown:Menu`, and `Dropdown:Item` components to build a basic dropdown menu:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example', {height: '134px'}) }}
+
+Use the `href` attribute for dropdown items that are links.
+
+### Button style
+
+The `Dropdown:Button` component is rendered as a `Button` by default and directly accepts all of the same styling props, such as `color`, `outline`, and `plain`:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Button style', {height: '134px'}) }}
+
+### Menu placement
+
+Use the `anchor` prop on the `Dropdown:Menu` component to position the dropdown menu relative to the trigger:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Menu placement', {height: '134px'}) }}
+
+Use the values `top`, `right`, `bottom`, `left` to center the menu along the appropriate edge, or combine it with `start` or `end` to align the menu to a specific corner, such as `top start` or `bottom end`.
+
+### With disabled items
+
+Use the `disabled` attribute on a `Dropdown:Item` to disable that item and prevent it from being selected:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With disabled items', {height: '134px'}) }}
+
+### With sections
+
+Use the `Dropdown:Section`, `Dropdown:Heading`, and `Dropdown:Divider` components to group dropdown items into sections:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With sections', {height: '134px'}) }}
+
+Headings are optional but be sure to add an `aria-label` to sections without headings for assistive technology.
+
+### With descriptions
+
+Use the `Dropdown:Description` component along with a `Dropdown:Label` to add a description to a dropdown item:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With descriptions', {height: '134px'}) }}
+
+### With icons
+
+Add an icon as the first child of a `Dropdown:Item` to render it alongside the `Dropdown:Label`:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With icons', {height: '134px'}) }}
+
+The `Dropdown:Item` component is designed to work best with 16×16 icons.
+
+If you're using your own custom icons, make sure they include the `data-slot="icon"` attribute so they receive the correct styles.
+
+### With keyboard shortcuts
+
+Use the `Dropdown:Shortcut` component along with a `Dropdown:Label` to surface any keyboard shortcuts you've implemented in your application:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With keyboard shortcuts') }}
+
+### With header
+
+Use the `Dropdown:Header` component to add a custom header section to the top of a dropdown menu:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With header', {height: '134px'}) }}
+
+It's important to note that assistive technology will not announce any content in a dropdown header, so keep this in mind when deciding what type of content to include.
+
+### With disabled button
+
+Use the `disabled` attribute on the `Dropdown:Button` component to disable a dropdown:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With disabled button', {height: '134px'}) }}
+
+### With icon trigger
+
+Use a `Dropdown:Button` with the `plain` prop in combination with an icon to make an icon-only dropdown trigger:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With icon trigger', {height: '134px'}) }}
+
+Be sure to include an `aria-label` so the button is announced properly to assistive technology.
+
+### With avatar trigger
+
+Render the `Dropdown:Button` with an `Avatar` component to use an avatar as the dropdown trigger:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With avatar trigger', {height: '130px'}) }}
+
+### With custom menu width
+
+Use `min-w-*` utilities to increase the minimum width of a `Dropdown:Menu`, and `max-w-*` utilities to prevent it from getting wider than a specific size:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With custom menu width', {height: '134px'}) }}
+
+Dropdown menus are sized based on the width of their content by default, so this level of control can be helpful for menus that have very short or very long items.
+{% endblock %}

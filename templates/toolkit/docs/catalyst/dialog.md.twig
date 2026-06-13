@@ -1,0 +1,39 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name, {height: '134px'}) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+
+Use the `Dialog`, `Dialog:Title`, `Dialog:Description`, `Dialog:Body`, and `Dialog:Actions` components to build a dialog:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example', {height: '134px'}) }}
+
+### Dialog width
+
+Use the `size` prop on the `Dialog` component to control the max-width of the dialog:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Dialog width', {height: '134px'}) }}
+
+Available size options include `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, and `5xl`.
+
+### Opening from dropdown
+
+When opening a `Dialog` from a dropdown menu, make sure the dialog is rendered outside of the dropdown:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Opening from dropdown', {height: '134px'}) }}
+
+### Auto-focusing elements
+
+Add the `autofocus` attribute to any form control or button in the dialog to automatically focus it when the dialog opens:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Auto-focusing elements', {height: '134px'}) }}
+
+### With scrolling content
+
+Dialogs automatically become scrollable if their content is taller than the viewport:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With scrolling content', {height: '134px'}) }}
+{% endblock %}

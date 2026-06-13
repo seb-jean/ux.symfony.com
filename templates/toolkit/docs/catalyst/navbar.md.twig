@@ -1,0 +1,75 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name, {height: '58px'}) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+
+Use the `Navbar`, `Navbar:Section` and `Navbar:Item` components to build a basic navbar with navigation links:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example', {height: '58px'}) }}
+
+The `Navbar:Item` component can be used either as a link by providing an `href` prop or as a button by omitting the `href` prop.
+
+### With logo
+
+Add your own logo as an image or component at the beginning of your navbar:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With logo', {height: '58px'}) }}
+
+To best fit the navbar design, we recommend making your logo 40px tall at mobile sizes, and 32px tall at the `sm` breakpoint above.
+
+### With active state
+
+Use the `current` prop to specify which `Navbar:Item` is the current navigation item:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With active state', {height: '58px'}) }}
+
+### With icon links
+
+Use an icon as the only child of a `Navbar:Item` to create icon-only links:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With icon links', {height: '58px'}) }}
+
+When using icon-only links, make sure to provide an `aria-label` for assistive technology.
+
+The `Navbar:Item` component is designed to work best with 20×20 icons.
+
+If you're using your own custom icons, make sure they include the `data-slot="icon"` attribute so they receive the correct styles.
+
+### With space between items
+
+Use the `Navbar:Spacer` component to add space between items in the navbar:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With space between items', {height: '58px'}) }}
+
+### With divider
+
+Use the `Navbar:Divider` component to add a dividing line between items in the navbar:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With divider', {height: '58px'}) }}
+
+### With dropdown
+
+Use the `Dropdown` component to add a dropdown menu to a navbar by rendering the `Dropdown:Button` as a `Navbar:Item`:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With dropdown', {height: '58px'}) }}
+
+See the [Dropdown docs](/toolkit/kits/catalyst/components/dropdown) for more information on building dropdown menus.
+
+### With avatar dropdown
+
+Use the `Dropdown` component with an `Avatar` to add an avatar-only dropdown to a navbar:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With avatar dropdown', {height: '58px'}) }}
+
+Make sure to provide an `aria-label` for assistive technology when using avatar-only dropdowns. See the [Dropdown docs](/toolkit/kits/catalyst/components/dropdown) for more information on how to build a dropdown menu.
+
+### Hiding items on mobile
+
+Use utility classes like `max-lg:hidden` to hide certain navbar items at different screen sizes:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Hiding items on mobile', {height: '58px'}) }}
+{% endblock %}

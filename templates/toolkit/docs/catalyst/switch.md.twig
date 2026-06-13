@@ -1,0 +1,67 @@
+{% extends 'toolkit/docs/_base_component.md.twig' %}
+
+{% block demo %}
+{{ toolkit_code_demo(kit_id.value, component.name, {height: '150px'}) }}
+{% endblock %}
+
+{% block examples %}
+### Basic example
+
+Use the `Switch` component on its own to render a standalone switch without an associated `Label` component:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Basic example', {height: '122px'}) }}
+
+Make sure to provide an `aria-label` for assistive technology, or connect the `Switch` to your own `<label>` element using an `id`.
+
+### With label
+
+Wrap a `Fieldset:Label` and `Switch` with the `Switch:Field` component to automatically associate them:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With label', {height: '122px'}) }}
+
+### With description
+
+Use the `Switch:Field`, `Fieldset:Label`, and `Fieldset:Description` components to add a label and description to a switch:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With description', {height: '150px'}) }}
+
+### With accent color
+
+Use the `color` prop to choose a different accent color for a switch:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With accent color', {height: '122px'}) }}
+
+### With custom value
+
+Use the `value` attribute to specify a custom value to use when submitting a form:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With custom value', {height: '122px'}) }}
+
+### Default checked state
+
+Use the `checked` attribute to set the default state of the switch:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Default checked state', {height: '122px'}) }}
+
+### Multiple switches
+
+Use the `Switch:Group` component to stack multiple switches together in a list:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Multiple switches', {height: '250px'}) }}
+
+You can optionally add `role="group"` and an `aria-label` to the `Switch:Group` if all of the switches are related and you want them announced to assistive technology as a group.
+
+### With fieldset
+
+Use the `Fieldset`, `Fieldset:Legend`, and `Text` components to add a title and description to a group of switches:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'With fieldset', {height: '326px'}) }}
+
+### Disabled state
+
+Add the `disabled` prop to a `Switch` or `Switch:Field` component to disable it:
+
+{{ toolkit_code_example(kit_id.value, component.name, 'Disabled state', {height: '326px'}) }}
+
+You can also add the `disabled` prop to a `Fieldset` to disable the entire fieldset.
+{% endblock %}

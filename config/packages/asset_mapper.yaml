@@ -4,6 +4,12 @@ framework:
         paths:
             assets/: ''
             vendor/symfony/ux-toolkit/kits/: '@symfony/ux-toolkit/kits'
+            # The catalyst kit is symlinked into vendor for local development. The
+            # AssetMapper Finder does not descend into symlinked subdirectories of a
+            # mapped path, so the kit is also registered as its own mapped path (a
+            # symlink used as a path root *is* followed), making its JS assets
+            # resolvable, e.g. dropdown_controller.js.
+            vendor/symfony/ux-toolkit/kits/catalyst/: '@symfony/ux-toolkit/kits/catalyst'
         excluded_patterns:
             - '*/assets/styles/_*.css'
             - '*/assets/styles/_*.scss'
