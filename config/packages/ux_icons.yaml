@@ -7,6 +7,11 @@ ux_icons:
     # Throw an exception if an icon is not
     ignore_not_found: false
 
+    icon_sets:
+        heroicons:
+            icon_attributes:
+                data-slot: 'icon'
+
 when@dev:
     ux_icons:
         iconify:
