@@ -60,20 +60,22 @@ export default class extends Controller {
     }
 
     /*
-     * Cropper.js starts from the selection of the form. The square takes its
-     * place at the center of the stage, and the photo goes where the square
-     * shows that same selection.
+     * The square takes its place at the center of the stage, and the photo
+     * goes where the square shows the selection of the form.
      */
     #frame() {
         const cropper = this.#cropper;
         const stage = cropper.getContainerData();
         const { naturalWidth: width, naturalHeight: height } = cropper.getCanvasData();
-        const { cropBox, canvas } = place(stage, { width, height }, cropper.getData());
+        // The "data" option itself: Cropper.js may have moved its own box, one rounding too wide for the photo
+        const { cropBox, canvas } = place(stage, { width, height }, cropper.options.data ?? cropper.getData());
 
         // A dot at the center first: Cropper.js keeps the photo around the square, whatever its size
         cropper.setCropBoxData({ left: stage.width / 2 - 1, top: stage.height / 2 - 1, width: 2, height: 2 });
         cropper.setCanvasData(canvas);
-        cropper.setCropBoxData(cropBox);
+        // The size, then the place: a box a hair wider than the photo goes back to its last place
+        cropper.setCropBoxData({ width: cropBox.width, height: cropBox.height });
+        cropper.setCropBoxData({ left: cropBox.left, top: cropBox.top });
 
         this.sliderTarget.min = 1;
         this.sliderTarget.max = MAX_ZOOM;
