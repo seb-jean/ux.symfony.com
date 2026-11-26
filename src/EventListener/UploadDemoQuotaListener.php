@@ -11,6 +11,7 @@
 
 namespace App\EventListener;
 
+use App\Service\CropDemoPhotos;
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
@@ -49,6 +50,9 @@ final class UploadDemoQuotaListener
         private readonly string $directory,
         #[Autowire('%app.upload_demo_disk_budget%')]
         private readonly int $budget,
+        private readonly CropDemoPhotos $cropDemoPhotos,
+        #[Autowire('%app.crop_demo_dir%')]
+        private readonly string $cropDemoDirectory,
     ) {
     }
 
@@ -78,7 +82,7 @@ final class UploadDemoQuotaListener
         $route = $request->attributes->getString('_route');
 
         return \in_array($request->getMethod(), ['POST', 'PUT'], true)
-            && (str_starts_with($route, 'ux_upload_') || 'app_upload' === $route || str_starts_with($route, 'app_demo_upload_'));
+            && (str_starts_with($route, 'ux_upload_') || 'app_upload' === $route || str_starts_with($route, 'app_demo_upload_') || 'app_demo_image_crop' === $route);
     }
 
     private function networkIsBlocked(Request $request): bool
@@ -110,22 +114,28 @@ final class UploadDemoQuotaListener
 
         // Expired files only leave with the cleanup: run it before refusing anyone
         $this->storage->prune(self::STALE_SESSION_AGE);
+        $this->cropDemoPhotos->prune();
 
         return $this->used() >= $this->budget;
     }
 
+    /**
+     * The uploads in progress or completed, and the photos the Upload, Crop & Serve demo keeps.
+     */
     private function used(): int
     {
-        if (!is_dir($this->directory)) {
-            return 0;
-        }
-
         $size = 0;
-        foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->directory, \FilesystemIterator::SKIP_DOTS)) as $file) {
-            try {
-                $size += $file->isFile() ? $file->getSize() : 0;
-            } catch (\RuntimeException) {
-                // Deleted between the listing and the measure
+        foreach ([$this->directory, $this->cropDemoDirectory] as $directory) {
+            if (!is_dir($directory)) {
+                continue;
+            }
+
+            foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory, \FilesystemIterator::SKIP_DOTS)) as $file) {
+                try {
+                    $size += $file->isFile() ? $file->getSize() : 0;
+                } catch (\RuntimeException) {
+                    // Deleted between the listing and the measure
+                }
             }
         }
 

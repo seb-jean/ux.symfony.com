@@ -22,3 +22,9 @@ ux_upload:
             allowed_types: ['application/zip']
             chunk_size: 64K
             parallel_chunks: 2
+        # Upload, Crop & Serve: a photo, kept 10 minutes for IPX (App\Service\CropDemoPhotos)
+        photos:
+            max_size: 5M
+            allowed_types: ['image/jpeg', 'image/png', 'image/webp']
+            # PHP refuses a file above 1 MB (php.ini): a larger photo travels in 1 MB chunks
+            chunk_size: 1M

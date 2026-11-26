@@ -32,3 +32,14 @@
 "https://{all}/.well-known/mercure":
     type: upstream
     upstream: "mercure:http"
+
+# The images of the site, transformed by IPX next to the app (ipx/.platform.app.yaml)
+"https://{all}/_ipx/":
+    type: upstream
+    upstream: "ipx:http"
+    cache:
+        enabled: true
+        # With f_auto, IPX picks AVIF, WebP or JPEG from the Accept header
+        headers: ['Accept']
+        # An image is the same for every visitor
+        cookies: []

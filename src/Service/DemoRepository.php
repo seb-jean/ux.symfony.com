@@ -25,6 +25,19 @@ class DemoRepository
     {
         return [
             new Demo(
+                'image',
+                'crop',
+                name: 'Upload, Crop & Serve',
+                description: 'Upload photos, crop each one square, and serve every width from your own image server.',
+                author: 'seb-jean',
+                publishedAt: '2026-11-26',
+                tags: ['image', 'upload', 'cropper', 'IPX'],
+                longDescription: 'Drop a photo: [`UploadType`](/upload) sends it in the background. Frame a square in a
+                    dialog with [`CropperType`](/cropperjs): the form only receives four numbers. Back in the grid,
+                    [`<twig:ux:image>`](/image) asks IPX, an image server running next to this site,
+                    for every width of the crop.',
+            ),
+            new Demo(
                 'inspector',
                 'inspector',
                 name: 'UX Inspector',

@@ -66,6 +66,11 @@
     {% set cr_output %}$crop = $form->get('crop')->getData();
 
 $thumbnail = $crop->getCroppedThumbnail(400, 400);{% endset %}
+    {% set cr_server %}{% verbatim %}{# x, y, width and height, as the form received them #}
+<twig:ux:image src="/uploads/photo.jpg" alt="Photo"
+    width="640" height="360"
+    :operations="{ipx: {extract: '812_420_1920_1080'}}" />{% endverbatim %}{% endset %}
+    {% set cr_server_description %}Keep the four numbers instead of a new file. With UX Image, an image server such as IPX cuts the selection for every width the browser may ask for: try it in <a href="{{ path('app_demo_image_crop') }}">Upload, Crop &amp; Serve</a>.{% endset %}
 
     <twig:Package:Highlights
         eyebrow="A form type around Cropper.js"
@@ -92,6 +97,14 @@ $thumbnail = $crop->getCroppedThumbnail(400, 400);{% endset %}
                 description: 'The Crop object carries the selection and can produce the cropped file or a thumbnail on demand.',
                 code: cr_output,
                 language: 'php',
+            },
+            {
+                icon: 'lucide:server',
+                title: 'Or let an image <strong>server</strong> cut',
+                description: cr_server_description,
+                code: cr_server,
+                language: 'twig',
+                wide: true,
             },
         ]"
     />

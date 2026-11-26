@@ -7,10 +7,36 @@ export default class extends Controller {
         open: Boolean,
     };
 
+    // Where the last press started: a drag from inside the dialog, released over the backdrop, is no click outside
+    #pressedOutside = false;
+
     connect() {
         if (this.openValue) {
             this.open();
         }
+    }
+
+    dialogTargetConnected(dialog) {
+        dialog.addEventListener('pointerdown', this.#rememberPress);
+    }
+
+    dialogTargetDisconnected(dialog) {
+        dialog.removeEventListener('pointerdown', this.#rememberPress);
+    }
+
+    #rememberPress = (event) => {
+        this.#pressedOutside = this.#isOutside(event);
+    };
+
+    #isOutside({ target, clientX, clientY }) {
+        if (target !== this.dialogTarget) {
+            return false;
+        }
+
+        // The dialog itself is the target of its padding as well as of its backdrop
+        const { left, right, top, bottom } = this.dialogTarget.getBoundingClientRect();
+
+        return clientX < left || clientX > right || clientY < top || clientY > bottom;
     }
 
     open() {
@@ -31,8 +57,8 @@ export default class extends Controller {
         }
     }
 
-    closeOnClickOutside({ target }) {
-        if (target === this.dialogTarget) {
+    closeOnClickOutside(event) {
+        if (this.#pressedOutside && this.#isOutside(event)) {
             this.close();
         }
     }

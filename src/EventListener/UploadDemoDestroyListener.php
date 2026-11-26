@@ -11,6 +11,7 @@
 
 namespace App\EventListener;
 
+use App\Service\CropDemoPhotos;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -22,6 +23,9 @@ use Symfony\UX\Upload\Token\UploadTokenHandler;
  * This server is public: it keeps no file. The browser holds a signed reference
  * with the name, type and size, and every demo runs on that reference alone.
  * A real application keeps the file until its form is saved, then moves it.
+ *
+ * One exception: IPX needs the photo of the Upload, Crop & Serve demo. Its form
+ * moves the photo, and App\Service\CropDemoPhotos deletes it after 10 minutes.
  */
 final class UploadDemoDestroyListener
 {
@@ -47,8 +51,9 @@ final class UploadDemoDestroyListener
         }
 
         $token = json_decode((string) $response->getContent(), true)['token'] ?? null;
-        if (\is_string($token)) {
-            $this->tokenHandler->resolveForLiveTarget($token)?->delete();
+        $upload = \is_string($token) ? $this->tokenHandler->resolveForLiveTarget($token) : null;
+        if (null !== $upload && CropDemoPhotos::UPLOADER !== $upload->getUploaderName()) {
+            $upload->delete();
         }
     }
 }

@@ -611,6 +611,15 @@
     "symfony/ux-inspector": {
         "version": "3.x-dev"
     },
+    "symfony/ux-ipx-image": {
+        "version": "3.9999999",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.7",
+            "ref": "ba2064ebb36e3b9dd6f3a36929dac57e2e3238d8"
+        }
+    },
     "symfony/ux-leaflet-map": {
         "version": "2.19",
         "recipe": {

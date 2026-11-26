@@ -1,0 +1,30 @@
+# The image server of the site: the router sends /_ipx/ here
+name: ipx
+
+type: nodejs:24
+
+build:
+    flavor: none
+
+relationships:
+    # The Symfony app: IPX fetches the originals from it
+    app: 'app:http'
+
+variables:
+    env:
+        # No URL signing: only the operations the templates use
+        IPX_ALLOWED_MODIFIERS: width,height,resize,fit,format,quality,autoorient,extract
+
+web:
+    commands:
+        start: node server.mjs
+    locations:
+        /:
+            allow: false
+            passthru: true
+
+hooks:
+    build: |
+        set -e -x
+
+        npm ci --omit=dev

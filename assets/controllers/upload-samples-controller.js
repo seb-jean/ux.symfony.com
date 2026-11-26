@@ -20,6 +20,7 @@ const NAMES = {
         'afterparty-blurry.jpg',
     ],
     large: ['dinosaur-dna-backup.zip'],
+    photo: ['IMG_2048.jpg'],
 };
 
 const CRC_TABLE = Uint32Array.from({ length: 256 }, (_, byte) => {
@@ -34,11 +35,12 @@ const CRC_TABLE = Uint32Array.from({ length: 256 }, (_, byte) => {
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
     static values = {
-        kind: String, // pdf, images, or large
+        kind: String, // pdf, images, large, or photo
         for: String, // CSS selector of the file inputs to fill
         size: { type: Number, default: 800 * 1024 }, // of the first file
         count: { type: Number, default: 3 }, // images taken from the default names
         names: Array, // one file per name, instead of the default names of the kind
+        url: String, // the real photo a "photo" sample downloads
     };
 
     async fill(event) {
@@ -73,9 +75,25 @@ export default class extends Controller {
                 );
             case 'large':
                 return Promise.resolve([this.#zip(names[0])]);
+            case 'photo':
+                return this.#download(names[0]).then((file) => [file]);
             default:
                 throw new Error(`Unknown sample kind "${this.kindValue}".`);
         }
+    }
+
+    // A drawing has nothing to crop: a "photo" sample is a real photograph, downloaded from the site
+    async #download(name) {
+        const response = await fetch(this.urlValue);
+        if (!response.ok) {
+            throw new Error(`The sample photo "${this.urlValue}" could not be downloaded.`);
+        }
+        const blob = await response.blob();
+
+        return new File([blob], name, {
+            type: blob.type,
+            lastModified: Date.UTC(2026, 0, 1),
+        });
     }
 
     // A valid PDF header, padded with comment lines. Each file after the first is smaller.

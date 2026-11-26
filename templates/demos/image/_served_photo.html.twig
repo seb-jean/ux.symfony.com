@@ -1,0 +1,10 @@
+{# The main photo takes four places of the grid: the browser picks a wider candidate for it #}
+<twig:ux:image
+    src="{{ photo.path }}"
+    alt="Photo {{ position }}"
+    width="480"
+    height="480"
+    sizes="{{ 1 == position ? '(min-width: 64rem) 24rem, (min-width: 36rem) 45vw, 90vw' : '(min-width: 64rem) 12rem, (min-width: 36rem) 22vw, 45vw' }}"
+    draggable="false"
+    :operations="{ipx: {autoorient: true, extract: photo.crop.toIpx}}"
+/>

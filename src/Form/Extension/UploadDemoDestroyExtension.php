@@ -11,6 +11,7 @@
 
 namespace App\Form\Extension;
 
+use App\Service\CropDemoPhotos;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -24,6 +25,9 @@ use Symfony\UX\Upload\Upload\UploadedFile;
  * With JavaScript, the file travels first and UploadDemoDestroyListener destroys
  * it. Without, the field stores it while the form is handled: it is destroyed
  * here, whether the form is valid or not. The field keeps its signed reference.
+ *
+ * Except the photo of the Upload, Crop & Serve demo: its controller moves it for
+ * IPX, and App\Service\CropDemoPhotos deletes it after 10 minutes.
  */
 final class UploadDemoDestroyExtension extends AbstractTypeExtension
 {
@@ -37,7 +41,7 @@ final class UploadDemoDestroyExtension extends AbstractTypeExtension
         $builder->addEventListener(FormEvents::POST_SUBMIT, static function (FormEvent $event): void {
             $data = $event->getForm()->getData();
             foreach (\is_array($data) ? $data : [$data] as $upload) {
-                if ($upload instanceof UploadedFile) {
+                if ($upload instanceof UploadedFile && CropDemoPhotos::UPLOADER !== $upload->getUploaderName()) {
                     $upload->delete();
                 }
             }

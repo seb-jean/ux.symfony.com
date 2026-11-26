@@ -1,0 +1,641 @@
+/* The frame of the demo wraps a whole stage */
+turbo-frame#crop-demo {
+    display: block;
+}
+
+@keyframes crop-demo-shimmer {
+    from {
+        background-position: 150% 0;
+    }
+
+    to {
+        background-position: -50% 0;
+    }
+}
+
+@layer components {
+    /* Upload, Crop & Serve: a grid of photos, the main one first, as on a profile or a listing */
+    .CropDemo {
+        --crop-radius: .875rem;
+        --crop-ink: #0d0e0f;
+
+        .UploadStage_container {
+            container: crop-demo / inline-size;
+        }
+
+        .CropDemo_header {
+            display: grid;
+            gap: .375rem;
+
+            p {
+                margin: 0;
+                color: var(--color-secondary-text);
+                font-size: .875rem;
+                line-height: 1.5;
+            }
+        }
+
+        .CropDemo_title {
+            margin: 0;
+            font-family: inherit;
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.3;
+            letter-spacing: -.01em;
+        }
+
+        /* Four columns: the main photo takes two of them on two rows, the four others the rest */
+        .CropDemo_grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: .75rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            > li {
+                position: relative;
+                min-inline-size: 0;
+                aspect-ratio: 1;
+                border-radius: var(--crop-radius);
+            }
+
+            > li:first-child {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+        }
+
+        .CropDemo_photo {
+            overflow: hidden;
+            background: color-mix(in oklch, var(--color-body-text) 6%, transparent);
+            cursor: grab;
+            transition: opacity 150ms ease;
+
+            img {
+                display: block;
+                transition: scale 400ms cubic-bezier(.2, .7, .2, 1), opacity 300ms ease;
+            }
+
+            &:hover img {
+                scale: 1.03;
+            }
+
+            /* IPX cuts a new crop: a shimmer holds its place, then the photo fades in */
+            &.is-loading {
+                background-image: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 55%) 50%, transparent 70%);
+                background-size: 200% 100%;
+                animation: crop-demo-shimmer 1.2s linear infinite;
+
+                img {
+                    opacity: 0;
+                }
+            }
+
+            /* A hairline keeps a pale photo apart from the stage */
+            &::after {
+                position: absolute;
+                inset: 0;
+                border-radius: inherit;
+                box-shadow: inset 0 0 0 1px rgb(0 0 0 / 8%);
+                content: '';
+                pointer-events: none;
+            }
+
+            /* Dragged: the photo fades where it was, the place it would take shows a frame */
+            &.is-dragged {
+                opacity: .35;
+            }
+
+            &.is-target::after {
+                box-shadow: inset 0 0 0 3px var(--stage-accent);
+            }
+        }
+
+        .CropDemo_badge {
+            position: absolute;
+            inset-block-start: .625rem;
+            inset-inline-start: .625rem;
+            z-index: 2;
+            display: none;
+            padding: .3125rem .625rem;
+            border-radius: 999px;
+            color: var(--crop-ink);
+            background: white;
+            box-shadow: 0 1px 3px rgb(0 0 0 / 22%);
+            font-size: .75rem;
+            font-weight: 600;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .CropDemo_photo:first-child .CropDemo_badge {
+            display: block;
+        }
+
+        /* The whole photo opens the editor: a shade and a chip say so under the pointer */
+        .CropDemo_edit {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            display: flex;
+            align-items: end;
+            padding: .625rem;
+            border-radius: inherit;
+            background: linear-gradient(to top, rgb(0 0 0 / 38%), transparent 50%);
+            text-decoration: none;
+            opacity: 0;
+            transition: opacity 150ms ease;
+
+            &:focus-visible {
+                outline: none;
+                box-shadow: inset 0 0 0 3px var(--stage-accent);
+                opacity: 1;
+            }
+        }
+
+        .CropDemo_photo:hover .CropDemo_edit {
+            opacity: 1;
+        }
+
+        .CropDemo_chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .375rem;
+            padding: .375rem .625rem;
+            border-radius: 999px;
+            color: var(--crop-ink);
+            background: white;
+            box-shadow: 0 1px 3px rgb(0 0 0 / 22%);
+            font-size: .75rem;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .CropDemo_remove {
+            position: absolute;
+            inset-block-start: .5rem;
+            inset-inline-end: .5rem;
+            z-index: 2;
+            display: grid;
+            inline-size: 1.75rem;
+            block-size: 1.75rem;
+            place-items: center;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            color: var(--crop-ink);
+            background: rgb(255 255 255 / 92%);
+            box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
+            font-size: .875rem;
+            cursor: pointer;
+            transition: background-color 150ms ease, scale 150ms ease;
+
+            &:hover {
+                background: white;
+                scale: 1.06;
+            }
+
+            &:active {
+                scale: .94;
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--stage-accent);
+                outline-offset: 2px;
+            }
+
+            /* The visible disc is 28px: the pointer target is 40px */
+            &::after {
+                position: absolute;
+                inset: -.375rem;
+                content: '';
+            }
+        }
+
+        /* The other free places: a quiet frame, the same "+" as the field */
+        .CropDemo_free label {
+            display: grid;
+            block-size: 100%;
+            place-items: center;
+            border: 1.5px dashed color-mix(in oklch, var(--color-body-text) 18%, transparent);
+            border-radius: inherit;
+            cursor: pointer;
+            transition: border-color 150ms ease, background-color 150ms ease;
+
+            &:hover {
+                border-color: color-mix(in oklch, var(--color-body-text) 45%, transparent);
+                background: color-mix(in oklch, var(--color-body-text) 3%, transparent);
+            }
+
+            span {
+                display: grid;
+                inline-size: 2rem;
+                block-size: 2rem;
+                place-items: center;
+                border: 1.5px solid color-mix(in oklch, var(--color-body-text) 22%, transparent);
+                border-radius: 50%;
+                color: var(--color-secondary-text);
+            }
+        }
+
+        /* A file dragged over the grid: every free place takes it */
+        .CropDemo_grid.is-receiving .CropDemo_free label {
+            border-color: var(--stage-accent);
+            background: color-mix(in oklch, var(--stage-accent) 6%, transparent);
+        }
+
+        .CropDemo_errors {
+            display: grid;
+            gap: .25rem;
+            font-size: .875rem;
+        }
+
+        .CropDemo_footer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: .75rem 1.5rem;
+        }
+
+        .CropDemo_notice {
+            margin: 0;
+            color: var(--color-secondary-text);
+            font-size: .8125rem;
+        }
+
+        /* The dialog is in the top layer, still inside the stage: its colors and buttons apply */
+        .CropDemo_dialog {
+            max-block-size: calc(100dvh - 2rem);
+            overflow-y: auto;
+            color: var(--color-body-text);
+
+            /* Cropper.js takes the size of the element around the photo: a dark stage, as in a photo editor */
+            .cropperjs {
+                aspect-ratio: 1;
+                max-block-size: 60svh;
+                overflow: hidden;
+                border-radius: .75rem;
+                background: var(--crop-ink);
+
+                &:focus-visible {
+                    outline: 2px solid var(--stage-accent);
+                    outline-offset: 2px;
+                }
+            }
+
+            .cropperjs-image {
+                display: block;
+            }
+
+            .CropDemo_zoom {
+                display: flex;
+                inline-size: min(100%, 20rem);
+                align-items: center;
+                gap: .5rem;
+                justify-self: center;
+
+                input {
+                    flex: 1;
+                    min-inline-size: 0;
+                    accent-color: var(--color-body-text);
+                }
+
+                button {
+                    display: grid;
+                    inline-size: 2.25rem;
+                    block-size: 2.25rem;
+                    place-items: center;
+                    padding: 0;
+                    border: 0;
+                    border-radius: 50%;
+                    color: var(--color-secondary-text);
+                    background: none;
+                    font-size: 1.125rem;
+                    cursor: pointer;
+                    transition: color 150ms ease, background-color 150ms ease;
+
+                    &:hover {
+                        color: var(--color-body-text);
+                        background: color-mix(in oklch, var(--color-body-text) 8%, transparent);
+                    }
+                }
+            }
+
+            /* The cropper, its zoom, then the buttons: closer than the rows of a form */
+            .CropDemo_editor {
+                gap: 1rem;
+            }
+
+            footer :is(.CropDemo_secondary, .UploadStage_submit) {
+                justify-content: center;
+                margin-inline-start: 0;
+            }
+
+            .CropDemo_secondary {
+                display: flex;
+                min-block-size: var(--stage-action);
+                align-items: center;
+                padding-inline: 1.25rem;
+                border: 1px solid var(--color-border);
+                border-radius: 999px;
+                color: var(--color-body-text);
+                background: transparent;
+                font-size: .8125rem;
+                font-weight: 500;
+                white-space: nowrap;
+                cursor: pointer;
+                transition: background-color 150ms ease, scale 150ms ease;
+
+                &:hover {
+                    background: color-mix(in oklch, var(--color-body-text) 6%, transparent);
+                }
+
+                &:active {
+                    scale: .96;
+                }
+            }
+        }
+
+        @container crop-demo (inline-size < 30rem) {
+            .CropDemo_grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* A phone gets a square stage and wide buttons, a larger screen a wider stage */
+        @media (max-width: 639.98px) {
+            .CropDemo_dialog footer :is(.CropDemo_secondary, .UploadStage_submit) {
+                inline-size: 100%;
+            }
+        }
+
+        @media (min-width: 640px) {
+            .CropDemo_dialog .cropperjs {
+                aspect-ratio: 4 / 3;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .CropDemo_photo.is-loading {
+                animation: none;
+            }
+        }
+
+        /* A touch screen has no pointer to hover with: the chip stays */
+        @media (hover: none) {
+            .CropDemo_edit {
+                background: none;
+                opacity: 1;
+            }
+        }
+
+        /* With JavaScript, the photo travels as soon as it is chosen */
+        @media (scripting: enabled) {
+            .CropDemo_footer .CropDemo_submit {
+                display: none;
+            }
+        }
+    }
+
+    .dark .CropDemo {
+        .CropDemo_photo::after {
+            box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
+        }
+
+        .CropDemo_photo.is-loading {
+            background-image: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 8%) 50%, transparent 70%);
+        }
+
+        .CropDemo_dialog .CropDemo_secondary {
+            border-color: var(--color-border-translucent);
+        }
+    }
+}
+
+/*
+ * Cropper.js brings its own stylesheet, outside any layer: so are its overrides.
+ * Around the square, the photo dims. In it, the thirds show while the photo moves.
+ */
+.CropDemo_dialog .cropper-modal {
+    background-color: black;
+    opacity: .55;
+}
+
+.CropDemo_dialog .cropper-view-box {
+    outline: 2px solid rgb(255 255 255 / 92%);
+}
+
+.CropDemo_dialog .cropper-dashed {
+    border-color: rgb(255 255 255 / 75%);
+    opacity: 0;
+    transition: opacity 150ms ease;
+}
+
+.CropDemo_dialog .is-moving .cropper-dashed {
+    opacity: .7;
+}
+
+.CropDemo_dialog .cropper-move {
+    cursor: grab;
+}
+
+.CropDemo_dialog .is-moving .cropper-move {
+    cursor: grabbing;
+}
+
+/*
+ * The field of UX Upload takes the first free place. Outside any layer, as the
+ * site theme of the field: a dashed square, a "+" in its middle, the picture
+ * of the photo with its progress while it travels.
+ */
+.CropDemo_add :is(form, .ux-upload, .ux-upload__list) {
+    display: block;
+    block-size: 100%;
+}
+
+.CropDemo_add .ux-upload--dropzone .ux-upload__dropzone {
+    block-size: 100%;
+    min-height: 0;
+    align-content: center;
+    gap: .375rem;
+    padding: 1rem;
+    border: 1.5px dashed color-mix(in oklch, var(--ux-upload-text) 30%, transparent);
+    border-radius: var(--crop-radius);
+}
+
+.CropDemo_add .ux-upload--dropzone .ux-upload__dropzone:hover,
+.CropDemo_grid.is-receiving .CropDemo_add .ux-upload__dropzone {
+    border-color: var(--stage-accent);
+    background: color-mix(in oklch, var(--stage-accent) 6%, transparent);
+}
+
+.CropDemo_add .ux-upload--dropzone .ux-upload__dropzone-icon {
+    display: grid;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    place-items: center;
+    margin: 0 0 .25rem;
+    border-radius: 50%;
+    color: white;
+    background: var(--crop-ink);
+
+    svg {
+        display: none;
+    }
+
+    &::before {
+        inline-size: 1.125rem;
+        block-size: 1.125rem;
+        background: currentColor;
+        content: '';
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h14m-7-7v14' fill='none' stroke='%23000' stroke-width='2.25' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+}
+
+.CropDemo_add .ux-upload--dropzone .ux-upload__instruction {
+    font-weight: 600;
+}
+
+/* In a small place, the "+" says it all: the words stay for screen readers */
+.CropDemo_grid > .CropDemo_add:not(:first-child) :is(.ux-upload__instruction, .ux-upload__help) {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* The photo on its way: its picture fills the place, the progress runs along its bottom */
+.CropDemo_add .ux-upload__list:has(.ux-upload__item) > .ux-upload__dropzone {
+    display: none;
+}
+
+.CropDemo_add .ux-upload--dropzone.ux-upload--previews .ux-upload__item {
+    position: relative;
+    display: block;
+    block-size: 100%;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: var(--crop-radius);
+    background: var(--crop-ink);
+}
+
+.CropDemo_add .ux-upload--dropzone.ux-upload--previews .ux-upload__visual {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    aspect-ratio: auto;
+    border-radius: 0;
+}
+
+.CropDemo_add .ux-upload__preview {
+    opacity: .6;
+    transition: opacity 300ms ease;
+}
+
+.CropDemo_add .ux-upload__item[data-status='completed'] .ux-upload__preview {
+    opacity: 1;
+}
+
+.CropDemo_add .ux-upload__percent {
+    inset: 50% auto auto 50%;
+    padding: .25rem .5rem;
+    border-radius: 999px;
+    translate: -50% -50%;
+    background: rgb(0 0 0 / 55%);
+    font-size: .75rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.CropDemo_add .ux-upload__item[data-status='completed'] .ux-upload__percent {
+    display: none;
+}
+
+.CropDemo_add .ux-upload__metadata {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.CropDemo_add .ux-upload--dropzone.ux-upload--previews .ux-upload__progress {
+    position: absolute;
+    inset: auto .75rem .75rem;
+    block-size: .25rem;
+    background: rgb(255 255 255 / 28%);
+}
+
+.CropDemo_add .ux-upload__progress-bar,
+.dark .CropDemo_add .ux-upload__progress-bar {
+    background: white;
+}
+
+/* The status speaks for an error only: the percentage is on the picture already */
+.CropDemo_add .ux-upload__item:not([data-status='error']) .ux-upload__status {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.CropDemo_add .ux-upload__item[data-status='error'] .ux-upload__status {
+    position: absolute;
+    inset: auto .75rem 3.25rem;
+    color: white;
+    font-size: .75rem;
+    line-height: 1.35;
+    text-align: center;
+}
+
+.CropDemo_add .ux-upload__item[data-status='error'] .ux-upload__preview {
+    opacity: .3;
+}
+
+.CropDemo_add .ux-upload--dropzone.ux-upload--previews .ux-upload__actions {
+    position: static;
+}
+
+.CropDemo_add .ux-upload--dropzone.ux-upload--previews :is(.ux-upload__remove, .ux-upload__cancel) {
+    inset-block-start: .5rem;
+    inset-inline-end: .5rem;
+    color: var(--crop-ink);
+    background: rgb(255 255 255 / 92%);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
+}
+
+.CropDemo_add .ux-upload__retry {
+    position: absolute;
+    inset: auto .75rem .75rem;
+    border: 0;
+    border-radius: 999px;
+    color: var(--crop-ink);
+    background: white;
+    font-weight: 600;
+}
+
+/* Errors of the field, before any upload: under the "+", in the place */
+.CropDemo_add .ux-upload__errors {
+    position: absolute;
+    inset: auto .5rem .5rem;
+    font-size: .75rem;
+    line-height: 1.35;
+    text-align: center;
+}
+
+.CropDemo_add .ux-upload {
+    position: relative;
+}
+
+.dark .CropDemo_add .ux-upload--dropzone .ux-upload__dropzone-icon {
+    color: var(--crop-ink);
+    background: #f7f5fb;
+}
