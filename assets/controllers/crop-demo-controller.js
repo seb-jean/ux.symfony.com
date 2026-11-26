@@ -16,6 +16,19 @@ export default class extends Controller {
     #dragged = null;
     #target = null;
 
+    // A photo still on its way from IPX: its place shimmers until the photo is there
+    connect() {
+        for (const img of this.element.querySelectorAll('.CropDemo_photo img')) {
+            if (!img.complete) {
+                const photo = img.closest('.CropDemo_photo');
+                const done = () => photo.classList.remove('is-loading');
+                photo.classList.add('is-loading');
+                img.addEventListener('load', done, { once: true });
+                img.addEventListener('error', done, { once: true });
+            }
+        }
+    }
+
     /*
      * On the "complete" event of the upload field. The field fills its reference
      * input before it dispatches the event: the form is ready on the next task.
