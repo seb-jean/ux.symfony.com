@@ -4,13 +4,14 @@
     {% component PackageHeader with {
         package: 'image',
         eyebrowText: 'Responsive Images',
+        demosUrl: path('app_demo_image_crop'),
     } %}
         {% block title_header %}
             Responsive images, <em>transformed by your CDN</em>
         {% endblock %}
 
         {% block sub_content %}
-            Write one tag, get a srcset, sizes and modern formats from Cloudflare, Cloudinary, imgix or KeyCDN.
+            Write one tag, get a srcset, sizes and modern formats from Cloudflare, Cloudinary, imgix, KeyCDN, or your own IPX or Imagor server.
         {% endblock %}
     {% endcomponent %}
 {% endblock %}
@@ -61,7 +62,10 @@ UX_IMAGE_DSN=cloudinary://my-cloud?origin=https://example.com&api_secret=${CLOUD
 UX_IMAGE_DSN=imgix://my-source.imgix.net?sign_key=${IMGIX_TOKEN}
 
 # KeyCDN, through a pull zone, signed URLs
-UX_IMAGE_DSN=keycdn://myzone.kxcdn.com?secure_token=${KEYCDN_TOKEN}{% endset %}
+UX_IMAGE_DSN=keycdn://myzone.kxcdn.com?secure_token=${KEYCDN_TOKEN}
+
+# IPX, an image server of your own
+UX_IMAGE_DSN=ipx://images.example.com{% endset %}
     {% set img_layouts %}{% verbatim %}<twig:ux:image src="/uploads/hero.jpg" alt="Hero"
     layout="full-width" width="1600" height="600" priority />
 
@@ -160,4 +164,9 @@ UX_IMAGE_DSN=keycdn://myzone.kxcdn.com?secure_token=${KEYCDN_TOKEN}{% endset %}
         template: 'ux_packages/image/_thumbnail.html.twig',
         original_size: original_sizes['/uploads/col-de-saint-bonnet.jpg'],
     }) }}
+
+    <div class="flex flex-col items-start gap-4 pt-6 md:flex-row md:items-center md:justify-between">
+        <p class="m-0 text-sm text-body-text/80">Your own photo now: upload it, crop it, and see IPX serve every width of the crop.</p>
+        <twig:LinkButton url="{{ path('app_demo_image_crop') }}" label="Upload, Crop & Serve" outline arrow class="shrink-0" />
+    </div>
 {% endblock %}

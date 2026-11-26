@@ -1,0 +1,12 @@
+{
+    "name": "ux-symfony-com-ipx",
+    "description": "The image server of ux.symfony.com, run next to the Symfony application",
+    "private": true,
+    "type": "module",
+    "engines": {
+        "node": ">=22.3.0"
+    },
+    "dependencies": {
+        "ipx": "4.1.0"
+    }
+}

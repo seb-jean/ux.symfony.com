@@ -1,0 +1,21 @@
+<li
+    class="CropDemo_photo"
+    draggable="true"
+    data-name="{{ photo.name }}"
+    data-action="dragstart->crop-demo#pick dragend->crop-demo#release"
+>
+    {{ include('demos/image/_served_photo.html.twig') }}
+
+    {# Shown on the first photo only: the badge follows a photo dragged to the first place #}
+    <span class="CropDemo_badge">Main photo</span>
+
+    <a href="{{ path('app_demo_image_crop', {edit: photo.name}) }}" class="CropDemo_edit" draggable="false">
+        <span class="CropDemo_chip"><twig:ux:icon name="lucide:pencil" /> Edit<span class="sr-only"> photo {{ position }}</span></span>
+    </a>
+
+    <form method="post" action="{{ path('app_demo_image_crop') }}">
+        <button type="submit" name="remove" value="{{ photo.name }}" class="CropDemo_remove" aria-label="Remove photo {{ position }}">
+            <twig:ux:icon name="lucide:x" />
+        </button>
+    </form>
+</li>

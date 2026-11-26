@@ -34,3 +34,8 @@ phpstan.neon
 /public/llms.txt
 /public/llms-full.txt
 ###< app:generate-llms-files ###
+
+###> Upload, Crop & Serve demo ###
+/public/uploads/crops/
+/ipx/node_modules/
+###< Upload, Crop & Serve demo ###

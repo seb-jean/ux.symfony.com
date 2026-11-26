@@ -145,6 +145,7 @@
 @import "./components/_InspectorHero.css";
 @import "./components/_UploadField.css";
 @import "./components/_UploadDemos.css";
+@import "./components/_CropDemo.css";
 @import "./components/_UploadPage.css";
 
 /* ─── Utilities ─── */

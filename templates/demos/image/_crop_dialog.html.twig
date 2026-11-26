@@ -1,0 +1,28 @@
+<twig:Dialog:Content class="CropDemo_dialog sm:max-w-xl">
+    <twig:Dialog:Header>
+        <twig:Dialog:Title>Edit photo</twig:Dialog:Title>
+        <twig:Dialog:Description>Drag the photo to place it in the square, zoom in to crop closer.</twig:Dialog:Description>
+    </twig:Dialog:Header>
+
+    {{ form_start(selection, {action: path('app_demo_image_crop', {edit: photo.name}), attr: {class: 'CropDemo_editor', 'data-controller': 'crop-frame', 'data-action': 'cropperjs:connect->crop-frame#attach'}}) }}
+        {{ form_widget(selection.crop) }}
+
+        {# The zoom needs JavaScript, as the cropper does: the controller shows it #}
+        <div class="CropDemo_zoom" data-crop-frame-target="zoom" hidden>
+            <button type="button" data-action="crop-frame#zoomOut" aria-label="Zoom out"><twig:ux:icon name="lucide:zoom-out" /></button>
+            <input type="range" step="any" aria-label="Zoom" data-crop-frame-target="slider" data-action="crop-frame#zoom">
+            <button type="button" data-action="crop-frame#zoomIn" aria-label="Zoom in"><twig:ux:icon name="lucide:zoom-in" /></button>
+        </div>
+
+        {{ form_errors(selection) }}
+
+        <twig:Dialog:Footer>
+            {% if not main %}
+                {# Saves the crop, and puts the photo first #}
+                <button type="submit" name="main" value="1" class="CropDemo_secondary sm:me-auto">Make main photo</button>
+            {% endif %}
+            <button type="button" class="CropDemo_secondary" data-action="click->dialog#close">Cancel</button>
+            <button type="submit" class="UploadStage_submit" autofocus>Save</button>
+        </twig:Dialog:Footer>
+    {{ form_end(selection) }}
+</twig:Dialog:Content>

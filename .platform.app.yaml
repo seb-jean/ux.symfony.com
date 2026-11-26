@@ -19,12 +19,19 @@ runtime:
         - mbstring
         - imagick
         - xsl
+        # The size of a phone photo depends on its EXIF orientation
+        - exif
 
 crons:
     cleanup_uploads:
         spec: '*/5 * * * *'
         commands:
             start: 'php bin/console ux:upload:cleanup --age=10m'
+
+    prune_crop_photos:
+        spec: '*/5 * * * *'
+        commands:
+            start: 'php bin/console app:crop-demo:prune'
 
     reload_database:
         spec: '*/20 * * * *'
@@ -45,6 +52,8 @@ disk: 256
 
 mounts:
     "/var": { source: local, source_path: var }
+    # The photos of the Upload, Crop & Serve demo: served as files, for IPX to fetch
+    "/public/uploads/crops": { source: local, source_path: uploads_crops }
 
 hooks:
     build: |

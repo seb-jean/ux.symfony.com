@@ -15,6 +15,18 @@ services:
       - mercure_config:/config
 ###< symfony/mercure-bundle ###
 
+###> symfony/ux-ipx-image ###
+  ipx:
+    image: node:26-alpine
+    command: npx --yes ipx@4 serve
+    environment:
+      IPX_FS_DIR: /srv/public
+      # autoorient and extract: the Upload, Crop & Serve demo
+      IPX_ALLOWED_MODIFIERS: width,height,resize,fit,format,quality,autoorient,extract
+    volumes:
+      - ./public:/srv/public:ro
+###< symfony/ux-ipx-image ###
+
 volumes:
 ###> symfony/mercure-bundle ###
   mercure_data:

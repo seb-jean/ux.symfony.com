@@ -37,7 +37,7 @@ final class UploadDemoOwnerListener
         }
 
         $route = $event->getRequest()->attributes->getString('_route');
-        if ('app_upload' === $route || str_starts_with($route, 'app_demo_upload_')) {
+        if ('app_upload' === $route || str_starts_with($route, 'app_demo_upload_') || 'app_demo_image_crop' === $route) {
             $this->contextResolver->resolve();
         }
     }

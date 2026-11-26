@@ -46,6 +46,7 @@
         "symfony/ux-icons": "3.x-dev",
         "symfony/ux-image": "3.x-dev",
         "symfony/ux-inspector": "3.x-dev",
+        "symfony/ux-ipx-image": "3.x-dev",
         "symfony/ux-leaflet-map": "3.x-dev",
         "symfony/ux-live-component": "3.x-dev",
         "symfony/ux-map": "3.x-dev",

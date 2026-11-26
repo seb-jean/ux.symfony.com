@@ -4,3 +4,9 @@ services:
     ports:
       - "80"
 ###< symfony/mercure-bundle ###
+
+###> symfony/ux-ipx-image ###
+  ipx:
+    ports:
+      - "3000"
+###< symfony/ux-ipx-image ###

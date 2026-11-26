@@ -8,6 +8,8 @@ parameters:
     app.upload_demo_dir: '%kernel.project_dir%/var/uploads'
     # Bytes the upload demos may hold at once: the production disk is 256 MB, shared with the cache
     app.upload_demo_disk_budget: 100663296
+    # The photos of the Upload, Crop & Serve demo: under public/, where IPX reads the originals
+    app.crop_demo_dir: '%kernel.project_dir%/public/uploads/crops'
 
 services:
     # default configuration for services in *this* file
@@ -35,6 +37,32 @@ services:
 
     Symfony\UX\Upload\Security\UploadContextResolverInterface:
         alias: App\Service\UploadDemoContextResolver
+
+    # Upload, Crop & Serve: UX Image through IPX, next to the Cloudinary of the other pages.
+    # App\Service\CropDemoImageRenderer picks this renderer on the pages of the demo.
+    app.crop_demo.image_provider:
+        class: Symfony\UX\Image\Provider\ProviderInterface
+        factory: ['@app.crop_demo.image_provider_factory', 'create']
+        arguments:
+            - !service
+                class: Symfony\UX\Image\Provider\Dsn
+                arguments: ['%env(CROP_DEMO_IMAGE_DSN)%']
+
+    app.crop_demo.image_provider_factory:
+        class: Symfony\UX\Image\Bridge\Ipx\IpxProviderFactory
+
+    app.crop_demo.image_url_generator:
+        class: Symfony\UX\Image\ImageUrlGenerator
+        arguments: ['@app.crop_demo.image_provider']
+
+    app.crop_demo.image_renderer:
+        class: Symfony\UX\Image\Renderer\ImageRenderer
+        arguments:
+            - '@app.crop_demo.image_provider'
+            - !service
+                class: Symfony\UX\Image\Renderer\LayoutResolver
+            - ['avif', 'webp', 'jpeg']
+            - '@app.crop_demo.image_url_generator'
 
     # Kits only change on deploy; dev and test read them again to follow kit edits
     app.toolkit_kits_cache:

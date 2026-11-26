@@ -12,9 +12,11 @@
 namespace App\Tests\Unit\EventListener;
 
 use App\EventListener\UploadDemoQuotaListener;
+use App\Service\CropDemoPhotos;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Clock\MockClock;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -28,6 +30,7 @@ final class UploadDemoQuotaListenerTest extends TestCase
 
     private string $directory;
     private string $chunk;
+    private string $cropDemoDirectory;
     private PruningSpy $storage;
     private UploadDemoQuotaListener $listener;
 
@@ -36,6 +39,8 @@ final class UploadDemoQuotaListenerTest extends TestCase
         $this->directory = sys_get_temp_dir().'/upload-quota-'.bin2hex(random_bytes(4));
         mkdir($this->directory.'/tmp/session', recursive: true);
         $this->chunk = $this->directory.'/tmp/session/chunk';
+        $this->cropDemoDirectory = $this->directory.'-crops';
+        mkdir($this->cropDemoDirectory);
         $this->storage = new PruningSpy();
         $this->listener = $this->listener($this->storage);
     }
@@ -46,6 +51,8 @@ final class UploadDemoQuotaListenerTest extends TestCase
         rmdir($this->directory.'/tmp/session');
         rmdir($this->directory.'/tmp');
         rmdir($this->directory);
+        array_map(unlink(...), glob($this->cropDemoDirectory.'/*') ?: []);
+        rmdir($this->cropDemoDirectory);
     }
 
     public function testAVisitorSendsUpToTheAllowance(): void
@@ -148,6 +155,24 @@ final class UploadDemoQuotaListenerTest extends TestCase
         self::assertSame([UploadDemoQuotaListener::STALE_SESSION_AGE], $storage->ages);
     }
 
+    public function testThePhotosOfTheCropDemoCountInTheBudget(): void
+    {
+        file_put_contents($this->cropDemoDirectory.'/photo.jpg', str_repeat('x', 1500));
+
+        self::assertSame(507, $this->send('ux_upload_init', 'POST')?->getStatusCode());
+        self::assertSame(503, $this->send('app_demo_image_crop', 'POST')?->getStatusCode(), 'The demo form sent without JavaScript is refused too.');
+    }
+
+    public function testPruningExpiredCropDemoPhotosMakesRoomAgain(): void
+    {
+        file_put_contents($photo = $this->cropDemoDirectory.'/photo.jpg', str_repeat('x', 1500));
+        // A minute past its lifetime
+        touch($photo, time() - CropDemoPhotos::LIFETIME - 60);
+
+        self::assertNull($this->send('ux_upload_init', 'POST'));
+        self::assertFileDoesNotExist($photo);
+    }
+
     #[DataProvider('provideHarmlessRequests')]
     public function testOtherRequestsAreNeverRefused(string $route, string $method): void
     {
@@ -176,7 +201,7 @@ final class UploadDemoQuotaListenerTest extends TestCase
         // 1000 bytes per network and per window, 1000 bytes of disk for everyone
         $allowance = new RateLimiterFactory(['id' => 'upload_demo_bytes', 'policy' => 'sliding_window', 'limit' => 1000, 'interval' => '10 minutes'], new InMemoryStorage());
 
-        return new UploadDemoQuotaListener($allowance, new ArrayAdapter(), $storage, $this->directory, 1000);
+        return new UploadDemoQuotaListener($allowance, new ArrayAdapter(), $storage, $this->directory, 1000, new CropDemoPhotos($this->cropDemoDirectory, new MockClock()), $this->cropDemoDirectory);
     }
 
     private function send(string $route, string $method, int $bytes = 0, string $ip = self::VISITOR): ?Response
