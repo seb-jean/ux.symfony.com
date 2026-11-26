@@ -111,8 +111,8 @@
 file of 5 MB at most.
 
 When the upload completes, a small Stimulus controller submits the form. The
-form carries a signed reference to the photo, not the photo. The answer adds a
-card for the photo, and opens the cropper in a dialog.
+form carries a signed reference to the photo, not the photo. The answer puts
+the photo in the grid, and opens the cropper in a dialog.
             </twig:Code:CodeWithExplanationRow>
 
             <twig:Code:CodeWithExplanationRow
@@ -135,19 +135,20 @@ after its upload.
             <twig:Code:CodeWithExplanationRow
                 filename="src/Form/CropDemoSelectionForm.php"
                 :lineStart="28"
-                :lineEnd="44"
+                :lineEnd="51"
                 reversed
                 sticky
             >
 ## Crop: a square, four numbers
 
 `CropperType` shows the photo through IPX, turned upright by `autoorient`: a
-phone often stores the rotation of a photo in its EXIF data. With `aspectRatio`
-set to `1`, the selection moves and grows, and stays square.
+phone often stores the rotation of a photo in its EXIF data. The square stays
+still: the visitor drags the photo under it, and zooms. `viewMode: 1` keeps
+the photo around the whole square.
 
 The form receives `x`, `y`, `width` and `height`. PHP never opens the photo:
 no GD, no Imagick. The controller keeps the largest square of the box, checks
-that it fits in the photo, and records it for the card.
+that it fits in the photo, and records it for the grid.
             </twig:Code:CodeWithExplanationRow>
 
             <twig:Code:CodeWithExplanationRow
@@ -160,8 +161,9 @@ The demo lives in a Turbo Frame. Once the photo is on the server, the frame
 comes back with this content in a `Dialog` component rendered `open`: the
 dialog opens as its controller connects, before Cropper.js measures it.
 
-Serve the crop: only the frame is replaced. The dialog closes, the card shows
-the crop, and the page keeps its scroll.
+Save: only the frame is replaced. The dialog closes, the grid shows the crop,
+and the page keeps its scroll. "Make main photo" saves the crop as well, and
+puts the photo first.
             </twig:Code:CodeWithExplanationRow>
 
             <twig:Code:CodeWithExplanationRow
@@ -171,9 +173,10 @@ the crop, and the page keeps its scroll.
             >
 ## Serve: one tag, every width
 
-In its card, the `ux:image` component writes a `srcset` of IPX URLs. The `ipx`
+In the grid, the `ux:image` component writes a `srcset` of IPX URLs. The `ipx`
 operations apply to every candidate: `autoorient`, then `extract`, then the
-resize to the square of the candidate.
+resize to the square of the candidate. The main photo takes four places of
+the grid: its `sizes` asks for wider candidates.
 
 IPX cuts the selection before it resizes it, so every width shows the same
 crop. The browser picks one candidate, and IPX encodes it in AVIF or WebP when

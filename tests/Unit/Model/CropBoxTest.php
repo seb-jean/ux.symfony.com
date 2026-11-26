@@ -99,6 +99,18 @@ final class CropBoxTest extends TestCase
         self::assertEquals($square, $square->toSquare());
     }
 
+    public function testAPhotoNobodyCroppedShowsTheLargestSquareAtItsCenter(): void
+    {
+        // Upright, a phone photo is taller than wide: the square takes its whole width
+        self::assertEquals(new CropBox(0, 250, 1500, 1500), CropBox::centeredSquare(1500, 2000));
+        self::assertEquals(new CropBox(500, 0, 3000, 3000), CropBox::centeredSquare(4000, 3000));
+        // An odd margin rounds down: the square stays inside the photo
+        $square = CropBox::centeredSquare(1001, 600);
+        self::assertEquals(new CropBox(200, 0, 600, 600), $square);
+        self::assertTrue($square->fitsIn(1001, 600));
+        self::assertEquals(new CropBox(0, 0, 800, 800), CropBox::centeredSquare(800, 800));
+    }
+
     public function testIpxAndCropperJsReadTheSameBox(): void
     {
         $box = new CropBox(150, 200, 1200, 1600);

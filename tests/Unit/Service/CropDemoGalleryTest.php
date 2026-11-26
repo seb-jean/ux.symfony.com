@@ -25,8 +25,8 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 #[CoversClass(CropDemoGallery::class)]
 final class CropDemoGalleryTest extends TestCase
 {
-    // A 2 x 1 PNG: a real image, wider than tall
-    private const PNG = 'iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAYAAAD0In+KAAAAEElEQVR42mP8z8DwnwEIAA4SAf+yNPKgAAAAAElFTkSuQmCC';
+    // A 3 x 1 PNG: a real image, wider than tall
+    private const PNG = 'iVBORw0KGgoAAAANSUhEUgAAAAMAAAABCAIAAACUgoPjAAAADUlEQVR4nGM4EaABQQAUqgPBxpjGIwAAAABJRU5ErkJggg==';
 
     private string $directory;
     private MockClock $clock;
@@ -52,41 +52,72 @@ final class CropDemoGalleryTest extends TestCase
         rmdir($this->directory);
     }
 
-    public function testAPhotoJoinsTheGalleryUncropped(): void
+    public function testANewPhotoShowsTheSquareAtItsCenter(): void
     {
-        $this->gallery->add($name = $this->photo('a'), 'IMG_2048.png');
+        $this->gallery->add($name = $this->photo('a'));
 
         [$photo] = $this->gallery->all();
         self::assertSame($name, $photo->name);
-        self::assertSame('IMG_2048.png', $photo->originalName);
         self::assertSame('/uploads/crops/'.$name, $photo->path);
-        self::assertSame([2, 1], [$photo->width, $photo->height]);
-        self::assertNull($photo->crop);
+        self::assertSame([3, 1], [$photo->width, $photo->height]);
+        self::assertEquals(new CropBox(1, 0, 1, 1), $photo->crop);
     }
 
     public function testThePhotosKeepTheOrderOfTheirUpload(): void
     {
-        $this->gallery->add($first = $this->photo('a'), 'first.png');
-        $this->gallery->add($second = $this->photo('b'), 'second.png');
+        $this->gallery->add($first = $this->photo('a'));
+        $this->gallery->add($second = $this->photo('b'));
         $this->gallery->crop($first, new CropBox(0, 0, 1, 1));
 
-        self::assertSame([$first, $second], array_map(static fn ($photo): string => $photo->name, $this->gallery->all()));
+        self::assertSame([$first, $second], $this->names());
     }
 
-    public function testAPhotoKeepsItsSelection(): void
+    public function testAPhotoKeepsItsCrop(): void
     {
-        $this->gallery->add($name = $this->photo('a'), 'IMG_2048.png');
-        $this->gallery->crop($name, new CropBox(1, 0, 1, 1));
+        $this->gallery->add($name = $this->photo('a'));
+        $this->gallery->crop($name, new CropBox(2, 0, 1, 1));
+
+        self::assertEquals(new CropBox(2, 0, 1, 1), $this->gallery->find($name)?->crop);
+    }
+
+    public function testACropPastThePhotoFallsBackToItsCenter(): void
+    {
+        $this->gallery->add($name = $this->photo('a'));
+        $this->gallery->crop($name, new CropBox(2, 0, 2, 1));
 
         self::assertEquals(new CropBox(1, 0, 1, 1), $this->gallery->find($name)?->crop);
     }
 
-    public function testASelectionPastThePhotoIsNoSelection(): void
+    public function testReorderingPutsThePhotosGivenFirst(): void
     {
-        $this->gallery->add($name = $this->photo('a'), 'IMG_2048.png');
-        $this->gallery->crop($name, new CropBox(1, 0, 2, 1));
+        $names = [];
+        foreach (['a', 'b', 'c'] as $letter) {
+            $this->gallery->add($names[$letter] = $this->photo($letter));
+        }
 
-        self::assertNull($this->gallery->find($name)?->crop);
+        // "Make main photo": one name, the others follow in their order
+        $this->gallery->reorder([$names['c']]);
+        self::assertSame([$names['c'], $names['a'], $names['b']], $this->names());
+
+        // A photo dropped on another one: every name, in the new order
+        $this->gallery->reorder([$names['a'], $names['b'], $names['c']]);
+        self::assertSame([$names['a'], $names['b'], $names['c']], $this->names());
+
+        // A name the gallery does not know changes nothing
+        $this->gallery->reorder([str_repeat('f', 32).'.png', $names['b']]);
+        self::assertSame([$names['b'], $names['a'], $names['c']], $this->names());
+    }
+
+    public function testAPhotoKeepsItsCropInItsNewPlace(): void
+    {
+        $this->gallery->add($first = $this->photo('a'));
+        $this->gallery->add($second = $this->photo('b'));
+        $this->gallery->crop($second, new CropBox(2, 0, 1, 1));
+
+        $this->gallery->reorder([$second]);
+
+        self::assertEquals(new CropBox(2, 0, 1, 1), $this->gallery->all()[0]->crop);
+        self::assertEquals(new CropBox(1, 0, 1, 1), $this->gallery->find($first)?->crop);
     }
 
     public function testOnlyThePhotosOfTheGalleryAreFound(): void
@@ -99,7 +130,7 @@ final class CropDemoGalleryTest extends TestCase
 
     public function testAPhotoPastItsLifetimeLeavesTheGallery(): void
     {
-        $this->gallery->add($name = $this->photo('a'), 'IMG_2048.png');
+        $this->gallery->add($name = $this->photo('a'));
         $this->clock->sleep(CropDemoPhotos::LIFETIME);
 
         self::assertSame([], $this->gallery->all());
@@ -109,7 +140,7 @@ final class CropDemoGalleryTest extends TestCase
 
     public function testRemovingAPhotoDeletesItsFile(): void
     {
-        $this->gallery->add($name = $this->photo('a'), 'IMG_2048.png');
+        $this->gallery->add($name = $this->photo('a'));
 
         $this->gallery->remove($name);
 
@@ -117,15 +148,24 @@ final class CropDemoGalleryTest extends TestCase
         self::assertFileDoesNotExist($this->directory.'/'.$name);
     }
 
-    public function testTheGalleryIsFullAtFourPhotos(): void
+    public function testTheGalleryIsFullAtFivePhotos(): void
     {
-        foreach (['a', 'b', 'c'] as $letter) {
-            $this->gallery->add($this->photo($letter), $letter.'.png');
+        foreach (['a', 'b', 'c', 'd'] as $letter) {
+            $this->gallery->add($this->photo($letter));
         }
         self::assertFalse($this->gallery->isFull());
 
-        $this->gallery->add($this->photo('d'), 'd.png');
+        $this->gallery->add($this->photo('e'));
         self::assertTrue($this->gallery->isFull());
+        self::assertSame(5, CropDemoGallery::MAX_PHOTOS);
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function names(): array
+    {
+        return array_map(static fn ($photo): string => $photo->name, $this->gallery->all());
     }
 
     private function photo(string $letter): string

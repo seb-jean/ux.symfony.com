@@ -33,7 +33,7 @@ class DemoRepository
                 publishedAt: '2026-11-26',
                 tags: ['image', 'upload', 'cropper', 'IPX'],
                 longDescription: 'Drop a photo: [`UploadType`](/upload) sends it in the background. Frame a square in a
-                    dialog with [`CropperType`](/cropperjs): the form only receives four numbers. Back in its card,
+                    dialog with [`CropperType`](/cropperjs): the form only receives four numbers. Back in the grid,
                     [`<twig:ux:image>`](/image) asks IPX, an image server running next to this site,
                     for every width of the crop.',
             ),
